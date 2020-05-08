@@ -1,0 +1,1532 @@
+
+% Standard topmatter, v2.0 2012/10/22f
+
+\documentclass[12pt,a4paper]{amsart}
+\usepackage{ifthen,latexsym,amsthm,amssymb,amsmath,bbm,fixmath}
+\usepackage[notref,notcite,color]{showkeys}
+\usepackage[nobysame]{amsrefs}
+\usepackage{bbm}
+\usepackage{tikz,graphicx}
+\usetikzlibrary{calc,shapes,arrows}
+\usetikzlibrary{arrows.meta}
+
+%--------
+
+% equations, labels, etc
+
+\numberwithin{equation}{section}
+
+\usepackage{enumitem}
+
+
+\setlist{leftmargin=3\parindent,labelindent=3\parindent}
+\setlist[enumerate]{%
+  leftmargin=3\parindent,%
+  align=left,%
+  labelwidth=3\parindent,%
+  labelsep=0pt%
+}
+\setlist[enumerate,1]{% 
+  label={\normalfont (\thesection.\arabic{equation})}, ref={\normalfont \thesection.\arabic{equation}},
+  resume%
+}
+
+
+%--------
+
+% feel and look
+
+\usepackage{fullpage}
+
+%\setlength{\textwidth}{15.9cm}
+%\setlength{\textheight}{23cm}
+%\setlength{\hoffset}{-1.7cm}
+%\setlength{\voffset}{-1.8cm}
+%\setlength{\parskip}{2mm}
+%\setlength{\parindent}{0mm}
+%\renewcommand{\baselinestretch}{1.1}
+%\bibliographystyle{amsplain}
+
+% basic definitions
+
+\newcommand{\C}[1]{{\protect\mathcal{#1}}}
+\newcommand{\B}[1]{{\bf #1}}
+\newcommand{\I}[1]{{\mathbbm #1}}
+\renewcommand{\O}[1]{\overline{#1}}
+\newcommand{\M}[1]{\mathrm{#1}}
+\newcommand{\G}[1]{\mathfrak{#1}}
+\newcommand{\V}[1]{\mathbold{#1}}
+\newcommand{\bSigma}{\boldsymbol{\Sigma}}
+\newcommand{\bPi}{\boldsymbol{\Pi}}
+\newcommand{\bDelta}{\boldsymbol{\Delta}}
+\newcommand{\bB}{\boldsymbol{\mathcal{B}}}
+
+\newcommand{\ceil}[1]{\lceil #1\rceil}
+\newcommand{\e}{\varepsilon}
+\newcommand{\floor}[1]{\lfloor #1\rfloor}
+\newcommand{\me}{{\mathrm e}}
+%\renewcommand{\mid}{:}
+\renewcommand{\ldots}{\hspace{0.9pt}.\hspace{0.3pt}.\hspace{0.3pt}.\hspace{1.5pt}}
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\preceq}{\preccurlyeq}
+\renewcommand{\succeq}{\succcurlyeq}
+\newcommand{\actson}{{\curvearrowright}}
+
+\DeclareGraphicsRule{.1}{mps}{*}{} 
+\DeclareGraphicsRule{.2}{mps}{*}{} 
+\DeclareGraphicsRule{.3}{mps}{*}{} 
+\DeclareGraphicsRule{.4}{mps}{*}{} 
+
+% Comments for communicating with coauthors
+
+\newif\ifnotesw\noteswtrue
+\newcommand{\comment}[1]{\ifnotesw $\blacktriangleright$\ {\sf #1}\ 
+  $\blacktriangleleft$ \fi}
+%\noteswfalse	% turn off marginal notes for now
+\newcommand{\hide}[1]{}
+
+
+\newcommand{\beq}[1]{\begin{equation}\label{#1}}
+\newcommand{\eeq}{\end{equation}}
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{fact}[equation]{Fact}
+\newtheorem{proposition}[equation]{Proposition}
+\newtheorem{problem}[equation]{Problem}
+\newtheorem{conjecture}[equation]{Conjecture}
+\newtheorem{corollary}[equation]{Corollary}
+\newtheorem{obs}[equation]{Observation}
+
+\theoremstyle{definition}
+\newtheorem{defn}[equation]{Definition}
+\newtheorem{step}{Step}
+\newtheorem{remark}[equation]{Remark}
+\newtheorem*{JN}{Note from Jon}
+
+
+\newcommand{\bpf}[1]{\smallskip\noindent{\it #1} }
+
+
+\renewcommand{\qed}{\nolinebreak\mbox{\hspace{5 true pt}%
+  \rule[-0.85 true pt]{3.9 true pt}{8.1 true pt}}}
+\newcommand{\epf}{\qed \medskip}
+
+%\newcommand{\claim}[1]{\medskip\noindent{\bf Claim #1} }
+\newtheorem{claim}[equation]{Claim}
+\newcommand{\cqed}{\nolinebreak\mbox{\hspace{5 true pt}%
+  \rule[-0.85 true pt]{2.0 true pt}{8.1 true pt}}}
+\newcommand{\bcpf}{\bpf[Proof of Claim.]}
+\newcommand{\ecpf}{\cqed \medskip}
+
+% my affiliation
+
+\newcommand{\OPdata}{Oleg Pikhurko\\
+Mathematics Institute and DIMAP\\
+University of Warwick\\
+Coventry CV4 7AL, UK}
+
+\title{Circle Squarings with Low-Dimensional Boundary}
+
+\author{Andr\'{a}s M\'{a}th\'{e} \and Jonathan A. Noel \and Oleg Pikhurko}
+
+
+\newcommand{\maun}[1]{\cite[#1]{MarksUnger17}}
+
+
+
+\begin{document}
+
+
+%text specific macros 
+
+%\newcommand{\partialinfty}{\partial_{\mathrm{vis}(\infty)}}
+\newcommand{\boxdim}{\operatorname{dim}_\square}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\diam}{\operatorname{diam}}
+\renewcommand{\deg}{\operatorname{deg}}
+\newcommand{\lex}{\prec_{\operatorname{lex}}}
+\newcommand{\eps}{\varepsilon} 
+\newcommand{\simTr}{\overset{{\mbox{\tiny Tr}}}{\sim}}
+\newcommand{\ind}{\mathbbm{1}}
+\newcommand{\induced}{\upharpoonright}
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\interior}{\operatorname{int}}
+\newcommand{\vvec}{\boldsymbol}
+\newcommand{\fillS}{\operatorname{fill}}
+\newcommand{\comp}{\operatorname{comp}}
+\newcommand{\holes}{\operatorname{holes}}
+\newcommand{\fout}[1]{#1^{\operatorname{out}}}
+\newcommand{\fin}[1]{{#1}_{\operatorname{in}}}
+
+
+\tikzset{
+  smallblack/.style={circle, draw=black!100,fill=black!100,thick, inner sep=0pt, minimum size=1.3mm},
+    smallcirc/.style={circle, draw=black!100,thick, inner sep=1pt, minimum size=1.3mm},
+    smallsq/.style={regular polygon, regular polygon sides=4, draw=black!100,thick, inner sep=-1pt}
+}
+
+
+
+
+
+\begin{abstract}
+Tarski's Circle Squaring Problem asks whether it is possible to partition a disk in $\mathbb{R}^2$ into finitely many pieces and reassemble them via isometries to yield a partition of a square of the same area. In the early 1990s, Laczkovich resolved this problem in the affirmative and generalised it to any two bounded sets of equal positive measure whose boundaries have small upper Minkowski dimension. Recently, several new proofs have emerged which achieve squarings of the circle with more well-structured pieces: i.e., pieces which are Lebesgue measurable, Borel or have the property of Baire. 
+
+In this paper, we prove that there is a squaring of the circle using non-null Borel pieces whose boundaries have small upper Minkowski dimension. As a consequence, it is possible to square the circle in such a way that every piece of the partition can, itself, be decomposed and reassembled to form a disk or square. This answers, in a strong sense, the question of whether the pieces can be made Jordan measurable which was asked by Laczkovich and, in a somewhat different form, by M\'ath\'e. We also improve the Borel complexity of the pieces; e.g., if the disk and square are open or closed, then each piece can be taken to be a Boolean combination of finitely many $G_\delta$-sets.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+Tarski's Circle Squaring Problem~\cite{Tarski25} from 1925 asks the following: In $\mathbb{R}^2$, is it possible to partition a disk of unit area into finitely many pieces and reassemble them using isometries to yield a partition of a unit square? Such a partition is called a \emph{squaring of the circle} or a \emph{circle squaring}. In a deep and groundbreaking paper, Laczkovich~\cite{Laczkovich90} answered this question positively; in fact, he proved that it is possible to do so using translations only. A few years later, he showed that an analogous theorem holds for any two bounded subsets of $\mathbb{R}^k$ of equal positive measure whose boundaries have upper Minkowski dimension less than $k$~\cite{Laczkovich92,Laczkovich92b}; see below for the relevant definitions. 
+
+The Axiom of Choice plays a prominent role in the proofs of Laczkovich~\cite{Laczkovich90,Laczkovich92,Laczkovich92b} and, consequently, the pieces of his circle squarings could not be guaranteed to have any discernible structural properties. A notable problem has been to determine whether there exist circle squarings using more ``well-structured'' pieces; see, e.g.,~\cite[Section~10]{Laczkovich90} and~\cite[Appendix~C]{Wagon81}. Recently, Grabowski, M\'{a}th\'{e} and Pikhurko~\cite{GrabowskiMathePikhurko17} proved that the pieces of a circle squaring can be simultaneously Lebesgue and Baire measurable and Marks and Unger~\cite{MarksUnger17} proved that they can be Borel. The proof in~\cite{GrabowskiMathePikhurko17} uses the Axiom of Choice, but only on a set which is null and meagre, while~\cite{MarksUnger17} avoids the Axiom of Choice completely, yielding the first constructive solution to Tarski's Circle Squaring Problem. 
+
+Our aim in this paper is to extend this line of research by obtaining a squaring of the circle using non-null Borel pieces with boundaries of small upper Minkowski dimension. In particular, we prove the following.
+
+\begin{theorem}
+\label{th:circleSquare}
+There exists a circle squaring using translations such that every piece is a non-null Borel set whose boundary has upper Minkowski dimension at most $1.985$.
+\end{theorem}
+
+In fact, we can achieve pieces with boundaries of upper Minkowski dimension at most $\alpha$ for any $\alpha>129/65$. We remark that, in the statement Theorem~\ref{th:circleSquare}, we are implicitly assuming that the  disk and square themselves are both Borel; otherwise, no circle squaring with Borel pieces could exist.  When combined with the general results mentioned above, Theorem~\ref{th:circleSquare} implies that it is possible to square the circle in such a way that each of the pieces can, itself, be partitioned into finitely many sets and reassembled to form a disk or square. Our proof also yields an improvement over previous results on the ``Borel complexity'' of the pieces; see the paragraph following the statement of Corollary~\ref{cor:Jmeas} for further discussion. 
+
+Following Laczkovich~\cite{Laczkovich92,Laczkovich92b}, we will obtain Theorem~\ref{th:circleSquare} as a special case of a more general result. We now provide the definitions required to state this result precisely. Given $A,B\subseteq \mathbb{R}^k$, an \emph{equidecomposition of $A$ to $B$} is a partition of $A$ into finitely many sets $A_1,\dots,A_N$ along with isometries $\gamma_1,\dots,\gamma_N$ of $\mathbb{R}^k$ such that $\gamma_1(A_1),\dots,\gamma_N(A_N)$ partition $B$. The sets $A_1,\dots,A_N$ are called the \emph{pieces} of the equidecomposition. When an equidecomposition exists, we say that $A$ and $B$ are \emph{equidecomposable}. Denote the standard Lebesgue measure on $\mathbb{R}^k$ by $\lambda$. The \emph{upper Minkowski dimension}, sometimes called \emph{box} or \emph{grid dimension}, of a bounded set $X\subseteq \mathbb{R}^k$ is defined to be 
+\[\boxdim(X):=\limsup_{\delta\to0^+}\frac{\log(N_{\delta}(X))}{\log(\delta^{-1})}\]
+where $N_\delta(X)$ is the number of $\ell_\infty$-balls of side-length $\delta$ required to cover $X$. Equivalently, 
+\[\boxdim(X):=k-\liminf_{\delta\to 0^+}\frac{\log\left(\lambda\left(\left\{\vvec{x}\in\mathbb{R}^k: \dist_\infty(\vvec{x},X)\leq \delta\right\}\right)\right)}{\log(\delta)}\]
+where $\dist_\infty(\vvec{x},X)$ is the $\ell_\infty$-distance from $\vvec{x}$ to $X$. Note that, clearly, $\boxdim(X)\leq k$ for any bounded set $X\subseteq \mathbb{R}^k$. Given $X\subseteq \mathbb{R}^k$, let $\partial X$ denote the topological boundary of $X$. 
+
+In this language, the result of Laczkovich~\cite{Laczkovich92,Laczkovich92b} says that if $A$ and $B$ are bounded subsets of $\mathbb{R}^k$ of the same positive measure such that $\boxdim(\partial A),\boxdim(\partial B)<k$, then $A$ and $B$ are equidecomposable. We remark that the hypothesis $\boxdim(\partial A),\boxdim(\partial B)< k$ is difficult to relax in general. In fact, Laczkovich~\cite[Corollary 3.5]{Laczkovich93} proved that there exists a bounded non-null subset $A'$ of $\mathbb{R}^k$ whose boundary has Hausdorff dimension $k-1$ such that $A'$ is not equidecomposable by translations to a cube of the same measure; in particular, upper Minkowski dimension cannot be replaced by Hausdorff dimension. Our most general result is the following. 
+
+\begin{theorem}
+\label{th:main}
+If $k\geq1$ and $A,B\subseteq \mathbb{R}^k$ are bounded sets such that $\lambda(A)=\lambda(B)>0$, $\boxdim(\partial A)<  k$ and $\boxdim(\partial B)<k$, then 
+\begin{itemize}
+\item[(a)] $A$ and $B$ are equidecomposable by translations in such a way that the boundary of each piece has upper Minkowski dimension less than $k$ and
+\item[(b)] if $A$ and $B$ are Borel, then the pieces can additionally be taken to be Borel. 
+\end{itemize}
+\end{theorem}
+
+Note that, in contrast to Theorem~\ref{th:circleSquare}, it would be impossible to guarantee that the pieces in Theorem~\ref{th:main} have positive measure in general. For example, if $A$ contains a point $\vvec{x}$ such that the Euclidean distance from $\vvec{x}$ to $A\setminus\{\vvec{x}\}$ is greater than the Euclidean diameter of $B$, then every equidecomposition of $A$ to $B$ must include the set $\{\vvec{x}\}$ as a single piece. However, we will show that, under certain conditions on $A$ and $B$ (which are satisfied in the case that $A$ is a disk and $B$ is a square) it is possible to ensure that all of the pieces do indeed have positive measure.
+
+Recall that a subset of $\mathbb{R}^k$ is \emph{Jordan measurable} if it is bounded and its boundary has measure zero. In particular, any bounded set $X\subseteq\mathbb{R}^k$ with $\boxdim(\partial X)<k$ is Jordan measurable. Therefore, Theorem~\ref{th:main} implies the following corollary, which addresses questions of Laczkovich~\cite{LaczkovichTalk} and M\'{a}th\'{e}~\cite[Question~6.2]{Mathe18icm}. 
+
+\begin{corollary}
+\label{cor:Jmeas}
+If $A,B\subseteq \mathbb{R}^k$ are bounded sets such that $\lambda(A)=\lambda(B)>0$, $\boxdim(\partial A)<k$ and $\boxdim(\partial B)<k$, then $A$ and $B$ are equidecomposable by translations using Jordan measurable pieces.
+\end{corollary}
+
+The proof of Theorem~\ref{th:main} actually yields the stronger statement that, if $A$ and $B$ are Borel, then we can ensure that the pieces of the equidecomposition have Borel complexity similar to that of $A$ and $B$. In particular, in the special case that $A$ and $B$ are in $F_\sigma\cap G_\delta$ (e.g. if they are open or closed), then each piece of the equidecomposition can be taken to be a Boolean combination of finitely many sets on the second level of the Borel hierarchy (i.e. $G_\delta$-sets and $F_\sigma$-sets); see Corollary~\ref{cor:standardComplexity} for a more general statement. It was previously known that there is an equidecomposition in which the pieces are Boolean combinations of finitely many sets on the fourth level of the Borel hierarchy~\cite[p.~583]{MarksUnger17}.
+
+\subsection{Historical Background}
+
+Tarski's Circle Squaring Problem has its roots in the theory of paradoxical decompositions. The most famous result from this theory is undoubtedly the Banach--Tarski Theorem~\cite{BanachTarski24} which says that, if $k\geq3$ and $A,B\subseteq \mathbb{R}^k$ are bounded and have non-empty interior, then $A$ and $B$ are equidecomposable. From this, one obtains the striking Banach--Tarski Paradox that a solid ball in $\mathbb{R}^3$ admits an equidecomposition to two disjoint copies of itself. 
+
+The assumption $k\geq3$ is necessary in the Banach--Tarski Theorem, as Banach~\cite{Banach23} proved that the Lebesgue measure on $\mathbb{R}$ or $\mathbb{R}^2$ can be extended to a finitely additive measure on all subsets which is invariant under isometries; this is known as a \emph{Banach measure}. Thus, in $\mathbb{R}^2$, there cannot exist equidecomposable sets of different Lebesgue measure. The theory of amenable groups, pioneered by von Neumann~\cite{Neumann29}, originated as an attempt to obtain a deeper group-theoretic understanding of the change in behaviour between dimensions two and three; the key difference turns out to be that the group of isometries of $\mathbb{R}^k$ is amenable for $k\in\{1,2\}$ but not for $k\geq 3$. Generally, if $A$ and $B$ are Lebesgue measurable subsets of $\mathbb{R}^k$ which are equidecomposable using isometries from an amenable subgroup of the isometry group, then they must have the same measure. Note that the group of translations of $\mathbb{R}^k$ is amenable for all $k\geq1$, and so the condition that $\lambda(A)=\lambda(B)$ is necessary in Theorem~\ref{th:main} in general.
+
+Decades before Laczkovich squared the circle, Dubins, Hirsch and Karush~\cite{DubinsHirschKarush63} proved that a disk is not \emph{scissor-congruent} to a square, meaning that there does not exist a squaring of the circle with pieces that are interior-disjoint Jordan domains, even if boundaries are ignored. This is in strong contrast to the case of polygons; the classical Wallace--Bolyai--Gerwein Theorem states that it is possible to dissect a polygon into finitely many pieces using straight lines and, ignoring boundaries, reassemble them to form any polygon of the same area; see~\cite[pp.~34--35]{TomkowiczWagon16}. Another notable negative result of Gardner~\cite{Gardner85} asserts that there is no solution to the Circle Squaring Problem using isometries from a locally finite subgroup of the isometry group.
+
+As we have mentioned above, if $A$ and $B$ are measurable sets which are equidecomposable using isometries from an amenable subgroup $\Gamma$ of the isometry group, then $A$ and $B$ have the same measure. Thus, there is no obvious obstruction to $A$ and $B$ being equidecomposable using measurable pieces. A wide-reaching conjecture of Gardner~\cite[Conjecture~6]{Gardner91} states that, if $A$ and $B$ are Lebesgue measurable and equidecomposable using isometries from an amenable subgroup $\Gamma$ of the isometry group, then there exists an equidecomposition with Lebesgue measurable pieces using isometries from $\Gamma$; the result of~\cite{GrabowskiMathePikhurko17} can be viewed as verifying a special case of this conjecture. For more background on the theory of paradoxical decompositions, we refer the reader to the monograph of Tomkowicz and Wagon~\cite{TomkowiczWagon16}.
+
+\vspace{-0.05em}
+
+
+\subsection{Organisation}
+
+In Section~\ref{sec:prelim}, we build up several preliminary definitions and introduce a few of the tools used in the paper. The aims of Section~\ref{sec:JSec} are twofold. The primary aim is to outline the main ingredients of the proof of Theorem~\ref{th:main}. In parallel, we will also sketch a separate proof of Corollary~\ref{cor:Jmeas} which serves as a ``warm up'' in the sense that it shares many core ideas with the proof of Theorem~\ref{th:main}, but with fewer technicalities. 
+
+We then turn our attention to proving Theorem~\ref{th:main}. In Section~\ref{sec:realFlows}, we describe a procedure for constructing a real-valued ``flow'' from $A$ to $B$ in a graph which encodes translations of a ``$k$-dimensional torus'' by $d$ random vectors. In Section~\ref{sec:covering}, we construct some special auxiliary structures which can essentially be described as ``layered coverings'' of the vertex set of this graph. Such coverings are applied in Section~\ref{sec:integerFlow} to transform the real-valued flows of Section~\ref{sec:realFlows} into a bounded integer-valued flow. An simple procedure for applying the existence of such a flow to obtain an equidecomposition is provided in the outline in Section~\ref{sec:JSec}. In Section~\ref{sec:nonNull}, we show that a modification of this procedure can yield non-null pieces under certain conditions; we use this to prove Theorem~\ref{th:circleSquare}. 
+
+We have done our best to describe the main constructions in Sections~\ref{sec:realFlows}--\ref{sec:nonNull} without being bogged down by the technical details required to analyse the structure of the pieces in the final equidecomposition. The purpose of Section~\ref{sec:pieces}  is to tie up these ``loose ends''; that is, to analyse the Borel complexity of the pieces and the upper Minkowski dimension of their boundaries. 
+\section{Preliminaries}
+\label{sec:prelim}
+
+\subsection{The Setting}
+\label{subsec:setting}
+
+Throughout the rest of the paper, let $k\geq1$ and  $A,B\subseteq \mathbb{R}^k$ be bounded sets such that $\lambda(A)=\lambda(B)>0$, $\boxdim(\partial A)< k$ and $\boxdim(\partial B)< k$. Pick $\epsilon$ so that
+\begin{equation}
+\label{eq:epsilonGap}
+0<\epsilon< k-\max\left\{\boxdim(\partial A),\boxdim(\partial B)\right\}.
+\end{equation} 
+Given $Y\subseteq\mathbb{R}^k$ and $\vvec{t}\in \mathbb{R}^k$, the \emph{translation of $Y$ by $\vvec{t}$} is the set $Y+\vvec{t}:=\left\{\vvec{y}+\vvec{t}: \vvec{y}\in Y\right\}$. Our aim is to show that there is a partition of $A$ into finitely many sets $A_1,\dots,A_N$ and vectors $\vvec{t}_1,\dots,\vvec{t}_N$ such that the sets $A_1+\vvec{t}_1,\dots,A_N+\vvec{t}_N$ partition $B$. The way in which we construct the equidecomposition is actually by first specifying the translation vectors $\vvec{t}_1,\dots,\vvec{t}_N$ (see Remark~\ref{rem:GdRole}) and then, for each point $\vvec{u}$ of $A$, deciding which of the sets $A_1,\dots,A_N$ the point $\vvec{u}$ should belong to. Crucially, we need to make these decisions carefully so that we can analyse the structure of the pieces $A_1,\dots,A_N$. 
+
+The \emph{$k$-torus} is the quotient group $\mathbb{R}^k/\mathbb{Z}^k$. We identify $\mathbb{T}^k$ with $[0,1)^k$ and assume that it inherits its topological and measure-theoretic structure from $\mathbb{R}^k$. Let $\lambda$ denote the measure on $\mathbb{T}^k$ obtained from the Lebesgue measure on $\mathbb{R}^k$. In particular, $\lambda\left(\mathbb{T}^k\right)=1$.  By scaling $A$ and $B$ by the same factor and translating them, we may view them as disjoint subsets of $\mathbb{T}^k$ of the same positive measure. If $A$ and $B$ are equidecomposable using translations in $\mathbb{T}^k$, then they are also equidecomposable using translations in $\mathbb{R}^k$, where the number of pieces is increased by a factor of at most $2^k$. In fact, if $A$ and $B$ are scaled to each have $\ell_\infty$-diameter less than $1/2$, then an equidecomposition in $\mathbb{T}^k$ corresponds to an equidecomposition in $\mathbb{R}^k$ with exactly the same pieces. From here forward, we always assume that we are working in the setting of the $k$-torus. 
+
+\subsection{Graph-Theoretic Definitions}
+
+A (simple undirected) \emph{graph} is a pair $G=(V,E)$ where the elements of $V$ are called \emph{vertices} and $E$ is a collection of unordered pairs $\{u,v\}$ of vertices called \emph{edges}. An edge $\{u,v\}\in E$ is written $uv$ or, equivalently, $vu$ for brevity.  The vertex set and edge set of a graph $G$ are written as $V(G)$ and $E(G)$, respectively. A vertex $u$ is said to be \emph{adjacent to} or \emph{a neighbour of} a vertex $v$ if $uv\in E(G)$. Given a set $S\subseteq V(G)$, the \emph{subgraph of $G$ induced by $S$}, denoted $G\induced S$, is the graph with vertex set $S$ and edge set $\{uv\in E(G): u,v\in S\}$.
+
+Given a graph $G$ and $u,v\in V(G)$, we let $\dist_G(u,v)$ denote the \emph{graph distance from $u$ to $v$ in $G$}, i.e., the fewest number of edges in a path from $u$ to $v$ in $G$. Note that $\dist_G(u,u)=0$ and that, if no such path exists, then $\dist_G(u,v):=\infty$. For sets $S,T\subseteq V(G)$, we let $\dist_{G}(S,T):=\min\{\dist_G(u,v): u\in S\text{ and }v\in T\}$ and, for $w\in V(G)$, we write $\dist_G(w,T)$ to mean $\dist_G(\{w\},T)$. 
+%The \emph{diameter} of a set $S\subseteq V(G)$ in $G$ is defined to be $\diam_{G}(S):=\sup\{\dist_G(u,v): u,v\in S\}$. 
+Given $u\in V(G)$, the \emph{connected component of $G$ containing $u$} is the set $[u]_G:=\{v\in V(G): \dist_G(u,v)<\infty\}$. Say that $G$ is \emph{connected} if $[u]_G=V(G)$ for every (equivalently, some) vertex $u\in V(G)$. 
+
+Given a graph $G$ and $u\in V(G)$, let $N_G[u]:=\{v\in V(G): \dist_G(u,v)\leq 1\}$ denote the \emph{(closed) neighbourhood of $u$ in $G$}. Also, for a set $S\subseteq V(G)$, let $N_G[S]:=\bigcup_{u\in S}N[u]$ be the \emph{(closed) neighbourhood of $S$ in $G$}. The \emph{degree} of a vertex $u\in V(G)$ is defined to be $\deg_G(u):=\left|N_G[u]\setminus \{u\}\right|$. We say that $G$ is \emph{locally finite} or \emph{locally countable} if $\deg_G(u)$ is respectively finite or countable for every $u\in V(G)$. For $d\in \mathbb{N}$, we say that $G$ is \emph{$d$-regular} if $\deg_G(u)=d$ for all $u\in V(G)$.
+
+\subsection{Network Flows}
+
+A \emph{flow} in a graph $G$ is a function $f:V(G)\times V(G)\to \mathbb{R}$ such that
+\[f(u,v)=-f(v,u)\text{ for all }u,v\in V(G) \text{ and}\]
+\[f(u,v)=0\text{ if }uv\notin E(G).\]
+The quantity $f(u,v)$ is called the \emph{flow from $u$ to $v$ under $f$}. Given a finite set $S\subseteq V(G)$, the \emph{flow out of $S$ under $f$} is defined to be
+\[\fout{f}(S):= \sum_{\substack{u\in S\\ v\in V(G)\setminus S}}f(u,v).\]
+Note that, in this paper, we will always deal with locally finite graphs, and so the flow out of a finite set will always be well-defined. For a vertex $u\in V(G)$, the \emph{flow out of $u$ under $f$} is $\fout{f}(u):=\fout{f}(\{u\})$. The following is an easy consequence of the definition of a flow.
+\begin{obs}
+\label{obs:flowOutOfS}
+Given a graph $G$, flow $f$ in $G$ and finite set $S\subseteq V(G)$,
+\[\fout{f}(S) = \sum_{u\in S}\fout{f}(u).\]
+\end{obs}
+
+ Given a function $\chi:V(G)\to \mathbb{R}$, which we call a \emph{demand function}, a \emph{$\chi$-flow in $G$} is a flow $f$ such that $\fout{f}(u)=\chi(u)$ for every $u\in V(G)$. For $S,T\subseteq V(G)$, a \emph{flow from $S$ to $T$ in $G$} is a $\left(\ind_S-\ind_T\right)$-flow in $G$ where $\ind_X$ denotes the indicator function of a set $X$. 
+
+
+It is well-known that, if $\chi$ is an integer-valued demand function for a finite graph $G$, then a real-valued $\chi$-flow in $G$ can be converted into an integer-valued $\chi$-flow in $G$ by only slightly perturbing the flow along each edge. This is known as the Integral Flow Theorem. It seems to have been first observed by Dantzig and Fulkerson~\cite{DantzigFulkerson56} using ideas of Dantzig~\cite{Dantzig51}; see~\cite[Corollary~10.3a]{Schrijver03} and the discussion in~\cite[p.~64]{Schrijver03}. For general locally finite graphs, it follows from the finite case via a standard compactness (i.e. Axiom of Choice) argument. The precise form of the Integral Flow Theorem that we apply in this paper is as follows. For the sake of completeness, we include a proof  in Appendix~\ref{app:IFT}.
+
+\begin{theorem}[Integral Flow Theorem]
+\label{th:IFT}
+Let $G$ be a locally finite graph and $\chi:V(G)\to \mathbb{Z}$. If there exists a $\chi$-flow $g$ in $G$, then there exists an integer-valued $\chi$-flow $f$ in $G$ with $|f(u,v)-g(u,v)|<1$ for all $u,v\in V(G)$.
+\end{theorem}
+
+
+
+\subsection{Graphs Arising from Group Actions}
+
+Let $\Gamma$ be a group and let $a:\Gamma\actson X$ be an action of $\Gamma$ on a set $X$. Given a set $S$ of generators for $\Gamma$ which is \emph{symmetric}, in the sense that $\gamma\in S \Longleftrightarrow \gamma^{-1}\in S$, the \emph{graph associated to $a$ with respect to $S$} is the graph $G_a$ with vertex set $X$ where $uv$ is an edge if $u\neq v$ and $u=\gamma\cdot v$ for some $\gamma\in S$. This generalises the notion of a \emph{Cayley graph}, which corresponds to the action of left multiplication on $X=\Gamma$. Note that, since $S$ is a set of generators, the components of $G_a$ are precisely the orbits of the action $a$. The action $a$ is said to be \emph{free} if there does not exist $x\in X$ and a non-identity element $\gamma$ of $\Gamma$ such that $\gamma\cdot x=x$. 
+
+Naturally, since we are aiming for an equidecomposition by translations, our main object of study is a graph which encodes translations in $\mathbb{T}^k$. Specifically, let $d$ be a positive integer which is chosen large with respect to $A$ and $B$, where the dependence is specified later in \eqref{eq:dBound}, and let $\vvec{x}_1,\dots,\vvec{x}_d$ be chosen uniformly at random from $\mathbb{T}^k$ independently of one another. We denote elements of $\mathbb{Z}^d$ as vectors accented by an arrow, e.g. $\vec{n}$, to distinguish them from vectors in $\mathbb{T}^k$ which are typeset in boldface. For $\vec{n}\in\mathbb{Z}^d$ and $1\leq i\leq d$, let $n_i$ denote the $i$th coordinate of $\vec{n}$. That is, $n_i:=\langle \vec{n},\vec{e_i}\rangle$ where $\vec{e_i}$ is the $i$th standard basis vector. Consider the action $a:\mathbb{Z}^d\actson \mathbb{T}^k$ defined by
+\[\vec{n}\cdot_a \vvec{u} := \vvec{u} + \sum_{i=1}^dn_i\vvec{x}_i\]
+for each $\vec{n}\in \mathbb{Z}^d$ and $\vvec{u}\in\mathbb{T}^k$. We let $G_d$ denote the graph associated to $a$ with respect to the symmetric set $\{\vec{\gamma}\in\mathbb{Z}^d: \|\vec{\gamma}\|_\infty=1\}$ of generators of $\mathbb{Z}^d$. Note that the action $a$ is free with probability one. Therefore, the subgraph of $G_d$ induced by any given component of $G_d$ is nothing more than a copy of $\mathbb{Z}^d$ in which two elements are adjacent if they are at $\ell_\infty$-distance $1$. Say that an edge $\vvec{u}\vvec{v}$ is \emph{axis-aligned} if $\vvec{u}=\vec{e_i}\cdot_a\vvec{v}$ for some $1\leq i\leq d$, where $\vec{e_i}$ is the $i$th standard basis vector. In the subgraph of $G_d$ containing only axis-aligned edges, each component induces the usual $2d$-regular square lattice on $\mathbb{Z}^d$. We pause for a remark regarding the role of the graph $G_d$ in the equidecomposition. 
+
+\begin{remark}
+\label{rem:GdRole}
+The translation vectors used in the equidecomposition are of the form $\sum_{i=1}^dn_i\vvec{x}_i$ where $\vec{n}\in \mathbb{Z}^d$ and $\|\vec{n}\|_\infty$ is bounded by a large constant depending only on $A$ and $B$ (which we do not attempt to estimate). Assuming that the translation vectors will have this form, we see that constructing the equidecomposition becomes equivalent to finding a consistent way of ``matching'' each element of $A$ with an element of $B$ at bounded distance from it in $G_d$. Given such a matching, each piece of the partition is indexed by a vector $\vec{n}\in \mathbb{Z}^d$ of bounded $\ell_\infty$-norm, where the piece corresponding to $\vec{n}$ is the set of all $\vvec{u}\in A$ such that $\vvec{u}$ is matched to $\vvec{u}+\sum_{i=1}^dn_i\vvec{x}_i$.  
+\end{remark}
+
+At certain points during the construction, we are forced to make arbitrary ``tie-breaking'' choices in a consistent manner. In doing so, it is useful to endow each component of $G_d$ with a lexicographic ordering. For distinct $\vvec{u},\vvec{v}\in \mathbb{T}^k$, we write $\vvec{u}\lex\vvec{v}$ to mean that 
+\[\vvec{v}-\vvec{u} = \sum_{i=1}^dn_i\vvec{x}_i\]
+where the first non-zero entry of $(n_1,\dots,n_d)$ is positive. This naturally extends to an ordering on $\left(\mathbb{T}^k\right)^t$ for any $t\geq1$ where $(\vvec{u}_1,\dots,\vvec{u}_t)\lex (\vvec{v}_1,\dots,\vvec{v}_t)$ if there exists $1\leq i\leq t$ such that $\vvec{u}_i\lex \vvec{v}_i$ and $\vvec{u}_j=\vvec{v}_j$ for all $1\leq j\leq i-1$. 
+
+Given $\vvec{u}\in\mathbb{T}^k$, we write $N_{G_d}[\vvec{u}]$ simply as $N[\vvec{u}]$. For $n\geq1$, define
+\[N_n[\vvec{u}]:=\left\{\vvec{v}\in \mathbb{T}^k: \dist_{G_d}(\vvec{u},\vvec{v})\leq n\right\}.\]
+The set $N_n[\vvec{u}]$ naturally corresponds to a discrete cube of side-length $2n$ in $G_d$ with $\vvec{u}$ at its centre. Also, for $n\geq1$, define
+\[N_n^+[\vvec{u}]:=\left\{\vvec{v}+ \sum_{i=1}^dn_i\vvec{x}_i: \vec{n}\in\{0,\dots,n\}^d\right\}.\]
+That is, $N_n^+[\vvec{u}]$ is the set of vertices which can be reached from $\vvec{u}$ by taking at most $n$ steps in ``completely non-negative'' directions in $G_d$. The set $N_n^+[\vvec{u}]$ can be thought of as a discrete cube of side-length $n$ in $G_d$ with $\vvec{u}$ as its lexicographically minimal element. Given a set $S\subseteq\mathbb{T}^k$ and $n\geq1$, let $N_n[S]:=\bigcup_{\vvec{u}\in S}N_n[\vvec{u}]$ and $N_n^+[S]:=\bigcup_{\vvec{u}\in S}N_n^+[\vvec{u}]$. 
+
+\subsection{Discrepancy Bounds in $\boldsymbol{G_d}$}
+\label{subsec:disc}
+
+Given a finite set $F\subseteq \mathbb{T}^k$ and a measurable set $X\subseteq \mathbb{T}^k$, the \emph{discrepancy of $F$ relative to $X$} is defined to be
+\begin{equation}\label{eq:discrepDef}D(F,X):= \big||F\cap X| - |F|\cdot\lambda(X)\big|.\end{equation}
+In other words, $D(F,X)$ is the deviation between $|F\cap X|$ and the expected value of this intersection if $F$ were a uniformly random subset of $\mathbb{T}^k$ of cardinality $|F|$. A key tool in this paper, as well as in~\cite{GrabowskiMathePikhurko17,MarksUnger17}, is the following discrepancy lemma of Laczkovich~\cite{Laczkovich92b}. Essentially, this lemma says that, if the boundary of a measurable set $X\subseteq\mathbb{T}^k$ has upper Minkowski dimension less than $k$, then, for $d$ sufficiently large, the discrepancy of any large discrete cube in $G_d$ with respect to $X$ is significantly smaller than the number of points on the boundary of the cube. See Appendix~\ref{app:discrep} for a proof sketch. 
+
+\begin{lemma}[Laczkovich~{\cite[Proof of Theorem~3]{Laczkovich92b}}; see also~{\cite[Lemma~6]{GrabowskiMathePikhurko17}}]
+\label{lem:discrep}
+Let $X$ be a measurable subset of $\mathbb{T}^k$ such that $\boxdim(\partial X)<k$, let $d$ be a positive integer such that 
+\[d>\frac{k}{k-\boxdim(\partial X)}\]
+and let $\varepsilon\in\mathbb{R}$ such that
+\[0 <\varepsilon<\frac{d(k-\boxdim(\partial X))-k}{k}.\]
+If $\vvec{x}_1,\dots,\vvec{x}_d$ are chosen uniformly at random from $\mathbb{T}^k$, independently of one another, then, with probability one, there exists $c>0$ such that,  for every $\vvec{u}\in\mathbb{T}^k$ and $r\geq1$,
+\[D\left(N_{r}^+[\vvec{u}],X\right) \leq c\cdot (r+1)^{d-1-\varepsilon}.\]
+\end{lemma} 
+
+We frequently apply Lemma~\ref{lem:discrep} to the sets $A$ and $B$. In order to do so, and in order to optimise the bound on the upper Minkowski dimension of the boundaries of the final pieces, we always assume that
+\begin{equation}
+\label{eq:dBound}
+d:= \left[ 2k/\epsilon\right]
+\end{equation}
+where $\epsilon$ is as in \eqref{eq:epsilonGap} and, given a real number $x$, we let $[x]$ be equal to $\lfloor x\rfloor$ if $x-\lfloor x\rfloor <1/2$ and $\lceil x\rceil$ otherwise. We also assume that $\varepsilon$ is given by
+\begin{equation}
+\label{eq:epsBound}
+\varepsilon:= (d\epsilon -k)/k.
+\end{equation}
+Note that, if the boundaries of $A$ and $B$ have upper Minkowski dimension $k-1$, as is the case for most simple ``geometric'' sets like disks and squares, then we can take $d=2k$ and $\epsilon$ and $\varepsilon$ close to $1$. Throughout the paper, we fix $c>0$ so that the conclusion of Lemma~\ref{lem:discrep} holds with $X$ replaced by either of $A$ or $B$. We remark that the condition that $\boxdim(\partial A)$ and $\boxdim(\partial B)$ are less than $k$ is only used in two places in the paper: to ensure that $A$ and $B$ satisfy the hypotheses of Lemma~\ref{lem:discrep} and to analyse the boundaries of the final pieces of the equidecomposition in Section~\ref{sec:pieces}.
+
+\subsection{Borel Graphs}
+
+Some of the auxiliary statements in the rest of the paper extend to more general contexts, e.g., to graphs associated to general Borel $\mathbb{Z}^d$-actions on a Polish space, etc. In fact, some of these statements even generalise to any graph whose adjacency relation has ``Borel structure''; the following definition makes this more precise.
+
+\begin{defn}
+A graph $G$ is said to be \emph{Borel} if it is locally countable, its vertex set is a standard Borel space and $N_G[U]$ is Borel for every Borel set $U\subseteq V(G)$. 
+\end{defn}
+
+One example of a Borel graph is the graph $G_a$ associated to a group action $a:\Gamma\actson X$ with respect to a finite set $S$ of generators where $X$ is a Borel space and the action $a$ is \emph{Borel} in the sense that $\gamma(U)$ is Borel for every Borel set $U\subseteq X$ and $\gamma\in \Gamma$. While this may sound like a special case, in fact, every Borel graph of bounded degree arises in this way. A cornerstone of the theory of ``descriptive graph combinatorics'', surveyed in~\cite{KechrisMarks16}, is a result of Kechris, Solecki and Todorcevic~\cite[Proposition~4.6]{KechrisSoleckiTodorcevic99} which says that every Borel graph $G$ of maximum degree $d$ admits a proper vertex-colouring with at most $d+1$ colours in which the set of vertices of any given colour is Borel. By considering the ``line graph'' of $G$ (see~\cite[p.~4]{Diestel5th} for a definition), one obtains a Borel proper edge-colouring of $G$ with at most $2d-1$ colours~\cite[p.~15]{KechrisSoleckiTodorcevic99}; Marks~\cite{Marks16} proved that there are acyclic bipartite $d$-regular Borel graphs in which every Borel edge-colouring uses at least $2d-1$ colours, and so this bound cannot be improved in general. The set of edges of any given colour corresponds to a Borel involution on $V(G)$, and the graph $G$ can be seen as a graph associated to the Borel action on $V(G)$ generated by these involutions. 
+
+\section{Proof Outline and Jordan Measurable Equidecompositions}  
+\label{sec:JSec}
+
+In this section, we provide an outline of the proof of Theorem~\ref{th:main} which aims to capture the main essence of the construction while postponing most of the technicalities until later in the paper. To illustrate how the various arguments fit together, we will sketch a proof of Corollary~\ref{cor:Jmeas} concurrently. 
+
+Our approach mostly follows the general recipe established by Marks and Unger~\cite{MarksUnger17}, some aspects of which can be traced back to the ideas of Laczkovich~\cite{Laczkovich90,Laczkovich92,Laczkovich92b} and Grabowski, M\'ath\'{e} and Pikhurko~\cite{GrabowskiMathePikhurko17}. However, there are a few key differences in our implementation and analysis of this strategy which allow us to extract additional structural properties. We highlight some of these differences as they arise. 
+
+\subsection{Real-Valued Flows}
+\label{subsec:realFlows}
+
+The first step of the proof is to construct a sequence $f_1,f_2,\dots$ of bounded real-valued flows in $G_d$ which converge uniformly to a bounded real-valued flow $f_\infty$ from $A$ to $B$. The idea of dealing with flows originated in the work of Marks and Unger~\cite{MarksUnger17}. In fact, the flows constructed in Section~4 of their paper would be sufficient for our purposes; we include a construction in this paper mainly for the sake of completeness. The following lemma summarises some of the key properties of $f_1,f_2,\dots$ and $f_\infty$. Recall that $c$ and $\varepsilon$ are fixed quantities which were defined in Subsection~\ref{subsec:disc}.
+
+\begin{lemma}
+\label{outline:lem:realFlows}
+There exist flows $f_0,f_1,f_2,\dots$ in $G_d$ such that $f_0:=0$ and, for all $m\geq1$,
+\begin{enumerate}
+\stepcounter{equation}
+\item\label{eq:fmChange} $\|f_m-f_{m-1}\|_\infty\leq\frac{c\left(2^{1+\varepsilon}+1\right)}{2^{\varepsilon m+1}}$,
+\stepcounter{equation}
+\item\label{eq:AtoB}  $\|\fout{f_m} - \ind_A+\ind_B\|_\infty\leq \frac{2c}{2^{m(1+\varepsilon)}}$ and
+\stepcounter{equation}
+\item\label{eq:local} for $\vvec{u}\vvec{v}\in E(G_d)$, the value $f_m(\vvec{u},\vvec{v})$ depends only on the intersections of $A$ and $B$ with the set of vertices at distance at most $2^m-1$ from $\vvec{u}$ or $\vvec{v}$ in $G_d$.
+\end{enumerate}
+\end{lemma}
+
+By summing the bound in \eqref{eq:fmChange}, we get that, for all $m\geq0$, 
+\begin{equation}
+\label{eq:fmBound}
+\|f_m\|_\infty \leq \|f_0\|_\infty+\sum_{k=1}^m\|f_k-f_{k-1}\|_\infty \leq  \frac{c\left(2^{1+\varepsilon}+1\right)\left(1-2^{-\varepsilon m}\right)}{2^{1+\varepsilon}-2}.
+\end{equation}
+Also, \eqref{eq:fmChange} and \eqref{eq:AtoB} imply that the sequence $f_1,f_2,\dots$ converges uniformly to a bounded flow from $A$ to $B$ in $G_d$, which we denote by $f_\infty$.  Summing \eqref{eq:fmChange} once again, we see that, for all $m\geq0$,
+\begin{equation}
+\label{eq:fmfinfty}
+\|f_m-f_\infty\|_\infty \leq \sum_{k=m+1}^\infty \|f_{k-1}-f_k\|_\infty\leq \frac{c\left(2^{1+\varepsilon}+1\right)}{2^{\varepsilon m}\left(2^{1+\varepsilon}-2\right)}
+\end{equation}
+
+
+Let us briefly sketch some of the ideas behind the proof of Lemma~\ref{outline:lem:realFlows}; the full details are given in Section~\ref{sec:realFlows}. Given $\vvec{u}\in\mathbb{T}^k$ and $m\geq0$, consider the cube $N_{2^m-1}^+[\vvec{u}]$ in $G_d$. Let us imagine, for a moment, that our aim is to construct a flow from $N_{2^m-1}^+[\vvec{u}]\cap A$ to $N_{2^m-1}^+[\vvec{u}]\cap B$ which is supported on the edges of $G_d\induced N_{2^m-1}^+[\vvec{u}]$.  Unfortunately, by Observation~\ref{obs:flowOutOfS}, no such flow can exist unless this cube contains exactly as many points of $A$ as it does of $B$. So, instead, we aim to construct a flow supported on the edges of $G_d\induced N_{2^m-1}^+[\vvec{u}]$ with the property that the flow out of every $\vvec{v}\in N_{2^m-1}^+[\vvec{u}]$ is equal to
+\[\ind_A(\vvec{v}) - \ind_B(\vvec{v}) + \frac{\left|N_{2^m-1}^+[\vvec{u}]\cap B\right|-\left|N_{2^m-1}^+[\vvec{u}]\cap A\right|}{\left|N_{2^m-1}^+[\vvec{u}]\right|}.\] 
+In the case $m=0$, the graph $G_d\induced N_{2^{m}-1}^+[\vvec{u}]$ consists of only one vertex and so we just take the zero flow. For $m\geq1$, the cube $N^+_{2^m-1}[\vvec{u}]$ naturally divides into $2^d$ subcubes of side-length $2^{m-1}-1$. By induction on $m$, we can find flows supported on the edges of each of these subcubes in which the flow out of each vertex $\vvec{v}$ in the subcube is equal to $\ind_A(\vvec{v})-\ind_B(\vvec{v})$, plus the difference between the number of points of $B$ and $A$ in the subcube normalised by the total number of vertices in the subcube. Roughly speaking, the flow in $G_d\induced N^+_{2^m-1}[\vvec{u}]$ is defined to be the sum of each of the $2^d$ previously constructed flows on the subcubes, plus an additional flow which ``equalises'' the deviation between $\ind_A(\vvec{v})-\ind_B(\vvec{v})$ and the flow out of $\vvec{v}$ over all $\vvec{v}\in N^+_{2^m-1}[\vvec{u}]$. Now, to obtain the flow $f_m$, we take each of these flows on finite cubes of side-length $2^m-1$ and ``averaging them out'' in an appropriate manner. Property \eqref{eq:local} of Lemma~\ref{outline:lem:realFlows} holds by construction. All of the other assertions of Lemma~\ref{outline:lem:realFlows} follow from applying Lemma~\ref{lem:discrep}.
+
+With Lemma~\ref{outline:lem:realFlows} in hand, the goal of the next two steps is to transform the sequence $f_1,f_2,\dots$ into a bounded integer-valued flow $f$ from $A$ to $B$ in $G_d$. Notice that, if we were indifferent about the structure of the pieces of the final equidecomposition, then we could just apply the Integral Flow Theorem to $f_\infty$ to obtain such a flow $f$ and then proceed directly to the final step of the proof. However, this would use the Axiom of Choice and yield virtually no structural guarantees on the pieces of the equidecomposition. The sole purpose of the next two steps, therefore, is to obtain an integer-valued flow from $A$ to $B$ in a more careful manner which allows us to analyse the pieces of the equidecomposition. 
+
+
+\subsection{Auxiliary Structures}
+
+The next step of the proof is to build up auxiliary structures in the graph $G_d$ which we will use to ``locally round'' the real-valued flows $f_1,f_2,\dots$ from Lemma~\ref{outline:lem:realFlows}. We remark that these structures are constructed independently of the sets $A$ and $B$. The main building blocks of these constructions are subsets of $\mathbb{T}^k$ which are maximal with the property of being pairwise far apart in $G_d$. 
+
+\begin{defn}
+\label{def:discrete}
+Given $r\geq0$ and a graph $G=(V,E)$, a set $X\subseteq V$ is said to be \emph{$r$-discrete in $G$} if $\dist_G(x,y) > r$ for any distinct $x,y\in X$ and \emph{maximally $r$-discrete in $G$} if it is maximal under subset inclusion with respect to this property. 
+\end{defn}
+
+Due to the specific definition of $G_d$, a set $X\subseteq \mathbb{T}^k$ is automatically $r$-discrete in $G_d$ if the diameter of $X$ is taken to be small enough; this is essentially the content of the following observation.
+
+\begin{obs}
+\label{outline:obs:diamDiscrete}
+For any $r\geq0$ there exists $\delta=\delta(r)>0$ such that every set $X\subseteq \mathbb{T}^k$ with $\ell_\infty$-diameter at most $\delta$ is $r$-discrete in $G_d$. In fact, by making $\delta$ even smaller, it is sufficient for the projection of $X$ onto the first coordinate to have diameter at most $\delta$. 
+\end{obs}
+
+In light of Observation~\ref{outline:obs:diamDiscrete}, perhaps the simplest examples of $r$-discrete sets in $G_d$ are products of sufficiently short intervals; in particular, consider the following. 
+
+\begin{defn}
+\label{def:strip}
+Define an \emph{strip} to be a subset of $\mathbb{T}^k$ of the form $[a,b)\times [0,1)^{k-1}$ for $0\leq a<b\leq 1$.
+\end{defn}
+
+Note that any translation of a strip by a vector can be written as a union of at most two strips and that a Boolean combination of finitely many strips can be written as a union of finitely many disjoint strips. For these reasons, strips are particularly convenient sets to work with.
+
+The idea behind the proof of the following lemma is borrowed from~\cite[Lemma~3.2]{GrabowskiMathePikhurko17} and~\cite[p.~601]{MarksUnger17}. See Figure~\ref{fig:discrete} for an example illustrating how the construction of Lemma~\ref{outline:lem:simpleDiscrete} behaves in the case that $\mathcal{C}$ is a covering of $\mathbb{T}^k$ by $\ell_\infty$-balls.  
+
+\begin{lemma}
+\label{outline:lem:simpleDiscrete}
+For $r\geq0$, let $\mathcal{C}=\{C_1,\dots,C_m\}$ be a collection of subsets of $\mathbb{T}^k$ such that every set in $\mathcal{C}$ is $r$-discrete in $G_d$ and $\bigcup_{i=1}^mC_i = \mathbb{T}^k$. Then there exists a maximally $r$-discrete set $X$ which is a Boolean combination of finitely many translates of sets in $\mathcal{C}$.
+\end{lemma}
+
+\begin{proof}
+Let $C_1':=C_1$ and, for $2\leq i\leq m$, define
+\[C_i':=C_i \setminus N_r\left[\bigcup_{j=1}^{i-1}C_j'\right].\]
+Let $X:=C_1'\cup\cdots \cup C_m'$. By construction, and because the sets $C_1,\dots,C_m$ are $r$-discrete in $G_d$, the set $X$ is also $r$-discrete in $G_d$. Since the sets $C_1',\dots,C_m'$ cover $\mathbb{T}^k$, it follows that $X$ is maximally $r$-discrete in $G_d$. 
+
+The set $C_1'$ is equal to $C_1$. For each $2\leq i\leq m$, the set $C_i'$ is a finite Boolean combination of $C_i$ and the sets $C_1',\dots,C_{i-1}'$ translated by vectors of the form $\sum_{i=1}^d n_i\vvec{x}_i$ where $\|\vec{n}\|_\infty\leq r$.  So, by induction, $C_i'$ is a Boolean combination of finitely many translates of $C_1,\dots,C_m$. Therefore, so is $X$. 
+\end{proof}
+
+
+
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[scale=0.53]{discrete.1}
+\hspace{0.5cm}
+\includegraphics[scale=0.53]{discrete.2}
+\end{center}
+\caption{An example of the construction of the set $X$ in the proof of Lemma~\ref{outline:lem:simpleDiscrete} in the case $k=2$, $d=3$ and $r=1$. The picture on the left depicts the three vectors $\vvec{x}_1,\vvec{x}_2$ and $\vvec{x}_3$ and a covering $\mathcal{C}=\{C_1,C_2,\dots,C_{400}\}$ of $\mathbb{T}^2$ by closed $\ell_\infty$-balls; $C_i$ is the square labelled $i$. The picture on the right depicts the maximally $1$-discrete set $X$ constructed from $\mathcal{C}$ (ignoring the boundary, for clarity). The white points are elements of $X$ and points inside of the black square frames are the elements of $N_r[C_1]$.}
+\label{fig:discrete}
+\end{figure}
+
+The following corollary is easily derived from Observation~\ref{outline:obs:diamDiscrete} and Lemma~\ref{outline:lem:simpleDiscrete}.
+
+\begin{corollary}
+\label{outline:cor:stripDiscrete}
+For any $r\geq0$ there exists a set $X\subseteq \mathbb{T}^k$ which is maximally $r$-discrete in $G_d$ and can be expressed as a union of finitely many disjoint strips in $\mathbb{T}^k$. 
+\end{corollary}
+
+We remark that it is known that every locally finite Borel graph $G$ has a maximally $r$-discrete Borel set~\cite[Theorem~4.2]{KechrisSoleckiTodorcevic99}. Corollary~\ref{outline:cor:stripDiscrete} can be viewed as saying that, in the special case of $G_d$, we can obtain a maximally $r$-discrete set with simpler structure. 
+
+\begin{defn}
+For $S\subseteq \mathbb{T}^k$, let $\comp(S)$ be the collection of all components of $G_d\induced S$. 
+\end{defn}
+
+The following definition describes the types of structures that we use to round the real-valued flows $f_1,f_2,\dots$ to a bounded integer valued flow $f$. We use the word ``scaffolding'' to describe these structures, as this accurately describes the role that they play in the present paper. In other contexts, similar objects have been referred to by different names, such as ``unlayered toast''~\cite[Definition~4.1]{GaoJacksonKrohneSeward15}. 
+
+\begin{defn}
+\label{def:scaff}
+We say that a sequence $D_1,D_2,\dots$ of subsets of $\mathbb{T}^k$ is a \emph{scaffolding} in $G_d$ if the following three conditions are satisfied for all $i\geq1$:
+\begin{enumerate}
+\stepcounter{equation}
+\item\label{scaffBdd} the elements of $\comp(D_i)$ have uniformly bounded cardinality,
+\stepcounter{equation}
+\item\label{scaffDist} any two distinct elements of $\comp(D_i)$ are at distance at least $3$ in $G_d$ and
+\stepcounter{equation}
+\item\label{scaffUt} for $1\leq j<i$, every $S\in \comp(D_j)$ satisfies either $N_2[S]\subseteq D_i$ or $\dist_{G_d}(S,D_i)\geq 3$.
+\end{enumerate}
+\end{defn}
+
+A scaffolding $D_1,D_2,\dots$ is said to be \emph{Borel}, \emph{Jordan measureable}, etc, if each of the sets $D_i$ for $i\geq1$ is. It will be useful to construct a scaffolding $D_1,D_2,\dots$ such that $\bigcup_{i=1}^\infty D_i$ covers all, or most, of $\mathbb{T}^k$. The next lemma provides a simple construction of a scaffolding which covers $\mathbb{T}^k$ up to a null set, which is sufficient for the proof of Corollary~\ref{cor:Jmeas}. 
+
+
+\begin{lemma}
+\label{outline:lem:JordanScaff}
+There exists a scaffolding $D_1,D_2,\dots$ in $G_d$ such that $\lambda\left(\bigcup_{i=1}^\infty D_i\right)=1$ and each set $D_i$ for $i\geq1$ is a union of finitely many disjoint strips. 
+\end{lemma}
+
+\begin{proof}[Proof Sketch]
+Let $r_1,r_2,\dots$ be a rapidly increasing sequence of integers with $r_1\geq3$. By Corollary~\ref{outline:cor:stripDiscrete}, for each $i\geq1$, we can let $X_i$ be a union of finitely many disjoint strips which is maximally $8r_i$-discrete. By maximality of $X_i$, it is not hard to show that
+\[\lambda\left(N_{r_i}[X_i]\right)\geq 8^{-d}.\]
+Thus, by translating each of the sets $X_1,X_2,\dots$ by a uniformly random vector in $\mathbb{T}^k$, chosen independently of one another, we can assume that
+\begin{equation}\label{JscaffAlmostCovers}\lambda\left(\bigcup_{i=1}^\infty N_{r_i}[X_i]\right)=1.\end{equation}
+
+Now, for each $i\geq1$, initialise $D_i:=N_{r_i}[X_i]$. Then, while there exists $j<i$ and $\vvec{w}\in X_j$ such that $\dist_{G_d}(\vvec{w},D_i)\leq 3r_j$, we add all elements of $N_{3r_j}[\vvec{w}]$ to $D_i$. Given that $r_1,r_2,\dots$ increases sufficiently rapidly, this construction eventually terminates; we omit the proof of this, but remark that essentially follows from the arguments that will be used to prove Lemma~\ref{lem:chain}. In fact, by asking for even faster growth, we can assume that $D_i\subseteq N_{2r_i-1}[X_i]$. By construction and the fact that $X_i$ is $8r_i$-discrete, we have that  every $S\in \comp(D_i)$ contains a unique element $\vvec{u}$ of $X_i$; moreover, $S$ is contained in $N_{2r_i-1}[\vvec{u}]$. Thus, \eqref{scaffBdd} is satisfied and \eqref{scaffDist} holds with plenty of room to spare since $X_i$ is $8r_i$-discrete. Property \eqref{scaffUt} also holds by construction since $r_1\geq3$ and, by induction, for $1\leq j<i$, each element of $\comp(D_i)$ is contained in $N_{2r_j-1}[\vvec{w}]$ for some $\vvec{w}\in X_j$. Finally, the property $\lambda\left(\bigcup_{i=1}^\infty D_i\right)=1$ holds by \eqref{JscaffAlmostCovers} because $D_i$ contains $N_{r_i}[X_i]$. 
+
+Whether or not a vertex $\vvec{u}\in\mathbb{T}^k$ is contained in $D_i$ can be determined by the structure of the sets $X_1,\dots,X_i$ at bounded distance from $\vvec{u}$ in $G_d$; thus, $D_i$ can be written as a Boolean combination of finitely many translates of the sets $X_1,\dots,X_i$. So, it can be written as a union of finitely many disjoint strips. 
+\end{proof}
+
+The scaffolding constructed above is sufficient obtaining the Jordan measurable equidecomposition of Corollary~\ref{cor:Jmeas}, since we can use the Axiom of Choice to ``clean up'' the uncovered null set $\mathbb{T}^k\setminus \bigcup_{i=1}^\infty D_i$ without harming the Jordan measurability of the pieces; see the next two subsections for a sketch of the details. However, in order to obtain Borel structure and analyse the upper Minkowski dimension of the boundaries of the pieces, we will require a more intricate construction which is described in Section~\ref{sec:covering}.
+
+Before closing this subsection, we pause for a brief contextual remark. An idea which is ubiquitous in measurable and descriptive graph theory is the notion of ``hyperfiniteness''. A Borel graph $G$ is said to be \emph{hyperfinite} if its edge set can be written as an increasing union of edge sets of Borel graphs with finite components; see~\cite[p.~19]{KechrisMiller04} or~\cite[Section~5,\textbf{(C)}]{KechrisMarks16}. In this context, a Borel scaffolding $D_1,D_2,\dots$ can be viewed as a specific type of hyperfiniteness certificate for the graph $G_d\induced \bigcup_{i=1}^\infty D_i$. 
+
+\subsection{Integer-Valued Flow}
+\label{subsec:intFlows}
+
+The next step is to use the scaffolding from Lemma~\ref{outline:lem:JordanScaff} to transform the real-valued flows $f_1,f_2,\dots$ from Lemma~\ref{outline:lem:realFlows} into a bounded integer-valued flow $f$ from $A$ to $B$. Specifically, in this subsection, we roughly sketch a proof of the following lemma. Recall, again, that $\varepsilon$ and $c$ are constants depending on $A$ and $B$ which were specified in Subsection~\ref{subsec:disc}.
+
+\begin{lemma}
+\label{outline:lem:intFlow}
+Let $f_1,f_2,\dots$ be as in Lemma~\ref{outline:lem:realFlows}, $D_1,D_2,\dots$ be as in Lemma~\ref{outline:lem:JordanScaff} and let $r_1,r_2,\dots$ be an increasing sequence of positive integers as in the proof sketch of Lemma~\ref{outline:lem:JordanScaff}. For each $i\geq 1$, let $m_i$ be the minimal integer such that
+\begin{equation}\label{eq:miBound}
+2c\left(2^{1+\varepsilon}+1\right)\left(2^{1+\varepsilon}-2\right)^{-1}(3^d-1)(4r_i-1)^d<2^{\varepsilon m_i}.\end{equation}
+There exists an integer-valued flow $f$ from $A$ to $B$ in $G_d$ such that 
+\begin{enumerate}
+\stepcounter{equation}
+\item \label{eq:bddInt} $\|f\|_\infty\leq \frac{c(2^{1+\varepsilon}+1)}{2^{1+\varepsilon}-2} + (3^d+1)/2$ and
+\stepcounter{equation}
+\item\label{eq:localInt} for $\vvec{u}\in \bigcup_{j=1}^i D_j$ and $\vvec{u}\vvec{v}\in E(G_d)$,  $f(\vvec{u},\vvec{v})$ is determined by the intersections of $D_1,\dots,D_i,A$ and $B$ with the set of vertices at distance at most $2^{m_i}+4r_i$ from $\vvec{u}$.
+\end{enumerate}
+\end{lemma}
+
+Property \eqref{eq:localInt} is particularly crucial in allowing us to analyse the boundaries of the pieces of the final equidecomposition and control their Borel complexity. In order to obtain this property, we will ensure that, when $\vvec{u}\in D_i$ and $\vvec{u}\vvec{v}\in E(G_d)$, the value of $f(\vvec{u},\vvec{v})$ can be deduced by the values of the flows $f_{m_1},\dots,f_{m_i}$ on edges with at least one endpoint in the component of $G_d\induced D_i$ containing $\vvec{u}$. In the proof of Lemma~\ref{outline:lem:JordanScaff}, it was argued that every such component is contained in $N_{2r_i-1}[\vvec{w}]$ for some vertex $\vvec{w}$. Thus, \eqref{eq:localInt} will follow from property \eqref{eq:local} in Lemma~\ref{outline:lem:realFlows}. 
+
+The proof of Lemma~\ref{outline:lem:intFlow} is inspired by~\cite[Section~5]{MarksUnger17}. However, there is an important distinction in how the flows $f_1,f_2,\dots$ and $f_\infty$ are used. In particular, instead of shifting the limiting flow $f_\infty$ to integer values, as is done in~\cite{MarksUnger17}, we mainly deal with the approximate flows $f_{m_1},f_{m_2},\dots$. The limiting flow $f_\infty$ mainly serves as a certificate for applying Integral Flow Theorem within finite regions of $G_d$. 
+
+Unfortunately, the construction of $f$ is somewhat involved, even in the context of the proof of Corollary~\ref{cor:Jmeas}. Due to the complications, for the purposes of this outline, we will only roughly sketch the ideas and save the hairier details for Section~\ref{sec:integerFlow}. 
+
+The flow $f$ is built up from a sequence $g_1,g_2,\dots$ of flows in $G_d$. Letting $g_0$ be the zero flow, the key features of $g_i$ for $i\geq1$ are that
+\begin{itemize}
+\item it is integer-valued on every pair $(\vvec{u},\vvec{v})$ such that $\vvec{u}\in\bigcup_{j=1}^iD_j$,
+\item  it agrees with $g_{i-1}$ on every pair $(\vvec{u},\vvec{v})$ with $\vvec{u}\in\bigcup_{j=1}^{i-1}D_j$,
+\item the flow out of every vertex $\vvec{u}\in \bigcup_{j=1}^iD_j$ under $g_i$ is $\ind_A(\vvec{u})-\ind_B(\vvec{u})$,
+\item $g_i(\vvec{u},\vvec{v})=f_{m_i}(\vvec{u},\vvec{v})$ whenever $\vvec{v}\notin \bigcup_{j=1}^iN[D_j]$ and
+\item $\|g_i\|_\infty$ is bounded by an absolute constant, depending only on $A$ and $B$. 
+\end{itemize}
+Given these properties, together with the properties of our flows $f_1,f_2,\dots$ and scaffolding $D_1,D_2,\dots$, it is not hard to show that the sequence $g_1,g_2,\dots$ converges to a flow $g$ in $G_d$ which is integer-valued on every pair $(\vvec{u},\vvec{v})$ with $\vvec{u}\in\bigcup_{i=1}^\infty D_i$. The flow $g$ may not assign integer values to pairs in $\mathbb{T}^k\setminus\bigcup_{i=1}^\infty D_i$, and so it will still need to be modified in order to produce $f$; we will describe this step at the end of the subsection.
+
+Now, let us qualitatively discuss how $g_i$ is constructed. Start by setting $g_i=f_{m_i}$, where we recall that $m_i$ is chosen to be the smallest integer which satisfies \eqref{eq:miBound}. The first step is to gradually shift the flow values near the ``graph-theoretic boundary'' of $D_i$ (see Definition~\ref{def:edgeBoundary}), while maintaining the flow out of each vertex, with the aim of making the flow from $\vvec{u}$ to $\vvec{v}$ equal to an integer for all but ``very few'' of the pairs such that $\vvec{u}\in D_i$ and $\vvec{v}\in \mathbb{T}^k\setminus D_i$. The way that this works is by sequentially shifting the flow along triangles in the graph $G_d$ which intersect both $D_i$ and $\mathbb{T}^k\setminus D_i$; the details are given in Section~\ref{sec:integerFlow}. 
+
+Of course, since $f_{m_i}$ is not a flow from $A$ to $B$, the flow out of a given component $S$ of $G_d\induced D_i$ under $f_{m_i}$ may not be an integer, and so it is technically impossible to change the flow $f_{m_i}$ so that every edge leaving $S$ to an integer value while maintaining the flow out of each vertex. Instead, what we aim for after this first step is that for every component $S$ of $G_d\induced D_i$ and every component $T$ of $G_d\induced \left(\mathbb{T}^k\setminus S\right)$, there is at most one pair $\vvec{u}\in S$ and $\vvec{v}\in T$ which is not assigned to an integer flow value. Assuming that we can achieve this, the next step is to simply round the flow on every such edge to the nearest integer. The cardinality of any component $S$ of $G_d\induced D_i$ or any finite component $T$ of $G_d\induced \left(\mathbb{T}^k\setminus D_i\right)$ is at most $(4r_i-1)^d$ by construction of $D_i$. So, by property \eqref{eq:AtoB} of Lemma~\ref{outline:lem:realFlows} and the inequality in \eqref{eq:miBound}, the deviation between the total flow out of any such component under $f_{m_i}$ or $f_\infty$ is less than $1/2$ (with plenty of room to spare). Therefore, this step causes the flow out of every such component to become equal to the difference between the number of points of $A$ or $B$ which lie within it.
+
+The next step is to simply copy the relevant values of $g_{i-1}$. That is, for each $\vvec{u},\vvec{v}\in \bigcup_{j=1}^{i-1}N[D_j]$, we redefine $g_{i}(\vvec{u},\vvec{v})$ to be equal to $g_{i-1}(\vvec{u},\vvec{v})$. Of course, in the case that $i=1$, this step does not change $g_i$ at all. 
+
+The final step is to replace $g_{i}(\vvec{u},\vvec{v})$ for all $\vvec{u},\vvec{v}\in D_i\setminus \bigcup_{j=1}^{i-1}D_j$ with a bounded integer value in such a way that the flow out of every vertex in $D_i$ is given by $\ind_A-\ind_B$. However, since $f_{m_i}$ is not a flow from $A$ to $B$, the flow out of every such vertex is not currently equal to $\ind_A-\ind_B$ and so we cannot achieve this by simply applying the Integral Flow Theorem (Theorem~\ref{th:IFT}) to the current flow in each component of $G_d\induced \left(D_i\setminus \bigcup_{j=1}^{i-1}D_j\right)$. At this point, it is useful to take advantage of the limiting flow $f_\infty$ to provide a certificate for applying the Integral Flow Theorem. 
+
+To this end, we also construct another sequence $h_1,h_2,\dots$ of flows in $G_d$. We initialise $h_i:=f_\infty$. Now, sequentially shift the flow on triangles  that intersect both $D_i$ and its complement in such a way that the flow out of each vertex is maintained and, in the end, $h_i$ agrees with $g_i$ on every pair $(\vvec{u},\vvec{v})$ with $\vvec{u}\in D_i$ and $\vvec{v}\in\mathbb{T}^k\setminus D_i$. The bound in \eqref{eq:miBound} ensures that this can be done in such a way that $\|h_i\|_\infty$ remains bounded by an absolute constant. Then, we copy the values of $h_{i-1}$ on pairs in $\bigcup_{j=1}^{i-1}N[D_j]$. If we do this carefully, then we can maintain the property that $h_i$ is a flow from $A$ to $B$. Thus, by the Integral Flow Theorem, we can convert the flow values on edges between pairs in $D_i\setminus\bigcup_{j=1}^{i-1}D_j$ to integer values while maintaining that $h_i$ is a flow from $A$ to $B$. This certifies that the desired integer values exist. Note that, crucially, the integer flow values under $g_i$ for pairs in $D_i\setminus\bigcup_{j=1}^{i-1}D_j$ can be chosen independently of the flow $f_\infty$ (e.g. in a lexicographically minimal way). That is, the flow $f_\infty$ is only used to certify that a choice of flow values exists, but those flow values may be chosen in a way that does not depend on $f_\infty$.
+
+Finally, let us explain how the final flow $f$ from Lemma~\ref{outline:lem:intFlow} is obtained in the proof sketch of Corollary~\ref{cor:Jmeas} (recall that, in the proof of Theorem~\ref{th:main}, due to the more intricate scaffolding construction, there will be no uncovered null set and so this step will not be necessary). As with $g_1,g_2,\dots$, the sequence $h_1,h_2,\dots$ will also converge to a flow $h$. Each of $h_1,h_2,\dots$ is a flow from $A$ to $B$, and so the flow $h$ is as well. Also, we can construct $h_i$ in such a way that it agrees with $g_i$ on every $(\vvec{u},\vvec{v})$ with $\vvec{u}\in\bigcup_{j=1}^iD_j$. Thus, $h$ agrees with $g$ on all such pairs. The flow $f$ is then obtained by applying the Integral Flow Theorem to the flow $h$ restricted to the graph $G_d\induced \left(\mathbb{T}^k\setminus \bigcup_{i=1}^\infty D_i\right)$. This uses the Axiom of Choice  on a null set. While this can destroy Borel structure of the pieces, as we will argue in the next subsection, it does not affect their Jordan measurability. 
+
+\subsection{The Final Equidecomposition}
+\label{subsec:final}
+
+The last step in the proof of Corollary~\ref{cor:Jmeas} is to convert the bounded integer-valued flow $f$ from $A$ to $B$ constructed in Lemma~\ref{outline:lem:intFlow} into an equidecomposition. The proof of the following lemma is inspired by the proof sketch in~\cite[Remark~6.2]{MarksUnger17}. A modification of this approach, yielding pieces of positive measure under certain conditions, will be presented in Section~\ref{sec:nonNull}.
+
+\begin{lemma}
+\label{outline:lem:matching}
+If there exists a bounded integer-valued flow $f$ from $A$ to $B$ in $G_d$, then $A$ and $B$ are equidecomposable. 
+\end{lemma}
+
+\begin{proof}
+Let $f$ be a bounded integer-valued flow from $A$ to $B$ in $G_d$. For each $r\geq1$, apply Corollary~\ref{outline:cor:stripDiscrete} to obtain a maximally $r$-discrete set $X_r$ in $G_d$ which is a disjoint union of finitely many strips. For each $\vvec{v}\in \mathbb{T}^k$, let $\eta_r(\vvec{v})$ be the vertex $\vvec{u}\in X_r$  such that $\dist_{G_d}(\vvec{v},\vvec{u})$ is minimised and, among all vertices of $X_r$ at minimum distance from $\vvec{v}$, the vertex $\vvec{u}$ comes earliest under $\lex$. For each $r\geq1$ and $\vvec{u}\in X_r$, let
+\[V_r(\vvec{u}):=\{\vvec{v}\in\mathbb{T}^k: \eta_r(\vvec{v})=\vvec{u}\}.\]
+The sets $V_r(\vvec{u})$ for $\vvec{u}\in X_r$ clearly partition $\mathbb{T}^k$. They can be thought of as ``Voronoi cells'' generated by $X_r$ with respect to the graph distance in $G_d$, where ties are broken using $\lex$. 
+
+Since $X_r$ is $r$-discrete, we have
+\[N_{\lfloor r/2\rfloor}[\vvec{u}]\subseteq V_r(\vvec{u})\]
+for every $\vvec{u}\in X_r$. Combining this with Lemma~\ref{lem:discrep}, we see that
+\[\min\left\{|V_r(\vvec{u})\cap A|,|V_r(\vvec{u})\cap B|\right\} = \Omega(r^d)\]
+as $r\to \infty$. It is not hard to argue that $\left|\partial_EV_r(\vvec{u})\right| = O(r^{d-1})$ as $r\to\infty$ where the implicit constant depends on $d$ only. Thus, if $r$ is sufficiently large with respect to $\|f\|_\infty$, then 
+\begin{equation}\label{eq:VoronoiLots}\min\left\{|V_r(\vvec{u})\cap A|,|V_r(\vvec{u})\cap B|\right\} \geq \sum_{\vvec{v}\vvec{w}\in \partial_EV_r(\vvec{u})}|f(\vvec{v},\vvec{w})|\end{equation}
+for every $\vvec{u}\in X_r$. For the rest of the proof, we assume $r$ is a fixed constant chosen large enough so that \eqref{eq:VoronoiLots} holds for every $\vvec{u}\in X_r$.
+
+For each pair $\vvec{u},\vvec{u}'\in X_r$, define 
+\[F(\vvec{u},\vvec{u}'):=\sum_{\substack{\vvec{v}\in V_r(\vvec{u})\\ \vvec{w}\in V_r(\vvec{u}')}} f(\vvec{v},\vvec{w}).\]
+Given $\vvec{u}\in X_r$, there are finitely many $\vvec{u}'\in X_r$ for which $F(\vvec{u},\vvec{u}')\neq 0$. For every such $\vvec{u}'$, one by one in order prescribed by $\lex$, we define $A(\vvec{u},\vvec{u}')$ to be the set of $\max\left\{0,F(\vvec{u},\vvec{u}')\right\}$  elements of $V_r(\vvec{u})\cap A$ which have not already been assigned to $A(\vvec{u},\vvec{u}'')$ for some $\vvec{u}''\lex \vvec{u}'$ and, subject to that, are minimal under $\lex$. Similarly, define $B(\vvec{u},\vvec{u}')$ is the set of $\max\left\{0,-F(\vvec{u},\vvec{u}')\right\}$ $\lex$-minimal elements of $V_r(\vvec{u})\cap B$ which have not already been assigned to $B(\vvec{u},\vvec{u}'')$ for some $\vvec{u}''\lex \vvec{u}'$. Note that, by \eqref{eq:VoronoiLots}, this construction is well defined. Finally, for each $\vvec{u}\in X_r$, define $A(\vvec{u},\vvec{u})$ to be the set of vertices in $V_r(\vvec{u})\cap A$ which have not been assigned to $A(\vvec{u},\vvec{u}')$ for some $\vvec{u}'\in X_r\setminus\{\vvec{u}\}$ and define $B(\vvec{u},\vvec{u})$ similarly. Since $f$ is a flow from $A$ to $B$, we have that 
+\[|A(\vvec{u},\vvec{u}')|=|B(\vvec{u}',\vvec{u})|\]
+for all $\vvec{u},\vvec{u}'\in X_r$. The final equidecomposition assigns the vertices of $A(\vvec{u},\vvec{u}')$ to those of $B(\vvec{u}',\vvec{u})$ in order prescribed by $\lex$ for all $\vvec{u},\vvec{u}'\in X_r$; see Figure~\ref{fig:matching} for an illustration. Clearly, this yields an equidecomposition by translations, in which the translation vectors are of the form $\sum_{i=1}^dn_i\vvec{x}_i$ with $\|\vec{n}\|_\infty=O(r)$, and so the total number of pieces is finite.  
+\end{proof}
+
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.85\textwidth]{Voronoi.1}
+\end{center}
+\caption{An illustration of the construction of the equidecomposition from an integer-valued flow $f$ in Lemma~\ref{outline:lem:matching} in the simplified setting $d=2$. White nodes are elements of a maximally 19-discrete set and the boundaries of the induced Voronoi cells are in bold. Elements of $A$ and $B$ correspond to black round and square nodes, respectively. The total flow from the central Voronoi cell to the bottom-left cell is $2$; hence the first two elements of $A$ lexicographic order in the central Voronoi cell are associated to that cell. After distributing elements of $A$ and $B$ to the neighbouring cells, the two lexicographically latest elements of $A$ and $B$ in the central cell are mapped to one another.}
+\label{fig:matching}
+\end{figure}
+
+
+Let us briefly discuss how one proves that the pieces of the final equidecomposition in the proof of Corollary~\ref{cor:Jmeas} are Jordan measurable; more detailed arguments, yielding the stronger conclusions of Theorem~\ref{th:main}, are given in Section~\ref{sec:pieces}. The following definition is useful for this analysis.
+
+\begin{defn}
+\label{def:Zdef}
+Let $f$ be a flow in $G_d$. For $\vec{\gamma}\in\mathbb{Z}^d$ with $\|\gamma\|_\infty=1$ and $\ell\in \mathbb{R}$, let
+\[Z^{f}_{\vec{\gamma},\ell}:=\left\{\vvec{v}\in\mathbb{T}^k: f\left(\vvec{v},\vec{\gamma}\cdot_a\vvec{v}\right) = \ell\right\}.\]
+\end{defn}
+
+\begin{obs}
+\label{obs:Zpartition}
+Given a flow $f$ in $G_d$ and $\vec{\gamma}\in \mathbb{Z}^d$ with $\|\vec{\gamma}\|_\infty=1$, the sets in $\left\{Z^{f}_{\vec{\gamma},\ell}:|\ell|\leq \|f\|_\infty\right\}$ partition $\mathbb{T}^k$. 
+\end{obs}
+
+Each piece of the final equidecomposition constructed in Lemma~\ref{outline:lem:matching} can be written as a Boolean combination of $A$, $B$,  translations of the set $X_r$ of centres of the Voronoi cells and sets $Z^{f}_{\vec{\gamma},\ell}$ for $\vec{\gamma}\in\mathbb{Z}^d$ and $\ell\in \mathbb{Z}$ such that $\|\vec{\gamma}\|_\infty=1$ and $|\ell|\leq \|f\|_\infty$ by vectors of the form $\sum_{i=1}^dn_i\vvec{x}_d$ with $|n_i|=O(r)$. The sets $A,B$ and $X_r$ are Jordan measurable and so, since Jordan measurability is closed under finite Boolean combinations, it suffices to argue that the sets $Z^f_{\vec{\gamma},\ell}$ are Jordan measurable. 
+
+Given $\vec{\gamma}\in \mathbb{Z}^d$ and $\ell\in \mathbb{Z}$ with $\|\vec{\gamma}\|_\infty=1$ and $|\ell|\leq \|f\|_\infty$ and $i\geq0$, define
+\[Z^{f}_{\vec{\gamma},\ell,i}:=Z^{f}_{\vec{\gamma},\ell}\cap \left(\bigcup_{j=1}^iD_j\right)\]
+where $D_1,D_2,\dots$ is the scaffolding used in the rounding procedure in the previous subsection. Given $i\geq1$, for each vertex $\vvec{v}\in Z^{f}_{\vec{\gamma},\ell,i}\setminus Z^{f}_{\vec{\gamma},\ell,i-1}$, we have, by construction of the flows $g_1,g_2,\dots$, $g$ and $f$, that the flow on the edge from $\vvec{v}$ to $\vec{\gamma}\cdot_a\vvec{v}$ under $g_i$ is equal to $\ell$. The value of the $g_i$ on this edge was completely determined by the values of the flows $f_{m_1},\dots,f_{m_i}$ on edges of $G_d$ contained in $N[S]$ where $S$ is the component of $G_d\induced D_i$ containing $\vvec{v}$. By \eqref{eq:local}, the value of $f_{m}$ on each edge of $G_d$ depends only on the structure of the sets $A$ and $B$ at bounded (as a function of $m$) distance from the endpoints of the edge. Thus, the set $Z^{f}_{\vec{\gamma},\ell,i}\setminus Z^{f}_{\vec{\gamma},\ell,i-1}$ can be expressed as a Boolean combination of finitely many translates of the sets $D_1,D_2,\dots,D_i,A$ and $B$ and so it is Jordan measurable. Therefore, $Z^{f}_{\vec{\gamma},\ell,i}$ is also Jordan measurable. The fact that $Z^{f}_{\vec{\gamma},\ell}$ is Jordan measurable can now be deduced from Observation~\ref{obs:Zpartition} and the following general lemma.
+
+\begin{lemma}
+\label{lem:JordanLimit}
+Let $Z_1,\dots,Z_N$ be a partition of $\mathbb{T}^k$. If, for each $1\leq j\leq N$, there exist subsets $Z_{j,1},Z_{j,2},\dots$ of $Z_j$ which are Jordan and Lebesgue measurable such that $Z_j\setminus\left(\bigcup_{i=1}^\infty Z_{j,i}\right)$ has measure zero, then all of the sets $Z_1,\dots,Z_N$ are Jordan measurable. 
+\end{lemma}
+
+\begin{proof}
+For each $1\leq j\leq N$ and $i\geq1$, let $U_{j,i}$ be the interior of $Z_{j,i}$ and define $U_j:=\bigcup_{i=1}^\infty U_{j,i}$.  Since $Z_{j,i}$ is Jordan measurable, we have that $U_{j,i}$ has the same Lebesgue measure as $Z_{j,i}$. Thus, the sets $U_1,\dots,U_N$ are pairwise disjoint, open and cover $\mathbb{T}^k$ up to a null set. For any $1\leq j\leq N$, since $U_j$ is open and contained in $Z_j$, the boundary of $Z_j$ is disjoint from $U_j$. Also, for $1\leq j\neq j'\leq N$, since $U_j$ is open and disjoint from $Z_{j'}$, we see that the boundary of $Z_{j'}$ is also disjoint from $U_j$. Therefore, for each $1\leq j'\leq N$, the boundary of $Z_{j'}$ is contained in the complement of $\bigcup_{j=1}^NU_j$ and therefore has measure zero. 
+\end{proof}
+
+
+
+\section{Dispersing Discrepancy via Real-Valued Flows}
+\label{sec:realFlows}
+
+Our goal in this section is to obtain a sequence $f_1,f_2,\dots$ of real-valued flows in $G_d$ which converge uniformly to a bounded flow $f_\infty$ from $A$ to $B$ in $G_d$. This is a slight modification of the construction in~\cite[Section~4]{MarksUnger17}, and the differences are mostly cosmetic in nature. 
+
+For each $m\geq1$, the flow $f_m$ has the form
+\begin{equation}\label{eq:fm}f_m:=\frac{1}{2^{md}}\sum_{\vvec{u}\in\mathbb{T}^k}f_m^{\vvec{u}}\end{equation}
+where $f_m^{\vvec{u}}$ is a flow supported on the axis-aligned edges of $G_d$ contained in $N_{2^m-1}^+[\vvec{u}]$. The construction of the flow $f_m^{\vvec{u}}$ is done in a ``homogeneous'' way in the sense that it depends only on the locations of the points of $A$ and $B$ throughout the cube $N_{2^m-1}^+[\vvec{u}]$. To illustrate this, we first present a general and straightforward approach to constructing flows in discrete $d$-dimensional cubes and only apply it to obtain $f_m^{\vvec{u}}$ in the second half of the section. The fact that the flows $f_1,f_2,\dots$ converge to a bounded flow from $A$ to $B$ is a consequence of Laczkovich's discrepancy bound (Lemma~\ref{lem:discrep}); in fact, this is the main application of this discrepancy bound in the paper. 
+
+For $n\geq1$, let $[n]^d$ denote the graph with vertex set $\{1,\dots,n\}^d$ in which two vertices $\vec{u}$ and $\vec{v}$ are adjacent if $\|\vec{u}-\vec{v}\|_1=1$. The \emph{direction} of an edge $\vec{u}\vec{v}$ of $[n]^d$ is defined to be the unique index $i\in\{1,\dots,d\}$ such that $u_i\neq v_i$. Note that $[n]^d$ is just a standard discrete $d$-dimensional cube with side-length $n-1$. For any $\vvec{u}\in\mathbb{T}^k$, the subgraph of $G_d\induced N_{n-1}^+[\vvec{u}]$ containing only the axis-aligned edges is isomorphic to $[n]^d$.  
+
+The cube $[2n]^d$ naturally splits into $2^d$ copies of $[n]^d$ as follows. For $\vec{\gamma}\in\{0,1\}^d$, define
+\[Q_{\vec{\gamma}}:=\left\{\vec{v}\in \{1,\dots,2n\}^d: v_i \leq n \Longleftrightarrow \gamma_i=0\right\}\]
+and notice that $Q_{\vec{\gamma}}$ induces a copy of $[n]^d$ in $[2n]^d$. Now, suppose that $\xi:\{1,\dots,2n\}^d\to\mathbb{R}$ is a demand function such that
+\begin{enumerate}
+\stepcounter{equation}\item\label{eq:constGamma} $\xi$ is  constant on each set $Q_{\vec{\gamma}}$ for $\vec{\gamma}\in\{0,1\}^d$ and
+\stepcounter{equation}\item\label{eq:sumZero} $\sum_{\vec{v}\in\{1,\dots,2n\}^d}\xi(\vec{v})=0$. 
+\end{enumerate}
+Given an edge $\vec{u}\vec{v}$ of $[2n]^d$ in direction $i$, the \emph{weight} of $\vec{u}\vec{v}$ is defined by
+\begin{equation}\label{eq:weightDef}\omega(\vec{u},\vec{v}) := n-\frac{\max\left\{|2u_i-2n-1|,|2v_i-2n-1|\right\} - 1}{2}\end{equation}
+Essentially, this weight measures the ``centrality'' of the edge $\vec{u}\vec{v}$ is in the $i$th direction. Note that this definition is symmetric; i.e. $\omega(\vec{v},\vec{u})=\omega(\vec{u},\vec{v})$. 
+
+The next lemma provides a general and straightforward method for constructing flows in cubes by ``averaging out'' the value of $\xi$ over pairs of adjacent subcubes in each of the $d$ directions, one after the other; see Figure~\ref{fig:cubes} for an illustration. 
+
+\begin{lemma}
+\label{lem:cubeFlow}
+If $n\geq1$ and $\xi:\{1,\dots,2n\}^d\to\mathbb{R}$ satisfies \eqref{eq:constGamma} and \eqref{eq:sumZero}, then there exists a $\xi$-flow $\phi$ on $[2n]^d$ such that, for every edge $\vec{u}\vec{v}$ of $[2n]^d$,
+\[|\phi(\vec{u},\vec{v})|\leq \omega(\vec{u},\vec{v})\left\|\xi\right\|_\infty.\]
+\end{lemma}
+
+\begin{proof}
+We construct flows $\theta_1,\dots,\theta_d$ in $[2n]^d$ such that $\theta_i$ is supported on the edges in direction $i$ for $1\leq i\leq d$. The flow $\phi$ will then be defined as
+\begin{equation}\label{eq:gDef}\phi:=\sum_{i=1}^d \theta_i.\end{equation}
+Given $\vec{\gamma}\in\{0,1\}^d$ and $1\leq j\leq d$, define $\vec{\gamma}\oplus \vec{e_j}$ to be equal to $\vec{\gamma}+\vec{e_j}$ if $\gamma_j=0$ or $\vec{\gamma}-\vec{e_j}$ if $\gamma_j=1$, where $\vec{e_j}$ is the $j$th standard basis vector. For $\vec{\gamma}\in\{0,1\}^d$, let $\xi_0(\vec{\gamma})$ denote the value of $\xi(\vec{v})$ for any $\vec{v}\in Q_{\vec{\gamma}}$. By \eqref{eq:constGamma}, the specific choice of $\vec{v}$ is immaterial. For $1\leq j\leq d$, define $\xi_j(\vec{\gamma})$ to be the average of $\xi_{j-1}(\vec{\gamma})$ and $\xi_{j-1}\left(\vec{\gamma}\oplus \vec{e_j}\right)$. That is,
+\[\xi_j(\vec{\gamma}) := \frac{\xi_{j-1}(\vec{\gamma})+\xi_{j-1}(\vec{\gamma}\oplus \vec{e_j})}{2}.\]
+
+For $1\leq i\leq d$, the flow $\theta_i$ is defined as follows. Let $\vec{u}\vec{v}$ be any edge in direction $i$. Without loss of generality, we may assume that either $|2u_i-2n-1|> |2v_i-2n-1|$ or $|2u_i-2n-1|=|2v_i-2n-1|$ and $u_i<v_i$. Let $\vec{\gamma}\in\{0,1\}^d$ so that $\vec{u}\in Q_{\vec{\gamma}}$. We define
+\[\theta_i(\vec{u},\vec{v}) := \omega(\vec{u},\vec{v})\cdot\left(\xi_{i-1}(\vec{\gamma})-\xi_{i}(\vec{\gamma})\right)\]
+and $\theta_i(\vec{v},\vec{u})=-\theta_i(\vec{u},\vec{v})$. Pairs which do not form an edge in direction $i$ receive flow zero under $\theta_i$.
+
+Let us now verify that $\phi$, defined as in \eqref{eq:gDef}, has the desired properties. We start by bounding $|\phi(\vec{u},\vec{v})|$. Given an edge $\vec{u}\vec{v}$ in direction $i$, the following holds for an appropriate choice of $\vec{\gamma}$:
+\[|\theta_i(\vec{u},\vec{v})|= \omega(\vec{u},\vec{v})\left|\xi_{i-1}(\vec{\gamma})-\xi_{i}(\vec{\gamma})\right|= \omega(\vec{u},\vec{v})\left|\frac{\xi_{i-1}(\vec{\gamma}) - \xi_{i-1}\left(\vec{\gamma}\oplus \vec{e_i}\right)}{2}\right|\]
+\[\leq \omega(\vec{u},\vec{v})\|\xi_{i-1}\|_\infty\leq \omega(\vec{u},\vec{v})\|\xi\|_\infty.\]
+In the case $i=1$, the final inequality above follows simply from the fact that $\|\xi_0\|_\infty=\|\xi\|_\infty$. On the other hand, if $i\geq2$, then $\xi_{i-1}$ is obtained from $\xi_{i-2}$ by an averaging operation, and therefore satisfies $\|\xi_{i-1}\|_\infty\leq \|\xi_{i-2}\|_\infty$ which is at most $\|\xi\|_\infty$ by induction on $i$. 
+
+Our final task is to prove that $\phi$ is a $\xi$-flow. First, we claim that for $\vec{\gamma}\in\{0,1\}^d$ and $\vec{u}\in Q_{\vec{\gamma}}$, we have $\fout{\theta_i}(\vec{u}) = \xi_{i-1}(\vec{\gamma})-\xi_{i}(\vec{\gamma})$. First, consider $\vec{\gamma}\in\{0,1\}^d$ such that $\gamma_i=0$ and let $\vec{u}\in Q_{\vec{\gamma}}$. Define $\vec{w}:=\vec{u}-\vec{e_i}$ and $\vec{v}:=\vec{u}+\vec{e_i}$. Note that, if $u_i=1$, then $\vec{w}$ is not contained in $[2n]^d$, in which case we regard $\omega(\vec{w},\vec{u})$ and $\theta_i(\vec{w},\vec{u})$ as being zero. Now, since $\vec{u}\in Q_{\vec{\gamma}}$ we have $u_i\leq n$ and so 
+\[|2w_i-2n-1|\geq |2u_i-2n-1|\geq |2v_i-2n-1|.\]
+Thus, since $w_i<u_i<v_i$, it holds that
+\[\theta_i(\vec{w},\vec{u})= \omega(\vec{w},\vec{u})\left(\xi_{i-1}(\vec{\gamma})-\xi_{i}(\vec{\gamma})\right)\]
+and
+\[\theta_i(\vec{u},\vec{v})= \omega(\vec{u},\vec{v})\left(\xi_{i-1}(\vec{\gamma})-\xi_{i}(\vec{\gamma})\right).\]
+Also, $\omega(\vec{u},\vec{v})=\omega(\vec{w},\vec{u})+1$. Thus, since $\theta_i(\vec{u},\vec{w})=-\theta_i(\vec{w},\vec{u})$, the flow out of $\vec{u}$ under $\theta_i$ is $\xi_{i-1}(\vec{\gamma})-\xi_{i}(\vec{\gamma})$, as desired. The case that $\vec{u}\in Q_{\vec{\gamma}}$ for $\gamma_i=1$ is nearly symmetric to the case $\gamma_i=0$, with the only modification being that $\vec{w}:=\vec{u}+\vec{e_i}$ and $\vec{v}:=\vec{u}-\vec{e_i}$ in this case. The only case in which this symmetry is unclear is when $u_i=n+1$. For such a vertex $\vec{u}$, the construction of $\theta_i$ dictates that $\theta_i(\vec{v},\vec{u})$ is equal to 
+\[\omega(\vec{v},\vec{u})\cdot \left(\xi_{i-1}(\vec{\gamma}-\vec{e_i}) - \xi_i(\vec{\gamma}-\vec{e_i})\right) = n\left(\xi_{i-1}(\vec{\gamma}-\vec{e_i}) - \xi_i(\vec{\gamma}-\vec{e_i})\right).\]
+Also, $\theta_i(\vec{w},\vec{u})$ is
+\[\omega(\vec{w},\vec{u})\cdot \left(\xi_{i-1}(\vec{\gamma}) - \xi_i(\vec{\gamma})\right) = (n-1)\left(\xi_{i-1}(\vec{\gamma}) - \xi_i(\vec{\gamma})\right).\]
+The flow out of $\vec{u}$ with respect to $\theta_i$ is equal to the negation of the sum of these two expressions. The fact that it is equal to $\xi_{i-1}(\vec{\gamma})-\xi_{i}(\vec{\gamma})$ now follows from the equalities 
+\[\xi_{i-1}(\vec{\gamma})+\xi_{i-1}(\vec{\gamma}-\vec{e_i})=\xi_i(\vec{\gamma})+\xi_i(\vec{\gamma}-\vec{e_i})\]
+and
+\[\xi_i(\vec{\gamma})=\xi_i(\vec{\gamma}-\vec{e_i}).\] 
+
+Therefore, for any vertex $\vec{u}\in Q_{\vec{\gamma}}$, we have that $\fout{\phi}(\vec{u})$ is equal to the telescoping sum
+\[\sum_{i=1}^d\left(\xi_{i-1}(\vec{\gamma}) - \xi_i(\vec{\gamma})\right) = \xi_0(\vec{\gamma}) - \xi_d(\vec{\gamma}) = \xi(\vec{u})-\xi_d(\vec{\gamma}).\]
+Thus, the final step is to argue that $\xi_d(\vec{\gamma})=0$ for all $\vec{\gamma}\in\{0,1\}^d$. By induction on $j=0,1,\dots,d$, it can be easily shown that $\xi_j(\vec{\gamma})$ is equal to the average of $\xi_0(\vec{\gamma}')$ over all $\vec{\gamma}'\in\{0,1\}^d$ which agree with $\vec{\gamma}$ on the last $d-j$ coordinates. In other words,
+\[\xi_j(\vec{\gamma}) = \frac{\sum_{\vec{\gamma}'\in\{0,1\}^j\times\{\gamma_{j+1}\}\times\cdots\times\{\gamma_d\}}\xi_0(\vec{\gamma}')}{2^j}.\]
+Applying this to the case $j=d$, we see that $\xi_d(\vec{\gamma})$ is the average of $\xi_0(\vec{\gamma}')$ over all $\vec{\gamma}'\in\{0,1\}^d$. Thus, $\xi_d(\vec{\gamma})$ is zero by \eqref{eq:sumZero}. This completes the proof. 
+\end{proof}
+
+
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics{cube.1}
+\hspace{0.5cm}
+\includegraphics{cube.2}
+\hspace{0.5cm}
+\includegraphics{cube.3}
+\hspace{0.5cm}
+\includegraphics{cube.4}
+\end{center}
+\caption{An illustration of the construction of the flows $\theta_1,\dots,\theta_d$ and $\phi$ in Lemma~\ref{lem:cubeFlow} in the case $d=3$. Each cube  represents $[2n]^3$ and each subcube represents a set $Q_{\vec{\gamma}}$ for $\vec{\gamma}\in\{0,1\}^3$. The shade of each subcube represents the value of $\xi_i$ on that cube for $i=0,1,2,3$; medium grey indicates that $\xi_i$ is zero, dark grey indicates that it is positive and light grey indicates that it is negative. }
+\label{fig:cubes}
+\end{figure}
+
+Next, we apply Lemma~\ref{lem:cubeFlow} to construct the flows $f_1,f_2,\dots$ and analyse their properties. Recall that, by \eqref{eq:fm}, the flow $f_m$ is defined in terms of flows $f_m^{\vvec{u}}$ for $\vvec{u}\in\mathbb{T}^k$. Let $m\geq1$ be given. For each $\vvec{u}\in \mathbb{T}^k$ and $\vec{\gamma}\in\{0,1\}^d$, define 
+\[\vvec{u}_{\vec{\gamma}}:=\vvec{u}+2^{m-1}\sum_{i=1}^d\gamma_i\vvec{x}_i.\]
+In particular, $\vvec{u}_{(0,\dots,0)}=\vvec{u}$. For convenience, define $f_0$ and $f_0^{\vvec{u}}$ for each $\vvec{u}\in\mathbb{T}^k$ to be the zero flow on $G_d$. For $\vvec{u}\in\mathbb{T}^k$ and $m\geq1$, the flow $f_m^{\vvec{u}}$ will have the form
+\begin{equation}
+\label{eq:fmu}
+f_m^{\vvec{u}}:=\sum_{\vec{\gamma}\in\{0,1\}^d}f_{m-1}^{\vvec{u}_{\vec{\gamma}}} + \phi_m^{\vvec{u}}
+\end{equation}
+where $\phi_m^{\vvec{u}}$ comes from an application of Lemma~\ref{lem:cubeFlow}, which we describe next. 
+
+For $\vvec{u}\in\mathbb{T}^k$ and $j\geq0$, define the \emph{$j$-imbalance} of $\vvec{u}$ to be
+\[I_j(\vvec{u}):=\frac{\left|N_{2^j-1}^+[\vvec{u}]\cap A\right| - \left|N_{2^j-1}^+[\vvec{u}]\cap B\right|}{2^{jd}}.\]
+A simple observation, which will come in handy later, is that
+\begin{equation}
+\label{eq:I0}
+I_0(\vvec{u})=\ind_A(\vvec{u})-\ind_B(\vvec{u}). 
+\end{equation}
+Note that the sets $N_{2^{m-1}-1}^+[\vvec{u}_{\vec{\gamma}}]$ for $\vec{\gamma}\in\{0,1\}^d$ partition $N_{2^m-1}^+[\vvec{u}]$. We define $\xi_m^{\vvec{u}}: N_{2^{m}-1}^+[\vvec{u}]\to \mathbb{R}$ by defining, for each $\vec{\gamma}\in \{0,1\}^d$ and $\vvec{v}\in N_{2^{m-1}-1}^+[\vvec{u}_{\vec{\gamma}}]$,
+\[\xi_m^{\vvec{u}}(\vvec{v}) := I_{m-1}(\vvec{u}_{\vec{\gamma}}) - I_m(\vvec{u}).\]
+Observe that the subgraph of $G_d\induced N_{2^{m}-1}^+[\vvec{u}]$ consisting of all axis-aligned edges is isomorphic to $[2^m]^d$ and that, for $\vec{\gamma}\in\{0,1\}^d$, the set $N_{2^{m-1}-1}^+[\vvec{u}_{\vec{\gamma}}]$ corresponds exactly to the set $Q_{\vec{\gamma}}$. Also, the function $\xi_m^{\vvec{u}}$ is easily seen to satisfy conditions analogous to \eqref{eq:constGamma} and \eqref{eq:sumZero}. Thus, the hypotheses of Lemma~\ref{lem:cubeFlow} apply, and we can let $\phi_m^{\vvec{u}}$ be $\xi_m^{\vvec{u}}$-flow resulting from the lemma. This concludes the definition of $\phi_m^{\vvec{u}}$. By \eqref{eq:fm} and \eqref{eq:fmu}, this also determines the flows $f_1^{\vvec{u}},f_2^{\vvec{u}},\dots$ and $f_1,f_2,\dots$. Next, we prove Lemma~\ref{outline:lem:realFlows} from the outline.
+
+\begin{proof}[Proof of Lemma~\ref{outline:lem:realFlows}]
+Property \eqref{eq:local} is clear from the construction of $f_m$. Let us prove that the sequence $f_1,f_2,\dots$ converges. By \eqref{eq:fm} and \eqref{eq:fmu},
+\[f_m = \frac{1}{2^{md}}\sum_{\vvec{u}\in\mathbb{T}^k}f_m^{\vvec{u}}= \frac{1}{2^{md}}\left(\sum_{\vvec{u}\in\mathbb{T}^k}2^df_{m-1}^{\vvec{u}} + \sum_{\vvec{u}\in\mathbb{T}^k}\phi_m^{\vvec{u}}\right)\]
+\[ = \frac{1}{2^{(m-1)d}}\sum_{\vvec{u}\in\mathbb{T}^k}f_{m-1}^{\vvec{u}}+\frac{1}{2^{md}}\sum_{\vvec{u}\in\mathbb{T}^k}\phi_m^{\vvec{u}} = f_{m-1}+\frac{1}{2^{md}}\sum_{\vvec{u}\in\mathbb{T}^k}\phi_m^{\vvec{u}}.\]
+Therefore,
+\[\|f_m-f_{m-1}\|_\infty = \frac{1}{2^{md}}\left\|\sum_{\vvec{u}\in\mathbb{T}^k}\phi_m^{\vvec{u}}\right\|_\infty.\]
+Now, let $\vvec{v}\vvec{w}$ be any axis-aligned edge in $G_d$. The number of vertices $\vvec{u}$ for which $\vvec{v}\vvec{w}$ is contained in the cube $N_{2^m-1}^+[\vvec{u}]$ is $(2^m-1)2^{m(d-1)}$. For each $1\leq a\leq 2^{m-1}-1$, the number of such $\vvec{u}$ for which $\vvec{v}\vvec{w}$ plays the role of an edge of weight $a$, in the sense of \eqref{eq:weightDef}, in the construction of $\phi_m^{\vvec{u}}$, is $2\cdot 2^{m(d-1)}$. The number of such $\vvec{u}$ for which $\vvec{v}\vvec{w}$ plays the role of an edge of weight $2^{m-1}$ is $2^{m(d-1)}$. So, by Lemma~\ref{lem:cubeFlow},
+\[\left|\sum_{\vvec{u}\in\mathbb{T}^k}\phi_m^{\vvec{u}}(\vvec{v},\vvec{w})\right|\leq \left[2\cdot 2^{m(d-1)}\left(\frac{(2^{m-1}-1)2^{m-1}}{2}\right) + 2^{m(d-1)}2^{m-1}\right]\max_{\vvec{u}\in \mathbb{T}^k}\left\|\xi_m^{\vvec{u}}\right\|_\infty\]
+\[=2^{md}2^{m-2}\max_{\vvec{u}\in \mathbb{T}^k}\left\|\xi_m^{\vvec{u}}\right\|_\infty.\]
+Now, for each $\vvec{u}\in \mathbb{T}^k$,  Lemma~\ref{lem:discrep} implies that
+\[\left\|\xi_m^{\vvec{u}}\right\|_\infty \leq \left|I_m(\vvec{u})\right|+\max_{\vec{\gamma}\in\{0,1\}}\left|I_{m-1}\left(\vvec{u}_{\vec{\gamma}}\right)\right|\leq \frac{2c}{2^{m(1+\varepsilon)}} + \frac{2c}{2^{(m-1)(1+\varepsilon)}} = \frac{2c}{2^{m(1+\varepsilon)}}\left(2^{1+\varepsilon}+1\right).\]
+Putting this together, we obtain
+\[\|f_m-f_{m-1}\|_\infty\leq \frac{1}{2^{md}}\cdot 2^{md}2^{m-2}\cdot \frac{2c}{2^{m(1+\varepsilon)}}\left(2^{1+\varepsilon}+1\right)=\frac{c(2^{1+\varepsilon}+1)}{2^{\varepsilon m+1}}\]
+and so \eqref{eq:fmChange} holds.
+
+Our final task is to establish \eqref{eq:AtoB}. Let us start by showing that, for any $\vvec{u}\in \mathbb{T}^k$ and $m\geq0$, the flow out of any given vertex of $N_{2^{m}-1}^+[\vvec{u}]$ under $f_m^{\vvec{u}}$ is precisely
+\[I_0(\vvec{v})-I_m(\vvec{u}).\]
+We proceed by induction on $m$. In the base case $m=0$, the only vertex in $N_{2^{m}-1}^+[\vvec{u}]$ is $\vvec{u}$ itself and so the above expression simplifies to zero, which is indeed the flow out of $\vvec{u}$ under $f_0^{\vvec{u}}$. Now, for $m\geq1$, let $\vec{\gamma}\in\{0,1\}^d$ so that $\vvec{v}\in N_{2^{m-1}-1}[\vvec{u}_{\vec{\gamma}}]$. By construction, the flow out of $\vvec{v}$ under $\phi_{m}^{\vvec{u}}$ is $I_{m-1}(\vvec{u}_{\vec{\gamma}})-I_m(\vvec{u})$. Also, by the inductive hypothesis, the flow out of $\vvec{v}$ under $f_{m-1}^{\vvec{u}_{\vec{\gamma}}}$ is $I_0(\vvec{v}) - I_{m-1}(\vvec{u}_{\vec{\gamma}})$. Adding these two quantities yields $I_0(\vvec{v})-I_m(\vvec{u})$, as desired. 
+
+Now, recall from \eqref{eq:I0} that $I_0(\vvec{v})=\ind_A(\vvec{v})-\ind_B(\vvec{v})$. Therefore, the absolute value of the difference between the flow out of $\vvec{v}$ under $f_m^{\vvec{u}}$ and $\ind_A(\vvec{v})-\ind_B(\vvec{v})$ is 
+\[|I_m(\vvec{u})| = \left|\frac{|N_{2^m-1}^+[\vvec{u}]\cap A|-|N_{2^m-1}^+[\vvec{u}]\cap B|}{2^{md}}\right|\]
+which, by Lemma~\ref{lem:discrep} and the fact that $\lambda(A)=\lambda(B)$, is at most $\frac{2c}{2^{m(1+\varepsilon)}}$. By \eqref{eq:fm}, the flow out of $\vvec{v}$ under $f_m$ is equal to the average of the flow out $\vvec{v}$ under $f_m^{\vvec{u}}$ for all $\vvec{u}$ for which $\vvec{v}\in N_{2^{m}-1}^+[\vvec{u}]$. Thus, 
+\[\left|\fout{f_m}(\vvec{v})-\ind_A(\vvec{v})+\ind_B(\vvec{v})\right|\leq \frac{2c}{2^{m(1+\varepsilon)}}\]
+for all $\vvec{v}\in \mathbb{T}^k$ and $m\geq1$. This completes the proof of \eqref{eq:AtoB} and of the lemma. 
+\end{proof}
+
+\begin{remark}
+The above construction readily generalises to other demand functions. That is, if $\chi:\mathbb{T}^k\to\mathbb{R}$ and $\Phi:\mathbb{N}\to[0,\infty)$ such that
+\[\left|\sum_{\vvec{v}\in N_{2^{m}-1}[\vvec{u}]}\chi(\vvec{v})\right|\leq \frac{\Phi(m)}{2^{md}}\text{ for all }m\geq1\text{ and}\]
+\[\sum_{m=1}^\infty\frac{\Phi(m)}{2^{m(d-1)}}<\infty,\]
+then following along the argument given in this section, except with 
+\[I_j(\vvec{u}) := \frac{\sum_{\vvec{v}\in N_{2^j-1}^+[\vvec{u}]}\chi(\vvec{v})}{2^{jd}}\]
+yields a bounded $\chi$-flow in $G_d$. A similar observation is made in~\cite[Lemma~4.2]{MarksUnger17}.
+\end{remark}
+
+\section{Assembling the Scaffolding}
+\label{sec:covering}
+
+Our next goal is to obtain a pair of scaffoldings in $G_d$. Some of the ideas are similar to those used in the proof of Lemma~\ref{outline:lem:JordanScaff} from the outline, but the details are modified to obtain special properties which are needed to obtain Borel pieces of low complexity and analyse their boundaries. The following definition is key to describing the construction. 
+
+
+
+\begin{defn}
+\label{def:closure}
+For $i\geq1$, let $D=(D_1,D_2,\dots,D_i)$ be a sequence of subsets of $\mathbb{T}^k$ and $b\geq0$. Define $\mathcal{C}_b(D)$ to be the set constructed as follows:
+\begin{enumerate}
+\stepcounter{equation}
+\item initialise $\mathcal{C}_b(D):=D_i$ and
+\stepcounter{equation}
+\item while there exists $1\leq j\leq i-1$ and $S\in\comp(D_{j})$ such that $\dist_{G_d}(S,\mathcal{C}_b(D))\leq b$, add all vertices of $N_b[S]$ to $\mathcal{C}_b(D)$.
+\end{enumerate}
+\end{defn}
+
+Intuitively, Definition~\ref{def:closure} is designed to take an infinite sequence $D_1,D_2,D_3,\dots$ of subsets of $\mathbb{T}^k$ and transform it into a sequence $\mathcal{C}_2(D_1),\mathcal{C}_2(D_1,D_2),\mathcal{C}_2(D_1,D_2,D_3),\dots$ which satisfies property \eqref{scaffUt} of Definition~\ref{def:scaff}. The next lemma demonstrates that, if, for $1\leq j\leq i$, the diameter of each component of $G_d\induced D_j$ is not too large and the distance between them is not too small, then the resulting sequence satisfies \eqref{scaffBdd} and \eqref{scaffDist} as well. The following lemma is stated for the graph $G_d$, but an analogous statement holds in any metric space.
+
+
+
+\begin{lemma}
+\label{lem:chain}
+Let $D=(D_1,D_2,\dots,D_i)$ be a sequence of subsets of $\mathbb{T}^k$, let $b\geq0$ and let $(t_1,t_2,\dots,t_{i-1})$ and $(q_0,q_1,\dots,q_{i-1})$ be sequences of integers such that $q_0\geq 0$ and, for $1\leq j\leq i-1$, 
+\[q_j\geq t_{j}+2q_{j-1}+2b.\]
+If, for every $1\leq j\leq i-1$, every component of $G_d\induced D_j$ has diameter at most $t_j$ in $G_d$ and the distance in $G_d$ between any two components of $G_d\induced D_j$ is greater than $q_{j-1}+2b$, then $\mathcal{C}_b(D)\subseteq N_{q_{i-1}}[D_i]$. 
+\end{lemma}
+
+\begin{proof}
+Consider a vertex $\vvec{w}\in \mathcal{C}_b(D)\setminus D_i$; if no such $\vvec{w}$ exists, then we are done as $\mathcal{C}_b(D)=D_i$. By definition of $\mathcal{C}_b(D)$, there exists a sequence $S_1,S_2,\dots,S_n$ of distinct subsets of $\mathbb{T}^k$ such that
+\begin{enumerate}
+\stepcounter{equation}
+\item for each $1\leq \ell\leq n$, there exists $1\leq j\leq i-1$ such that $S_\ell$ is a component of $G_d\induced D_j$,
+\stepcounter{equation}
+\item $\dist_{G_d}(S_1,D_i)\leq b$,
+\stepcounter{equation}
+\item $\dist_{G_d}(S_\ell,S_{\ell+1})\leq 2b$ for $1\leq \ell < n$ and
+\stepcounter{equation}
+\item $\dist_{G_d}(S_n,\vvec{w})\leq b$. 
+\end{enumerate}
+Given such a vertex $\vvec{w}$ and $S_1,\dots,S_n$, let $\vvec{u}\in D_i$ such that $\dist_{G_d}(\vvec{u},S_1)\leq b$. Our aim is to prove, by induction on $i$, that, for every such $\vvec{w}$ and $\vvec{u}$, we have $\dist_{G_d}(\vvec{u},\vvec{w})\leq q_{i-1}$. In the base case $i=1$, the statement is true vacuously as $\mathcal{C}_b(D)=D_1$ (and so no such $\vvec{w}$ can exist). 
+
+So, suppose that $i\geq2$. If none of the sets $S_1,\dots,S_n$ is a component of $G_d\induced D_{i-1}$, then $S_1,\dots,S_n$ actually certifies that $\vvec{w}\in \mathcal{C}_b(D_1,D_2,\dots,D_{i-2},D_i)$ and we have that $\dist_{G_d}(\vvec{u},\vvec{w})\leq q_{i-2}<q_{i-1}$ by induction on $i$. 
+
+Next, suppose that there is a unique index $\ell$ such that $S_\ell$ is a component of $G_d\induced D_{i-1}$. Let $\vvec{y}$ be a vertex of $S_\ell$ at distance at most $2b$ from $S_{\ell-1}$ (or, at distance at most $b$ from $\vvec{u}$ in the case $\ell=1$) and let $\vvec{z}$ be a vertex of $S_\ell$ at distance at most $2b$ from $S_{\ell+1}$ (or at distance at most $b$ from $\vvec{w}$ in the case $\ell=n$). The sequences $S_{\ell-1},S_{\ell-2},\dots S_1$ and $S_{\ell+1},S_{\ell+2},\dots, S_n$ certify that $\vvec{u}$ and $\vvec{w}$, respectively, are in $\mathcal{C}_b(D_1,D_2,\dots, N_b[S_\ell])$. So, by the inductive hypothesis,
+\[\dist_{G_d}(\vvec{u},\vvec{w})\leq \dist_{G_d}(\vvec{u},\vvec{y})+\dist_{G_d}(\vvec{y},\vvec{z})+\dist_{G_d}(\vvec{z},\vvec{w})\]
+\[\leq \left(q_{i-2} +b\right)+ t_{i-1} + \left(q_{i-2} +b\right)\leq q_{i-1}\]
+as desired.
+
+Finally, we consider the case that there are two indices $1\leq \ell < \ell'\leq n$ such that $S_{\ell}$ and $S_{\ell'}$ are distinct components of $G_d\induced D_{i-1}$. Choose these indices so that $\ell'-\ell$ is minimised. Let $\vvec{y}$ be a vertex of $N_b[S_{\ell}]$ which is at distance at most $b$ from $S_{\ell+1}$ and let $\vvec{z}$ be a vertex of $N_b[S_{\ell'}]$ at distance at most $b$ from $S_{\ell'-1}$. The sequence $S_{\ell+1},S_{\ell+2},\dots,S_{\ell'-1}$ certifies that $\vvec{z}$ is in $\mathcal{C}_b(D_1,\dots,D_{i-2},N_b[S_{\ell}])$. By the inductive hypothesis, 
+\[\dist_{G_d}(S_{\ell},S_{\ell'})\leq \dist_{G_d}(\vvec{y},\vvec{z})+2b\leq q_{i-2}+2b\]
+which is contradicts the hypotheses of the lemma. This completes the proof.
+\end{proof}
+
+We now construct the scaffoldings that we use in the proof of Theorem~\ref{th:main}. We remark that, as constructed, they will not immediately cover all of $\mathbb{T}^k$. However, at the end of the section, we will give a compactness argument of Boykin and Jackson~\cite{BoykinJackson07} (see also Marks and Unger~\cite[Lemma~A.2]{MarksUnger17}) which allows us to produce boundedly many such scaffoldings which, together, cover all of the vertices. 
+
+We start by letting $r_0'<r_1<r_1'<r_2<\cdots$ be a sequence of positive integers. We assume that this sequence increases sufficiently rapidly so that the inequalities in \eqref{eq:rr'}, \eqref{eq:r'q'} and \eqref{eq:r'q} below are satisfied. Given these sequences, we recursively define $q_0'<q_1<q_1'<q_2<\cdots$ and $t_1<t_1'<t_2<t_2'<\cdots$ by setting $q_0':=0$ and, for each $i\geq1$,
+\[t_i:=2r_i+4q'_{i-1}+4,\]
+\[q_i:=t_i+2q'_{i-1}+4,\]
+\[t'_i:=\lfloor 4r'_i/5\rfloor + 2q_i\]
+and
+\[q'_i:=t'_i+2q_i+4.\]
+The inequalities that we require are
+\begin{equation}
+\label{eq:rr'}
+r_i\geq 5r'_{i-1}-1\text{ for all }i\geq1,
+\end{equation}
+\begin{equation}
+\label{eq:r'q'}
+5r'_i\geq 5q'_{i}+9\text{ for all }i\geq0 \text{ and} 
+\end{equation}
+\begin{equation}
+\label{eq:r'q}
+r_i'\geq 15q_i+25\text{ for all }i\geq1.
+\end{equation}
+These inequalities will be satisfied whenever $r_0',r_1,r_1',\dots$ grows at a sufficiently fast exponential rate. However, for certain applications, we will also want $r_{i-1}'/r_i$ to tend to zero very quickly; in particular, this will come into play in the analysis of the boundaries of the pieces in Section~\ref{sec:pieces}. 
+
+Now, for each $i\geq1$, we apply Corollary~\ref{outline:cor:stripDiscrete} to obtain sets $X_i$ and $Y_i$, each of which is a union of finitely many disjoint strips, so that $X_i$ is maximally $r_i$-discrete and $Y_i$ is maximally $r'_i$-discrete. For each $i\geq1$, define $I_i$ to be the set of all $\vvec{v}\in \mathbb{T}^k$ for which there exists $\vvec{u}\in X_i$ such that
+\[\dist_{G_d}(\vvec{v},\vvec{u}')\geq\dist_{G_d}(\vvec{v},\vvec{u})+5 r'_{i-1}\]
+for every $\vvec{u}'\in X_i\setminus \{\vvec{u}\}$. The set $I_i$ can be viewed as a union of ``partial Voronoi cells'' around the elements of $X_i$. Now, for $i\geq1$, define
+\[J_i:=\mathcal{C}_2(N_{q'_0+2}[J_1],\dots,N_{q'_{i-2}+2}[J_{i-1}],I_i)\]
+\[K_i:=\mathcal{C}_2(K_1,L_1,\dots,K_{i-1},L_{i-1},N_2[J_i])\text{ and}\]
+\[L_i:=\mathcal{C}_2(K_1,L_1,\dots,K_{i-1},L_{i-1},K_i,N_{\lfloor 2r'_i/5\rfloor}[Y_i]).\]
+What we will show is that the two sequences $J_1,K_1,J_2,K_2,\dots$ and $K_1,L_1,K_2,L_2,\dots$ are scaffoldings. Along the way, we will also build up some key features of these sequences of sets which will be applied in subsequent sections. We begin with the following statement, which simply follows by construction.
+
+\begin{lemma}
+\label{lem:JKLtrivial}
+For every $i\geq1$, we have $I_i\subseteq J_i$, $N_2[J_i]\subseteq K_i$ and $N_{\lfloor 2r'_i/5\rfloor}[Y_i]\subseteq L_i$.
+\end{lemma}
+
+
+
+Next, we prove a lemma regarding the structure of $I_i$. 
+
+\begin{lemma}
+\label{lem:Ii}
+Every component of $G_d\induced I_i$ has diameter at most $2r_i$ and the distance in $G_d$ between any two such components is at least $5r'_{i-1}$. 
+\end{lemma}
+
+\begin{proof}
+Note that, by \eqref{eq:rr'} and the definition of $I_i$, we have $X_i\subseteq I_i$. Given $\vvec{v}\in I_i$, if $\vvec{u}\in X_i$ such that $\dist_{G_d}(\vvec{v},\vvec{u})$ is minimum, then every vertex on any shortest path from $\vvec{v}$ to $\vvec{u}$ in $G_d$ is contained in $I_i$. In particular, this implies that every component of $G_d\induced I_i$ contain at least one vertex of $X_i$. Now, for distinct $\vvec{u},\vvec{u}'\in X_i$ in the same component of $G_d$, let $\vvec{v}_0\vvec{v}_1\cdots \vvec{v}_n$ be the shortest path in $G_d$ from the component of $G_d\induced I_i$ containing $\vvec{u}$ to the component of $G_d\induced I_i$ containing $\vvec{u}'$. Then, by definition of $I_i$, we have
+\[\dist_{G_d}\left(\vvec{v}_0,\vvec{u}\right)+2n\geq \dist_{G_d}(\vvec{v}_n,\vvec{u})+n\geq\dist_{G_d}(\vvec{v}_n,\vvec{u}')+5r'_{i-1}+n\]
+\[\geq \dist_{G_d}(\vvec{v}_0,\vvec{u}')+5 r'_{i-1}\geq \dist_{G_d}\left(\vvec{v}_0,\vvec{u}\right)+10r'_{i-1}\]
+and so $n\geq 5r'_{i-1}$. So, we know that each component of $G_d\induced I_i$ contains a unique element of  $X_i$ and that the distance in $G_d$ between any two components at least $5r'_{i-1}$. Now, let $\vvec{u}\in X_i$ and let $\vvec{v}$ be in the same component of $G_d\induced I_i$ as $\vvec{u}$. Since $X_i$ is maximally $r_i$-discrete and $\vvec{u}$ is the element of $X_i$ at minimum distance from $\vvec{v}$, we have $\dist_{G_d}(\vvec{u},\vvec{v})\leq r_i$. Thus, the diameter of each component is at most $2r_i$.
+\end{proof}
+
+The following lemma holds because $Y_i$ is maximally $r'_i$-discrete; we omit the proof. 
+
+
+\begin{lemma}
+\label{lem:2/5}
+Every component of $G_d\induced N_{\lfloor 2r'_i/5\rfloor}[Y_i]$ has diameter at most $4r_i'/5$ and the distance in $G_d$ between any two such components is at least $r_i'/5$. 
+\end{lemma}
+
+
+The proofs of the next two lemmas are the main applications of Lemma~\ref{lem:chain}. 
+
+
+\begin{lemma}
+\label{lem:Ji}
+For $i\geq1$, we have $J_i\subseteq N_{q'_{i-1}}[I_i]$. 
+\end{lemma}
+
+\begin{proof}
+We proceed by induction on $i$. The base case $i=1$ is trivial as $J_1=I_1$.  Now, for $i\geq2$, our aim is to apply the inductive hypothesis and Lemma~\ref{lem:chain} to the sequences $(N_{q'_0+2}[J_1],\dots,N_{q'_{i-2}+2}[J_{i-1}],I_i)$, $(t'_1,\dots,t'_{i-1})$ and $(q'_0,\dots,q'_{i-1})$. 
+
+By induction, for every $1\leq j\leq i-1$, the set $J_j$ is contained within $N_{q'_{j-1}}[I_j]$. This implies that $N_{q'_{j-1}+2}[J_j]\subseteq N_{2q'_{j-1}+2}[I_j]$. Thus, by Lemma~\ref{lem:Ii}, every component of $G_d\induced N_{q'_{j-1}+2}[J_j]$ has diameter at most $2r_j+4q'_{j-1}+4=t_j< t_j'$ and the distance in $G_d$ between any two such components is at least $5r'_{j-1}-4q'_{j-1}-4$, which is at least $q'_{j-1}+5$ by \eqref{eq:r'q'}. So, the result follows from Lemma~\ref{lem:chain} since $q'_j = t'_j+2q_j+4>t'_j+2q'_{j-1}+4$ for all $j\geq1$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:KiLi}
+For $i\geq1$, we have $K_i\subseteq N_{q'_{i-1}+2}[J_i]$ and $L_i\subseteq N_{\lfloor 2r'_i/5\rfloor+q_{i}}[Y_i]$. 
+\end{lemma}
+
+\begin{proof}
+We proceed by induction, where the (trivial) inequality $K_1\subseteq N_{q_0'+2}[J_1]$ forms the base case. For $i\geq2$, in the $i$th step of the induction, we prove that 
+\begin{itemize}
+\item $L_{i-1}\subseteq N_{\lfloor 2r'_{i-1}/5\rfloor+q_{i-1}}[Y_{i-1}]$ and
+\item $K_i\subseteq N_{q'_{i-1}+2}[J_i]$. 
+\end{itemize}
+Analogous to the proof of Lemma~\ref{lem:Ji}, we will apply the inductive hypothesis and Lemma~\ref{lem:chain} to the sequences 
+\begin{itemize}
+\item $(K_1,L_1,\dots,K_{i-1},N_{\lfloor 2r'_{i-1}/5\rfloor}[Y_{i-1}])$, $(t_1,t_1',\dots,t'_{i-2},t_{i-1})$ and $(q_0',q_1,\dots,q'_{i-2},q_{i-1})$ and
+\item $(K_1,L_1,\dots,L_{i-1},N_2[J_i])$, $(t_1,t_1',\dots,t_{i-1},t'_{i-1})$ and $(q_0',q_1,\dots,q_{i-1},q'_{i-1})$.
+\end{itemize}
+
+By induction, for every $1\leq j\leq i-1$, we have $K_j\subseteq N_{q'_{j-1}+2}[J_j]$. Also, for every $2\leq j\leq i-1$, we have $L_{j-1}\subseteq N_{\lfloor 2r'_{j-1}/5\rfloor + q_{j-1}}[Y_{j-1}]$. Thus, by Lemmas~\ref{lem:Ii} and~\ref{lem:Ji}, every component of $G_d\induced K_j$ has diameter at most $2r_j+4q'_{j-1}+4=t_j$ and the distance in $G_d$ between any two such components is at least $5r'_{j-1}-4q'_{j-1}-4$, which is at least $q'_{j-1}+5$ by \eqref{eq:r'q'}. Similarly, for $2\leq j\leq i-1$, by Lemma~\ref{lem:2/5}, every component of $G_d\induced L_{j-1}$ has diameter at most $\lfloor 4r'_{j-1}/5\rfloor+2q_{j-1}=t'_{j-1}$ and the distance in $G_d$ between any two such components is at least $r'_{j-1}/5-2q_{j-1}$, which is at least $q_{j-1}+5$ by \eqref{eq:r'q}. So, the lemma follows from Lemma~\ref{lem:chain}.
+\end{proof}
+
+We are now in position to prove the following lemma.
+
+\begin{lemma}
+\label{lem:JKLscaff}
+The sequences $J_1,K_1,J_2,K_2,\dots$ and $K_1,L_1,K_2,L_2,\dots$ are scaffoldings.
+\end{lemma}
+
+\begin{proof}
+The fact that the components of the subgraphs of $G_d$ induced by $J_i$, $K_i$ and $L_i$ are of uniformly bounded cardinality and are pairwise separated by distance at least three follows from Lemmas~\ref{lem:Ii},~\ref{lem:2/5},~\ref{lem:Ji} and~\ref{lem:KiLi} and the inequalities \eqref{eq:r'q'} and \eqref{eq:r'q}.  So, properties \eqref{scaffBdd} and \eqref{scaffDist} of Definition~\ref{def:scaff} hold. For the most part, property \eqref{scaffUt} holds simply by construction. The one case which requires some extra care is the interaction between $K_j$ and $J_i$ for $j<i$. If $S$ is a component of $G_d\induced K_j$, then, by Lemma~\ref{lem:KiLi}, we have $S\subseteq N_{q'_{j-1}+2}[J_j]$. Thus, there is a component $S'$ of $G_d\induced N_{q'_{j-1}+2}[J_j]$ containing $S$. So, if $S$ is at distance at most two from $J_i$, then all of $N_2[S']$ (including $N_2[S]$) will be added to $J_i$ during its construction. Thus, property \eqref{scaffUt} of Definition~\ref{def:scaff} holds. 
+\end{proof}
+
+At this point, we can also observe that each of the sets $J_i,K_i$ and $L_i$ can be expressed as a Boolean combination of finitely many translates of the sets $X_1,Y_1,\dots,X_i,Y_i$, simply by definition. Therefore, the following lemma holds.
+
+\begin{lemma}
+\label{lem:JKLstrips}
+Each of the sets $J_i,K_i$ and $L_i$ for $i\geq1$ can be expressed as a union of finitely many disjoint strips. 
+\end{lemma}
+
+
+The next lemma will be used in Section~\ref{sec:pieces} to analyse the boundaries of the pieces of the equidecomposition. 
+
+\begin{lemma}
+\label{lem:Jmeas}
+We have
+\[\lambda(I_{i}) = 1 - O\left(r'_{i-1}/r_i\right)\]
+as $i\to\infty$, where the constant factor is bounded by a function of $d$ only. 
+\end{lemma}
+
+\begin{proof}
+Note that $I_{i}$ is a union of finitely many disjoint strips and, therefore, it is measurable.  For any pair of distinct vertices $\vvec{u},\vvec{u}'\in X_i$, let $W_i(\vvec{u},\vvec{u}')$ be the set of all $\vvec{v}\in \mathbb{T}^k$ such that
+\[\max\left\{\dist_{G_d}(\vvec{u},\vvec{v}),\dist_{G_d}(\vvec{u}',\vvec{v})\right\}\leq r_i+5r'_{i-1}\text{ and}\]
+\[\left|\dist_{G_d}(\vvec{u},\vvec{v})-\dist_{G_d}(\vvec{u}',\vvec{v})\right|\leq 5r'_{i-1}.\]
+Define $W_i$ to be the union of $W_i(\vvec{u},\vvec{u}')$ over all pairs of distinct vertices $\vvec{u},\vvec{u}'\in X_i$. The set $W_i$ can be written as a finite Boolean combination of translates of $X_i$, and so it is measurable. By definition of $I_i$ and the fact that $X_i$ is maximally $r_i$-discrete, we have that $\mathbb{T}^k\setminus I_i\subseteq W_i$. So, it suffices to prove that $\lambda(W_i)= O(r'_{i-1}/r_i)$. 
+
+First, for each $\vvec{u}\in X_i$, let us bound the number of $\vvec{u}'\in X_i$ such that $W_i(\vvec{u},\vvec{u}')$ is non-empty. Given any such $\vvec{u}'$, we have
+\[\dist_{G_d}(\vvec{u},\vvec{u}')\leq 2r_i+10r'_{i-1}.\]
+Therefore,
+\[N_{\lfloor r_i/2\rfloor}[\vvec{u}']\subseteq N_{2r_i+\lfloor r_i/2\rfloor+10r'_{i-1}}[\vvec{u}].\]
+Since the set $X_i$ is $r_i$-discrete, the sets $N_{\lfloor r_i/2\rfloor}[\vvec{u}']$ are disjoint for different $\vvec{u}'\in X_i$. So, by the Pigeonhole Principle, the number of such $\vvec{u}'$ is at most
+\[\frac{\left(4r_i+2\lfloor r_i/2\rfloor+20r'_{i-1}+1\right)^d}{\left(2\lfloor r_i/2\rfloor+1\right)^d}\]
+which is bounded above by a constant that depends on $d$ only.
+
+Now, given a pair of distinct $\vvec{u},\vvec{u}'\in X_i$ in the same component of $G_d$, let $\vec{n}\in \mathbb{Z}^d$ be such that $\vvec{u}'=\vec{n}\cdot_a\vvec{u}$. Note that $\|\vec{n}\|_\infty\geq r_i+1$ since $X_i$ is $r_i$-discrete. Then $W_i(\vvec{u},\vvec{u}')$ is the set of all $\vvec{v}\in \mathbb{T}^k$ of the form $\vvec{v}=\vec{m}\cdot_a\vvec{u}$ where 
+\begin{itemize}
+\item $\|\vec{m}\|_\infty\leq r_i+5r'_{i-1}$,
+\item $\|\vec{n}-\vec{m}\|_\infty\leq r_i+5r'_{i-1}$ and
+\item $\big|\|\vec{m}\|_\infty-\|\vec{n}-\vec{m}\|_\infty\big|\leq 5r'_{i-1}$.
+\end{itemize}
+For fixed $r$, the number of vectors $\vec{m}$ of this type is $O\left(r_i^{d-1}r_{i-1}'\right)$. Indeed, there are $d^2$ ways to choose the indices $j_1,j_2\in\{1,\dots,d\}$ such that $\left|m_{j_1}\right|$ and $\left|n_{j_2}-m_{j_2}\right|$ are maximum. In the case that $j_1=j_2$, there are $O(r_{i-1}')$ choices for $m_{j_1}$ and $O(r_i)$ choices for $m_j$ for each $j\in\{1,\dots,d\}\setminus \{j_1\}$. On the other hand, if $j_1\neq j_2$, then the number of choices of $m_{j_1}$ is $O(r_i)$ and, given this choice, the number of choices for $m_{j_2}$ is $O(r_{i-1}')$ and, again, there are $O(r_i)$ choices for $m_j$ for each $j\in\{1,\dots,d\}\setminus\{j_1,j_2\}$. 
+
+Suppose now that we split $\mathbb{T}^k$ into Voronoi cells with the points in $X_i$ as the centres, similarly to the proof of Lemma~\ref{outline:lem:matching}. Each Voronoi cell contains $\Omega(r_i^d)$ elements and, by the arguments above, $O(r_i^{d-1}r_{i-1}')$ of these points are in $W_i$. Thus, the measure of $W_i$ is $O(r_{i-1}'/r_i)$. 
+\end{proof}
+
+Finally, we apply a compactness argument of Boykin and Jackson~\cite{BoykinJackson07} to prove one final lemma of this section. For each $\vec{p}\in \{0,\dots,5\}^m$ and $i\geq1$, define
+\[Y_i^{\vec{p}}:=Y_i-\lfloor r'_i/3\rfloor\sum_{j=1}^d(p_j-3)\vvec{x}_j.\]
+Note that $Y_i^{\vec{p}}$ is simply a ``shifted version'' of $Y_i$ and so it inherits the property of being a maximally $r'_i$-discrete union of finitely many strips. Also, $Y_i^{(3,3,\dots,3)}$ is simply $Y_i$. We can then define, for each $i\geq1$,
+\[K_i^{\vec{p}}:=\mathcal{C}_2(K_1^{\vec{p}},L_1^{\vec{p}},\dots,K_{i-1}^{\vec{p}},L_{i-1}^{\vec{p}},N_2[J_i])\text{ and}\]
+\[L_i^{\vec{p}}:=\mathcal{C}_2(K_1^{\vec{p}},L_1^{\vec{p}},\dots,K_{i-1}^{\vec{p}},L_{i-1}^{\vec{p}},K_i^{\vec{p}},N_{\lfloor 2r'_i/5\rfloor}[Y_i^{\vec{p}}])\]
+and note that all of the lemmas proved in this section so far apply equally well to the sequence $J_1,K_1^{\vec{p}},L_1^{\vec{p}},J_2,K_2^{\vec{p}},L_2^{\vec{p}},\dots$ as they do to $J_1,K_1,L_1,J_2,K_2,L_2,\dots$.
+We conclude this section by proving the following lemma which will be applied in the next section to obtain an integer-valued flow without appealing to the Axiom of Choice.
+
+\begin{lemma}
+\label{lem:Licover}
+$\bigcup_{\vec{p}\in\{0,\dots,5\}^d}\bigcup_{i=1}^\infty L_i^{\vec{p}}=\mathbb{T}^k$.
+\end{lemma}
+
+\begin{proof}
+For each vertex $\vvec{v}\in\mathbb{T}^k$, let 
+\[R_i(\vvec{v}):=\{\vec{n}/r'_i: \vec{n}\cdot_a\vvec{v}\in Y_i\}\subseteq \mathbb{R}^d.\]
+Note that, since $Y_i$ is maximally $r'_i$-discrete, we have that $R_i(\vvec{v})$ contains a point in $[-1,1]^d$ for all $i\geq1$. Thus, by compactness of $[-1,1]^d$, the set $R^*(\vvec{v})$ of accumulation points of the sequence $R_1(\vvec{v}),R_2(\vvec{v}),\dots$ in $[-1,1]^d$ is non-empty. If $\vvec{v}$ and $\vvec{v}'$ are in the same component of $G_d$, then $R_i(\vvec{v})$ is the same as $R_i(\vvec{v}')$ shifted by $\ell_\infty$-distance $\dist_{G_d}(\vvec{v},\vvec{v}')/r'_i$ in $\mathbb{R}^d$. Since the sequence $r'_1,r'_2,\dots$ is increasing, this distance tends to zero and so $R^*(\vvec{v})=R^*(\vvec{v}')$. Now, given $\vvec{v}\in\mathbb{T}^k$, we let $\vec{\tau}(\vvec{v})$ be the lexicographically minimal element of $\{0,\dots,5\}^d$ such that the set
+\[\prod_{j=1}^d\left[\frac{\tau(\vvec{v})_j-3}{3},\frac{\tau(\vvec{v})_j-2}{3}\right]\]
+contains an element of $R^*(\vvec{v})$. For each $\vec{p}\in\{0,\dots,5\}^d$, we let $T_{\vec{p}}:=\{\vvec{v}\in\mathbb{T}^k: \vec{\tau}(\vvec{v})=\vec{p}\}$. We have that $\vec{\tau}(\vvec{v}')=\vec{\tau}(\vvec{v})$ for any $\vvec{v}'$ in the same component of $G_d$ as $\vvec{v}$, and so each of the sets $T_{\vec{p}}$ is a union of components of $G_d$. Also, the sets in $\left\{T_{\vec{p}}:\vec{p}\in\{0,\dots,5\}^d\right\}$ partition $\mathbb{T}^k$. 
+
+Now, given $\vvec{v}\in T_{\vec{p}}$, by definition of $R^*(\vvec{v})$, we see that there are infinitely many indices $i$ for which there is a vertex $\vvec{u}\in Y_i$ of the form $\vvec{u}=\vec{n}\cdot_a\vvec{v}$ for some $\vec{n}$ such that 
+\[r_i\cdot \left(\frac{p_j-3}{3} - \frac{1}{100}\right)\leq n_j\leq r_i\cdot \left(\frac{p_j-2}{3} + \frac{1}{100}\right)\]
+for all $1\leq j\leq d$. By definition of $Y_i^{\vec{p}}$, the fact that $\lfloor 2r_i/5\rfloor> r_i(1/3+1/100)$ for $i$ sufficiently large and Lemma~\ref{lem:JKLtrivial} (applied to $L_i^{\vec{p}}$ and $Y_i^{\vec{p}}$ as opposed to $L_i$ and $Y_i$), we see that $\bigcup_{i=1}^\infty L_i^{\vec{p}}$ contains $T_{\vec{p}}$ and so the lemma holds. 
+\end{proof}
+
+
+\section{Local Rounding}
+\label{sec:integerFlow}
+
+The focus of this section is to use the flows $f_m$ for $m\geq1$ and sets $J_i^{\vec{p}}, K_i^{\vec{p}}$ and $L_i^{\vec{p}}$ for $i\geq1$ and $\vec{p}\in \{0,\dots,5\}^d$ from the previous two sections to obtain an integer-valued flow $f$ with many desirable properties. Specifically, what we will prove is the following variant of Lemma~\ref{outline:lem:intFlow} from the outline. For each $\vec{p}\in \{0,\dots,5\}^d$, we let $T_{\vec{p}}$ be as in the proof of Lemma~\ref{lem:Licover}. Recall that each of the sets $T_{\vec{p}}$ is a union of components of $G_d$, and that these sets partition $\mathbb{T}^k$. 
+
+\begin{lemma}
+\label{lem:intFlow}
+For each $i\geq1$, let $m_i$ and $m_i'$ be the minimal integers such that
+\begin{equation}
+\label{eq:miDefAgain}
+2c\left(2^{1+\varepsilon}+1\right)\left(2^{1+\varepsilon}-2\right)^{-1}(3^d-1) (2r_i+4q_{i-1}'+5)^d<2^{\varepsilon m_i}
+\end{equation}
+and
+\begin{equation}
+\label{eq:mi'Def}
+2c\left(2^{1+\varepsilon}+1\right)\left(2^{1+\varepsilon}-2\right)^{-1}(3^d-1)(4r_i'/5 + 2q_i+1)^d<2^{\varepsilon m_i'}.
+\end{equation}
+There exists an integer-valued flow $f$ from $A$ to $B$ such that
+\begin{enumerate}
+\stepcounter{equation}
+\item\label{eq:fBounded} $\|f\|_\infty\leq \frac{c(2^{1+\varepsilon}+1)}{2^{1+\varepsilon}-2} + (3^d+1)/2$,
+\stepcounter{equation}
+\item\label{eq:fLocalJ} if $\vvec{u}\in \bigcup_{j=1}^iJ_j$ and $\vvec{u}\vvec{v}\in E(G_d)$, then $f(\vvec{u},\vvec{v})$ is determined by the intersections of $J_1,\dots,J_i,A$ and $B$ with the set of vertices at distance at most $2^{m_i}+2r_i+2q_{i-1}'+1$ from $\vvec{u}$,
+\end{enumerate}
+and, for each $\vec{p}\in\{0,\dots,5\}^d$,
+\begin{enumerate}
+\stepcounter{equation}
+\item\label{eq:fLocalK} if $\vvec{u}\in T_{\vec{p}}\cap\left(\bigcup_{j=1}^iK_j^{\vec{p}}\right)$ and $\vvec{u}\vvec{v}\in E(G_d)$, then $f(\vvec{u},\vvec{v})$ is determined by the intersections of $J_1,\dots,J_i,K_1^{\vec{p}},\dots,K_i^{\vec{p}},A$ and $B$ with the set of vertices at distance at most $2^{m_i}+2r_i+4q_{i-1}'+5$ from $\vvec{u}$ and
+\stepcounter{equation}
+\item\label{eq:fLocalL} if $\vvec{u}\in T_{\vec{p}}\cap\left(\bigcup_{j=1}^iL_j^{\vec{p}}\right)$ and $\vvec{u}\vvec{v}\in E(G_d)$, then $f(\vvec{u},\vvec{v})$ is determined by the intersections of $J_1,\dots,J_i,K_1^{\vec{p}},\dots,K_i^{\vec{p}},L_1^{\vec{p}},\dots,L_i^{\vec{p}},A$ and $B$ with the set of vertices at distance at most $2^{m_i'}+4r_i'/5+2q_{i}+1$ from $\vvec{u}$.
+\end{enumerate}
+\end{lemma}
+
+Conditions \eqref{eq:miDefAgain}, \eqref{eq:fBounded} and \eqref{eq:fLocalJ} can be thought of as being analogous \eqref{eq:miBound}, \eqref{eq:bddInt} and \eqref{eq:localInt}, respectively, from Lemma~\ref{outline:lem:intFlow} in the proof outline. One of the crucial aspects of the above lemma is that the flow under $f$ along any edge with an endpoint in $\bigcup_{i=1}^\infty J_i$ is independent of which of the sets $T_{\vec{p}}$ the edge is contained in. This is useful for estimating the upper Minkowski dimension of the pieces of the final equidecomposition. 
+
+As we discussed in the proof outline, one of the main subroutines in the construction of $g_i$ is to shift the flow along triangles in $G_d$ on the boundary of a finite set of vertices. Let us take a brief diversion into explaining how this shifting works. Many of the ideas here are borrowed from~\cite[Section~5]{MarksUnger17}. 
+
+\begin{defn}
+\label{def:edgeBoundary}
+Given a graph $G$ and a set $S\subseteq V(G)$,  the \emph{edge boundary of $S$ in $G$} is the set 
+\[\partial_ES:=\{uv\in E(G): u\in S\text{ and }v\in V(G)\setminus S\}.\]
+\end{defn}
+
+\begin{defn}
+A \emph{triangle} in a graph $G$ is a set $\{u,v,w\}$ of three distinct vertices of $G$, every pair of which are adjacent in $G$.
+\end{defn}
+
+\begin{defn}
+Given a graph $G$ and a set $F\subseteq E(G)$, let $\triangle_F$ be the graph with vertex set $F$ where two elements $uv$ and $yz$ of $F$ are adjacent in $\triangle_F$ if they are contained in a common triangle of $G$.
+\end{defn}
+
+
+\begin{defn}
+An \emph{Eulerian circuit} in a finite graph $G$ is a sequence $(v_1,v_2,\cdots, v_{t})$ of vertices of $G$ such that $v_1=v_{t}$ and the sequence $(v_1v_2,v_2v_3,\dots,v_{t-1}v_t)$ contains every edge of $G$ exactly once. 
+\end{defn}
+
+In the language of graph theory, an Eulerian circuit is a closed walk in a graph which traverses every edge exactly once. Perhaps the most classical result in graph theory is Euler's Theorem from 1736 which says that a finite graph $G$ has an Eulerian circuit if and only if it is connected and all of its vertices have even degree; see~\cite[Theorem~1.8.1]{Diestel5th}. The following lemma highlights a technical advantage of defining the graph $G_d$ in terms of the set $\{\vec{\gamma}\in \mathbb{Z}^d: \|\vec{\gamma}\|_\infty=1\}$ of generators of $\mathbb{Z}^d$ as opposed to the standard basis. In the context of equidecompositions with Lebesgue measurable pieces, an alternative approach using the standard basis can be found in~\cite[Section 5]{CieslaSabok19}. 
+
+\begin{lemma}[Marks and Unger~{\cite[Proof of Lemma~5.6]{MarksUnger17}}]
+\label{lem:triEvenDeg}
+If $S\subseteq \mathbb{T}^k$, then every finite component of $\triangle_{\partial_ES}$ has an Eulerian circuit. 
+\end{lemma}
+
+\begin{proof}
+By Euler's Theorem, it suffices to show that every vertex of $\triangle_{\partial_ES}$ has even degree. Let $\vvec{u}\vvec{v}\in \partial_E S$ with $\vvec{u}\in S$ and $\vvec{v}\notin S$. Note that, for any triangle $\{\vvec{u},\vvec{v},\vvec{w}\}$ in $G_d$ containing $\vvec{u}$ and $\vvec{v}$, exactly one of the edges $\vvec{u}\vvec{w}$ or $\vvec{v}\vvec{w}$ is in $\partial_ES$. Also, for any pair of edges of $G_d$ which are adjacent in $\triangle_{\partial_ES}$, there is a unique triangle which contains them.  So, it suffices to prove that $\vvec{u}\vvec{v}$ is contained in an even number of triangles of $G_d$.
+
+Let $\vec{n}\in \mathbb{Z}^d$ such that $\|\vec{n}\|_\infty =1$ and
+\[\vvec{v}=\vvec{u}+\sum_{i=1}^dn_i\vvec{x}_i.\]
+Let $T_0:=\{i: 1\leq i\leq d\text{ and }n_i=0\}$ and $T_1=\{1,2,\dots,d\}\setminus T_0$. To complete the proof, we argue that the number of triangles containing $\vvec{u}\vvec{v}$ is exactly 
+\[\left(3^{|T_0|}-1\right)2^{|T_1|} + 2^{|T_1|}-2\]
+which is even since $|T_1|\geq1$. Suppose that $\vvec{w}$ forms a triangle with $\vvec{u}$ and $\vvec{v}$ in $G_d$ and let $\vec{n}'=(n_1',\dots,n_d')\in\mathbb{Z}^d$ such that
+\[\vvec{w}=\vvec{u}+\sum_{i=1}^dn_i'\vvec{x}_i.\]
+We count the choices for $\vec{n}'$ for which $\vvec{w}$ is adjacent to both $\vvec{u}$ and $\vvec{v}$. First, we count the choices for which there exists $i\in T_0$ with $n_i'\neq 0$. In this case, $(n_i': i\in T_0)$ can be any non-zero $\{-1,0,1\}$-valued vector of length $|T_0|$, and so there are $3^{|T_0|}-1$ choices for it. Given this, for each $i\in T_1$, we must have $n_i'\in \{0,n_i\}$ in order for $\vvec{w}$ to be adjacent to both $\vvec{u}$ and $\vvec{v}$; thus, there are $2^{|T_1|}$ choices overall for $(n_i': i\in T_1)$. All such choices of $\vec{n}'$ produce a vertex $\vvec{w}$ adjacent to both $\vvec{u}$ and $\vvec{v}$ in $G_d$. Now, in the case that $n_i'=0$ for all $i\in T_0$, we again must choose $n_i'$ from $\{0,n_i\}$ for all $i\in T_1$, but with the added restriction that we cannot have $n_i'=0$ for all $i\in T_1$ and cannot have $n_i'=n_i$ for all $i\in T_1$ or else we would have $\vvec{w}=\vvec{u}$ or $\vvec{w}=\vvec{v}$, respectively. Thus, the total number of valid choices for $\vec{n}'$ in this case is $2^{|T_1|}-2$ and all such choices produce a common neighbour of $\vvec{u}$ and $\vvec{v}$. This completes the proof.
+\end{proof}
+
+Given $S\subseteq \mathbb{T}^k$, we say that a finite component of $G_d\induced\left(\mathbb{T}^k\setminus S\right)$ is a \emph{hole} of $S$. Marks and Unger~\cite[Proof of Lemma~5.6]{MarksUnger17} use a result of Tim\'ar~\cite{Timar13} to show that, if $S$ is a finite subset of $\mathbb{T}^k$ with no holes such that $G_d\induced S$ is connected, then $\triangle_{\partial_E S}$ is connected. Combining this with Lemma~\ref{lem:triEvenDeg} and Euler's Theorem, we get the following.
+
+\begin{lemma}[Marks and Unger~{\cite[Lemma~5.6]{MarksUnger17}}]
+\label{lem:triEuler}
+If $S$ is a finite subset of $\mathbb{T}^k$ with no holes and $G_d\induced S$ is connected, then $\triangle_{\partial_E S}$ has an Eulerian circuit. 
+\end{lemma}
+
+The following definition is helpful for explaining the way in which we ``shift'' flow values on triangles in $G_d$. 
+
+\begin{defn}
+Given a graph $G$ and an ordered triple $(u,v,w)\in V(G)^3$ such that $\{u,v,w\}$ is a triangle in $G$, define $\circlearrowleft_{u,v,w}$ to be the flow in $G$ such that, for $x,y\in V(G)$,
+\[\circlearrowleft_{u,v,w}(x,y):=\begin{cases} 1 & \text{if }(x,y)\in \{(u,v),(v,w),(w,u)\},\\
+-1 & \text{if }(x,y)\in \{(v,u),(w,v),(u,w)\},\\
+0 & \text{otherwise}.
+\end{cases}\]
+\end{defn}
+
+Given a flow $\phi$ in $G_d$ and a finite subset $S$ of $\mathbb{T}^k$ with no holes such that $G_d\induced S$ is connected, the operation of \emph{rounding $\phi$ along the boundary of $S$} is defined as follows. Using Lemma~\ref{lem:triEuler}, we let $\vvec{u}_1\vvec{v}_1,\dots, \vvec{u}_t\vvec{v}_t$ be an Eulerian circuit in $\triangle_{\partial_ES}$ where, for each $1\leq s\leq t$, we have $\vvec{u}_s\in S$ and $\vvec{v}_s\notin S$. Moreover, among all Eulerian circuits, we choose the one in which $(\vvec{u}_1,\vvec{v}_1,\dots,\vvec{u}_t,\vvec{v}_t)$ is minimal under $\lex$. Note that $\vvec{u}_t=\vvec{u}_1$ and $\vvec{v}_t=\vvec{v}_1$. Now, redefine $\phi(\vvec{u}_{t-1},\vvec{v}_{t-1})$ by adding $[\fout{\phi}(S)]-\fout{\phi}(S)$ to it and change $\phi(\vvec{v}_{t-1},\vvec{u}_{t-1})$ accordingly. The flow out of $S$ is now an integer. Then, for each $s=1,\dots,t-2$, one by one, we let $\vvec{w}_s\in\{\vvec{u}_{s+1},\vvec{v}_{s+1}\}$ such that $\{\vvec{u}_s,\vvec{v}_s,\vvec{w}_s\}$ is a triangle in $G_d$ and redefine $\phi$ to be
+\[\phi:= \phi + \left(\left[ \phi(\vvec{u}_s,\vvec{v}_s)\right] - \phi(\vvec{u}_s,\vvec{v}_s)\right)\circlearrowleft_{\vvec{u}_s,\vvec{v}_s,\vvec{w}_s}.\]
+Each of these steps preserves the flow out of every vertex. After this has been completed, it is clear that every edge of $\partial_ES$ is assigned to an integer flow value by $\phi$ except for possibly $\vvec{u}_{t-1}\vvec{v}_{t-1}$. However, the total flow out of $S$  is an integer, and so $\phi(\vvec{u}_{t-1},\vvec{v}_{t-1})$ must be an integer as well. 
+
+
+More generally, given a flow $\phi$ in $G_d$ and a set $D\subseteq \mathbb{T}^k$ such that every set in $\comp(D)$ is finite, the operation of \emph{rounding $\phi$ along the boundary of $D$} is defined as follows. First, for every $S\in \comp(D)$ and every hole $T$ of $S$, we round $\phi$ along the boundary of $T$. Then, for each $S\in\comp(D)$, we round $\phi$ along the boundary of the union of $S$ and all of its holes. Each of these operations are well-defined by the previous paragraph. Next, we show that if, additionally, any two distinct components of $G_d\induced D$ are at distance at least three\footnote{This assumption, while convenient, is not actually not necessary.} in $G_d$, then rounding along the boundary of such a set $D$ cannot displace the flow values by an arbitrary amount.
+
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[scale=0.7]{rounding.1}
+\hspace{1cm}
+\includegraphics[scale=0.7]{rounding.2}
+\hspace{1cm}
+\includegraphics[scale=0.7]{rounding.3}
+\end{center}
+\caption{Two steps of the operation of rounding a flow $\phi$ along the boundary  of a set $S$. The vertices within the grey region are in $S$. The edge $\vvec{u}_s\vvec{v}_s$ currently being rounded is depicted by a bold black line and the other two edges of the triangle containing $\vvec{u}_s\vvec{v}_s$ and $\vvec{u}_{s+1}\vvec{v}_{s+1}$ are depicted by a bold grey line. Some edges are labelled with numbers which represent their current flow value in the direction indicated by the arrow.}
+\label{fig:rounding}
+\end{figure}
+
+\begin{lemma}
+\label{lem:boundary3d}
+Let $\phi$ be a flow in $G_d$ and $D$ be a subset of $\mathbb{T}^k$ such that component of $G_d\induced D$ is finite and any two distinct components of $G_d\induced D$ are at distance at least three in $G_d$. Then, for each $\vvec{u}\vvec{v}\in E(G_d)$, the operation of rounding $\phi$ on the boundary of $D$ changes the flow from $\vvec{u}$ to $\vvec{v}$ under $\phi$ by at most $(3^d-2)/2$. 
+\end{lemma}
+
+\begin{proof}
+By construction, the flow from $\vvec{u}$ to $\vvec{v}$ only changes if there exists $S\in\comp(D)$ such that either
+\begin{itemize}
+\item $\vvec{u}\vvec{v}\in \partial_ES$,
+\item $\vvec{u},\vvec{v}\in N[S]\setminus S$ or
+\item $\vvec{u},\vvec{v}\in N[\mathbb{T}^k\setminus S]\cap S$. 
+\end{itemize}
+Since any two components of $D$ are separated by a distance of at least three in $G_d$, we see that the choice of the component $S$ is unique. 
+
+In the first two cases, we let $T$ be the unique component of $G_d\induced \left(\mathbb{T}^k\setminus S\right)$ which contains $\{\vvec{u},\vvec{v}\}\setminus S$. While rounding $\phi$ on the boundary of $T$ (in the case that $T$ is finite), or on the boundary of the union of $S$ and all of its holes (in the case that $T$ is infinite), the value of $\phi(\vvec{u},\vvec{v})$ is changed at most once for every triangle containing $\vvec{u}$ and $\vvec{v}$; note that this includes the initial step of shifting the flow on the second to last edge of the Eulerian tour to make the total outgoing flow equal to an integer. The number of such triangles is at most the number of neighbours of $\vvec{u}$ apart from $\vvec{v}$, which is at most $3^d-2$. Also, each time that the flow value of an edge changes, it is displaced by at most $1/2$. The flow from $\vvec{u}$ to $\vvec{v}$ is not changed at any other stage of the operation and so it is displaced by at most $(3^d-2)/2$ overall.
+
+In the third case, for each $\vvec{w}\notin S$ such that $\{\vvec{u},\vvec{v},\vvec{w}\}$ is a triangle in $G_d$, there is a unique component $T$ of $G_d\induced \left(\mathbb{T}^k\setminus S\right)$ containing $\vvec{w}$. All three edges of this triangle change their flow value at most once when rounding $\phi$ along the boundary of $T$ (in the case that $T$ is finite) or the union of $S$ and all of its holes (in the case that $T$ is infinite). Thus, each triangle containing $\vvec{u}$ and $\vvec{v}$ contributes at most $1/2$ to the amount that $\phi(\vvec{u},\vvec{v})$ changes; there are at most $3^d-2$ such triangles, and so the proof is complete.
+\end{proof}
+
+
+Next, given a flow $\phi$ in $G_d$ and a finite subset $S$ of $\mathbb{T}^k$ such that $G_d\induced S$ is connected, the operation of \emph{completing $\phi$ within $S$} is defined as follows. If there exists a flow $\phi'$ in $G_d\induced S$ such that
+\begin{itemize}
+\item $\phi'(\vvec{u},\vvec{v})\in \mathbb{Z}$ for all $\vvec{u},\vvec{v}\in S$ and
+\item for every $\vvec{u}\in S$, 
+\[\sum_{\vvec{v}\in S}\phi'(\vvec{u},\vvec{v}) + \sum_{\vvec{v}\in\mathbb{T}^k\setminus S}\phi(\vvec{u},\vvec{v}) = \ind_A(\vvec{u})-\ind_B(\vvec{u}),\]
+\end{itemize}
+then we choose such a flow $\phi'$ so that $\|\phi'\|_\infty$ is as small as possible and, subject to this, the sequence $(\phi'(\vvec{u},\vvec{v}): (\vvec{u},\vvec{v})\in S^2)$ is lexicographically minimised, where the pairs in $S$ are viewed as being ordered according to $\lex$. For the sake of completeness, if such a flow $\phi'$ does not exist, then simply let $\phi'$ be the restriction of $\phi$ to pairs in $S$. Change $\phi(\vvec{u},\vvec{v})$ to be equal to $\phi'(\vvec{u},\vvec{v})$ for all $\vvec{u},\vvec{v}\in S$. More generally, if $D$ is a subset of $\mathbb{T}^k$ such that every component of $G_d\induced D$ is finite, then \emph{completing $\phi$ within $D$} is defined to mean completing $\phi$ within each $S\in\comp(D)$.  
+
+Using these operations, we describe the construction of flows $g_i,g_i'$ and $g_i''$ in $G_d$ for $i\geq1$ which will be used to obtain the flow $f$ in Lemma~\ref{lem:intFlow}. Let $m_i$ be the minimal integer satisfying \eqref{eq:miDefAgain} and initialise $g_i:=f_{m_i}$. By construction, each component of $G_d\induced I_i$ is contained within a ball of radius $r_i$ around some vertex in $X_i$. Thus, by Lemmas~\ref{lem:Ii} and~\ref{lem:Ji}, for each component $S$ of $G_d\induced J_i$, the union of $S$ and all of its holes has cardinality at most $(2r_i+2q_{i-1}'+1)^d$. Therefore, by \eqref{eq:AtoB} and \eqref{eq:miDefAgain}, if $S$ is a component of $G_d\induced J_i$ and $T$ is any hole of $S$ or $T$ is the union of $S$ and all of its holes, then 
+\[|\fout{f_{m_i}}(T) - |T\cap A|+|T\cap B||<1/2\]
+with plenty of room to spare. Round $g_i$ along the boundary of $J_i$. The inequality above implies that, after rounding along the boundary of $J_i$, the flow out of any such $T$ is equal to $|T\cap A|-|T\cap B|$. Next, for each $\vvec{u},\vvec{v}\in \bigcup_{j=1}^{i-1}N[J_j]$, we set $g_i(\vvec{u},\vvec{v})$ to be equal to $g_{i-1}(\vvec{u},\vvec{v})$. Note that, by property \eqref{scaffUt} of a scaffolding, this step does not affect the flow of any edge of whose flow value has changed so far in the construction of $g_i$. Complete $g_i$ within $J_i\setminus \bigcup_{j=1}^{i-1}J_j$. This concludes the definition of $g_i$. 
+
+The flows $g_i'$ and $g_i''$ are defined somewhat similarly to $g_i$, but we will need to take a little bit more care in deciding which flow values to copy from previously constructed flows. Initialise $g_i':=f_{m_i}$ and round $g_i'$ along the boundary of $K_i$. By \eqref{eq:miDefAgain} and Lemma~\ref{lem:KiLi}, the flow under $g_i'$ out of any set $T$ which is either a hole of a component of $G_d\induced K_i$ or the union of a component of $G_d\induced K_i$ and all of its holes is now equal to $|T\cap A|-|T\cap B|$. For each $\vvec{u},\vvec{v}\in \bigcup_{j=1}^iN[J_j]$, we set $g_i'(\vvec{u},\vvec{v})=g_i(\vvec{u},\vvec{v})$. Also, for each $\vvec{u},\vvec{v}\in \left(\bigcup_{j=1}^{i-1}N[K_j]\right)\setminus \left(\bigcup_{j=1}^i J_j\right)$, we set $g_i'(\vvec{u},\vvec{v})=g_{i-1}'(\vvec{u},\vvec{v})$. Finally, complete $g_{i}'$ within $K_i\setminus\left(\bigcup_{j=1}^{i-1}K_j\cup \bigcup_{j=1}^iJ_j\right)$. 
+
+Let $m_i'$ be the minimal integer so that \eqref{eq:mi'Def} is satisfied. Initialise $g_i'':=f_{m_i'}$ and round $g_i''$ along the boundary of $L_i$. By \eqref{eq:mi'Def} and Lemma~\ref{lem:KiLi}, the flow under $g_i''$ out of any set $T$ which is either a hole of a component of $G_d\induced L_i$ or the union of a component of $G_d\induced L_i$ and all of its holes is now equal to $|T\cap A|-|T\cap B|$. For each $\vvec{u},\vvec{v}\in \bigcup_{j=1}^iN[K_j]$, we set $g_i''(\vvec{u},\vvec{v})=g_i'(\vvec{u},\vvec{v})$. Also, for each $\vvec{u},\vvec{v}\in \left(\bigcup_{j=1}^{i-1}N[L_j]\right)\setminus \left(\bigcup_{j=1}^i K_j\right)$, we set $g_i''(\vvec{u},\vvec{v})=g_{i-1}''(\vvec{u},\vvec{v})$. Finally, complete $g_{i}''$ within $L_i\setminus\left(\bigcup_{j=1}^{i-1}L_j\cup \bigcup_{j=1}^iK_j\right)$. The following lemma will be proved later in the section.
+
+\begin{lemma}
+\label{lem:gi''Conv}
+The flows $g_1'',g_2'',\dots$ converge.
+\end{lemma}
+
+Similarly, for each $\vec{p}\in\{0,\dots,5\}^d$, we let $g_{\vec{p},i}'$ and $g_{\vec{p},i}''$ be the flows obtained in the same way as $g_i'$ and $g_i''$, except with the sets $J_i,K_i^{\vec{p}}$ and $L_i^{\vec{p}}$ taking the place of $J_i,K_i$ and $L_i$ for $i\geq1$. Of course, Lemma~\ref{lem:gi''Conv} applies equally well to the sequence $g_{\vec{p},i}''$ for $i\geq1$ as it does to $g_i''$ for $i\geq1$. For each $\vec{p}\in \{0,\dots,5\}^d$, we let $g_{\vec{p}}$ be the limit of $g_{\vec{p},i}''$ as $i$ tends to infinity. Now, let $f$ be the flow in $G_d$ such that, for each edge $\vvec{u}\vvec{v}\in E(G_d)$, we set $f(\vvec{u},\vvec{v})= g_{\vec{p}}(\vvec{u},\vvec{v})$ where $\vec{p}$ is the unique element of $\{0,\dots,5\}^d$ such that $\vvec{u},\vvec{v}\in T_{\vec{p}}$. Note that each set $T_{\vec{p}}$ is a union of components of $G_d$ and that the sets $T_{\vec{p}}$ partition $\mathbb{T}^k$, and so $f$ is well-defined. This concludes the description of the construction of $f$.
+
+In order to analyse $f$, it will be useful to also construct flows $h_i,h_i'$ and $h_i''$ in $G_d$ for $i\geq1$ which provide certificates for applying the Integral Flow Theorem in the ``completion'' steps of the construction. In order to define these flows, it is useful to introduce one more operation. Given two flows $\phi$ and $\psi$ in $G_d$ and a finite subset $S$ of $\mathbb{T}^k$ with no holes such that $G_d\induced S$ is connected, the operation of \emph{equalising $\phi$ to $\psi$ along the boundary of $S$} is defined as follows. Let $\vvec{u}_1\vvec{v}_1,\dots,\vvec{u}_t\vvec{v}_t$ be an Eulerian circuit in $\triangle_{\partial S}$, chosen arbitrarily, where, for each $s=1,\dots,t$, we have $\vvec{u}_s\in S$ and $\vvec{v}_s\notin S$. For each $s=1,\dots,t-2$, one by one, we let $\vvec{w}_s\in \{\vvec{u}_{s+1},\vvec{v}_{s+1}\}$ such that $\{\vvec{u}_s,\vvec{v}_s,\vvec{w}_s\}$ is a triangle in $G_d$ and redefine $\phi$ to be
+\[\phi:=\phi + \left(\psi(\vvec{u}_s,\vvec{v}_s) - \phi(\vvec{u}_s,\vvec{v}_s)\right)\circlearrowleft_{\vvec{u}_s,\vvec{v}_s,\vvec{w}_s}.\]
+More generally, for a set $D\subseteq\mathbb{T}^k$ such that every component of $G_d\induced D$ is finite, \emph{equalising $\phi$ to $\psi$ along the boundary of $D$} is defined as follows. First, for each component $S$ of $G_d\induced D$ and hole $T$ of $S$, we equalise $\phi$ to $\psi$ along the boundary of $T$. Then, for every component $S$ of $G_d\induced D$, we equalise $\phi$ to $\psi$ along the boundary of the union of $S$ and all of its holes. The proof of the following lemma follows along similar lines to that of Lemma~\ref{lem:boundary3d}.
+
+\begin{lemma}
+\label{lem:boundaryEqualise}
+Let $\phi$ and $\psi$ be flows in $G_d$, $M$ be a non-negative real number and $D$ be a subset of $\mathbb{T}^k$ such that $|\partial_ES|\leq M$ for every component $S$ of $G_d\induced D$ and any two components of $G_d\induced D$ are at distance at least three in $G_d$. Then, for each $\vvec{u}\vvec{v}\in E(G_d)$, the operation of equalising $\phi$ to $\psi$ along the boundary of $D$ changes the flow from $\vvec{u}$ to $\vvec{v}$ by at most $M\|\phi-\psi\|_\infty$.
+\end{lemma}
+
+We initialise $h_i:=f_\infty$ and then equalise $h_i$ to $f_{m_i}$ along the boundary of $J_i$. By Lemma~\ref{lem:boundaryEqualise} and the bounds \eqref{eq:miDefAgain} and \eqref{eq:fmfinfty}, we see that this operation displaces the flow along any given edge of $G_d$ by at most $1/2$. Note that $h_i$ is still a flow from $A$ to $B$ in $G_d$.  We then round $h_i$ along the boundary of $J_i$. By construction, after this step is completed, we get that $h_i(\vvec{u},\vvec{v})=g_i(\vvec{u},\vvec{v})$ for every $\vvec{u}\vvec{v}\in\partial_E J_i$. Also, $h_i$ is still a flow from $A$ to $B$. Now, for each $\vvec{u},\vvec{v}\in \bigcup_{j=1}^{i-1}N[J_j]$, set $h_i(\vvec{u},\vvec{v})=h_{i-1}(\vvec{u},\vvec{v})$. By property \eqref{scaffUt} of a scaffolding, this does not change the flow values on any edge that has already been changed during the construction of $h_i$. Thus, inductively, we see that $h_i$ is still a flow from $A$ to $B$. Now, complete $h_i$ within $J_i\setminus \bigcup_{j=1}^{i-1}J_j$. By the Integral Flow Theorem (Theorem~\ref{th:IFT}), we see that it is possible to do so in such a way that the flow along any given edge increases by at most one in absolute value. Note that, by construction, $h_i$ agrees with $g_i$ on every edge of the boundary of $J_i\setminus \bigcup_{j=1}^{i-1}J_j$; therefore, completing $h_i$ within this set has the same effect as completing $g_i$ within this set.  Putting all of this together, for all $\vvec{u}\in \bigcup_{j=1}^iJ_j$ and $\vvec{v}\in\mathbb{T}^k$, we have $g_i(\vvec{u},\vvec{v})\in \mathbb{Z}$ and, by \eqref{eq:fmBound}, 
+\[|g_i(\vvec{u},\vvec{v})| \leq \frac{c\left(2^{1+\varepsilon}+1\right)}{2^{1+\varepsilon}-2} +(3^d+1)/2.\]
+The construction of flows $h_i'$ and $h_i''$, as well as $h_{\vec{p},i}'$ and $h_{\vec{p},i}''$ for $\vec{p}\in\{0,\dots,5\}^d$, is analogous. To complete the proof of Lemma~\ref{lem:intFlow}, all that remains is to prove Lemma~\ref{lem:gi''Conv}. 
+
+\begin{proof}[Proof of Lemma~\ref{lem:gi''Conv}]
+Let $\vvec{u}\vvec{v}$ be an edge of $G_d$. We divide the proof into cases.
+
+First, suppose that $\vvec{u},\vvec{v}\notin\bigcup_{i=1}^\infty \left(N[J_i]\cup N[K_i]\cup N[L_i]\right)$. Then, by construction, we have $g_i''(\vvec{u},\vvec{v})=f_{m_i'}(\vvec{u},\vvec{v})$ for all $i$ and therefore convergence follows from \eqref{eq:fmChange}. 
+
+Suppose that $\vvec{u}\in J_i$ for some $i\geq1$. Then $g_i(\vvec{u},\vvec{v})$ is an integer, by construction. Also, for all $j\geq i$, 
+\[g_j'(\vvec{u},\vvec{v})= g_j(\vvec{u},\vvec{v})=g_i(\vvec{u},\vvec{v}).\]   
+For each $j\geq i$, we also have that $g_j''$ and $g_j$ are equal on pairs in which one endpoint is in $K_i$; since $J_i\subseteq K_i$ (by Lemma~\ref{lem:JKLtrivial}) we get $g_j''(\vvec{u},\vvec{v})=g_i(\vvec{u},\vvec{v})$ for all $j\geq i$ as well.
+
+Suppose now that $\vvec{u}\in K_i$ for some $i\geq1$ but neither $\vvec{u}$ nor $\vvec{v}$ is in $\bigcup_{j=1}^\infty J_j$. Then $g_i'(\vvec{u},\vvec{v})$ is an integer and, by construction, 
+\[g_j''(\vvec{u},\vvec{v})=g_j'(\vvec{u},\vvec{v})=g_i'(\vvec{u},\vvec{v})\]
+for all $j\geq i$. Note that this case and the one that precedes it, put together, cover the case that $\vvec{u},\vvec{v}\in \bigcup_{i=1}^\infty N[J_i]$, in particular, because $N_2[J_i]\subseteq K_i$ holds by Lemma~\ref{lem:JKLtrivial}.
+
+Next, suppose that $\vvec{u}\in L_i$ for some $i\geq1$ but neither $\vvec{u}$ nor $\vvec{v}$ is in $\bigcup_{j=1}^\infty \left(J_j\cup K_j\right)$. As in the previous two cases, we have $g_j''(\vvec{u},\vvec{v})= g_i''(\vvec{u},\vvec{v})$ for all $j\geq i$ and we are happy.
+
+Suppose that $\vvec{u},\vvec{v}\in N[K_i]$ for some $i\geq1$, but neither $\vvec{u}$ nor $\vvec{v}$ is in $\bigcup_{i=1}^\infty \left(J_i\cup K_i\cup L_i\right)$. In this case, we again see that $g_j''(\vvec{u},\vvec{v})=g_i''(\vvec{u},\vvec{v})$ for all $j\geq i$ by construction. The case that $\vvec{u},\vvec{v}\in N[L_i]$ for some $i\geq1$ is similar. 
+\end{proof}
+
+
+\section{Achieving Non-Null Pieces}
+\label{sec:nonNull}
+
+As we mentioned in the introduction, for certain sets $A$ and $B$ satisfying the hypotheses of Theorem~\ref{th:main}, one cannot obtain an equidecomposition of $A$ to $B$ with pieces of positive measure. Our goal in this section is to show that, if $A$ and $B$ satisfy one additional condition, then the argument in Lemma~\ref{outline:lem:matching} can be modified to yield non-null pieces.  The property that we will use is as follows
+\[\lambda\left(\left\{\vvec{t}\in\mathbb{T}^k: (A+\vvec{t})\cap B\neq \emptyset \text{ and } \lambda\left((A+\vvec{t})\cap B\right)=0\right\}\right) = 0.\]
+We call this the \emph{simple intersection property}. Note that this is a property of the pair $(A,B)$ and not a property of either of the two sets individually. Clearly, a disk and a square in $\mathbb{T}^2$ have the simple intersection property. 
+
+\begin{JN}
+Can this property be expressed using more standard mathematical terminology, so that I don't have to give it the name ``simple intersection property''?
+\end{JN}
+
+\begin{lemma}
+\label{lem:nonNull}
+Suppose that $A$ and $B$ are subsets of $\mathbb{T}^k$ with the simple intersection property. If there exists a bounded integer-valued flow $f$ from $A$ to $B$ in $G_d$, then $A$ and $B$ are equidecomposable using non-null pieces. 
+\end{lemma}
+
+\begin{proof}
+As in the proof of Lemma~\ref{outline:lem:matching}, for each $r\geq1$, we let $X_r$ be a maximally $r$-discrete set which is a disjoint union of finitely many strips and, for $\vvec{v}\in \mathbb{T}^k$, let $\eta_r(\vvec{v})$ be the vertex $\vvec{u}\in X_r$ at minimum distance from $\vvec{v}$ in $G_d$, where, if there is more than one such vertex, then $\vvec{u}$ is chosen to be minimal among them under $\lex$. For each $r\geq1$ and $\vvec{u}\in X_r$, let
+\[V_r(\vvec{u}):=\{\vvec{v}\in\mathbb{T}^k:\eta_r(\vvec{v})=\vvec{u}\}.\]
+Following along the same lines as the proof of Lemma~\ref{outline:lem:matching}, if $r$ is chosen to be a sufficiently large constant, then we can ensure that, for every $\vvec{u}\in X_r$, 
+\begin{equation}\label{eq:enoughAB}\min\left\{\left|V_r(\vvec{u})\cap A\right|,\left|V_r(\vvec{u})\cap B\right|\right\}\geq 10\cdot\sum_{\vvec{v}\vvec{w}\in \partial_EV_r(\vvec{u})}\left(|f(\vvec{v},\vvec{w})|+10\right).\end{equation}
+
+For each $\vec{n}\in \mathbb{Z}^d$, define
+\[\widetilde{A}_{\vec{n}}:=\left\{\vvec{v}\in A: \vvec{v}+\sum_{i=1}^dn_i\vvec{x}_i\in B\right\}\]
+and
+\[\widetilde{B}_{\vec{n}}:=\left\{\vvec{v}\in B: \vvec{v}-\sum_{i=1}^dn_i\vvec{x}_i\in A\right\}.\] 
+Note that $\widetilde{B}_{\vec{n}}$ is a translation of $\widetilde{A}_{\vec{n}}$. Define
+\[\alpha:= \min_{\substack{\|\vec{n}\|_\infty\leq 10r\\ \widetilde{A}_{\vec{n}}\neq\emptyset}} \lambda(\widetilde{A}_{\vec{n}}).\]
+Since $A$ and $B$ have the simple intersection property, we have $\alpha>0$ with probability one. Fix $\gamma>0$ so that $\gamma\cdot8\cdot (20r+1)^{d}(200r+1)^{d}< \alpha$. 
+
+Let $T$ be the set of vectors $\vec{n}\in\mathbb{Z}^d$ such that $\|\vec{n}\|_\infty\leq 10r$ and $\widetilde{A}_{\vec{n}}\neq \emptyset$ and let $\prec$ be an arbitrary total order on $T$. For each $\vec{n}\in T$, let $A^*_{\vec{n}}$ be the intersection of $\widetilde{A}_{\vec{n}}$ with a strip $S_{\vec{n}}$ in $\mathbb{T}^k$ and let $B^*_{\vec{n}} = A^*_{\vec{n}} + \sum_{i=1}^dn_i\vvec{x}_i$, where $S_{\vec{n}}$ is chosen so that the following properties hold
+\begin{enumerate}
+\stepcounter{equation}
+\item\label{eq:100rDisc} $A^*_{\vec{n}}$ is $(100r)$-discrete in $G_d$,
+\stepcounter{equation}
+\item\label{eq:lowMeasure} $0<\lambda(A^*_{\vec{n}})<\gamma$ and
+\stepcounter{equation}
+\item\label{eq:100rPrev} $\left(A^*_{\vec{n}}\cup B^*_{\vec{n}}\right)\cap \left(\bigcup_{\vec{n}'\prec \vec{n}} N_{100r}\left[A^*_{\vec{n}'}\cup B^*_{\vec{n}'}\right]\right)=\emptyset$.
+\end{enumerate}
+By Observation~\ref{outline:obs:diamDiscrete}, we may achieve \eqref{eq:100rDisc} by simply taking $S_{\vec{n}}$ to be a sufficiently narrow strip. Similarly, satisfying \eqref{eq:lowMeasure} can be achieved by making $S_{\vec{n}}$ sufficiently narrow, given that it still captures some of the measure of $\widetilde{A}_{\vec{n}}$.  Now, for $\vec{n}'\prec \vec{n}$, if we assume  inductively that \eqref{eq:lowMeasure} holds for $A_{\vec{n}'}^*$, then the measure of $\widetilde{A}_{\vec{n}}\cap  N_{100r}\left[A^*_{\vec{n}'}\cup B^*_{\vec{n}'}\right]$ is at most $2\cdot (200r+1)^d\cdot \gamma$. Thus, after deleting all of  $N_{100r}\left[A^*_{\vec{n}'}\cup B^*_{\vec{n}'}\right]$ from $\widetilde{A}_{\vec{n}}$ for all $\vec{n}'\prec \vec{n}$, we are left with a set of measure at least
+\[\lambda(\widetilde{A}_{\vec{n}}) - 2\cdot (20r+1)^d(200r+1)^d\cdot \gamma \geq (3/4)\lambda(\widetilde{A}_{\vec{n}}).\]
+The same is true with $\widetilde{B}_{\vec{n}}$ in the place of $\widetilde{A}_{\vec{n}}$. Thus, there is a choice of $S_{\vec{n}}$ so that \eqref{eq:100rPrev} is satisfied as well. 
+
+Now, in constructing the equidecomposition, we begin by letting each set $A^*_{\vec{n}}$ for $\vec{n}\in\mathbb{Z}^d$ and $\|\vec{n}\|_\infty\leq 10r$ which is non-empty be a piece of the equidecomposition and let $B^*_{\vec{n}}$ be the associated piece in the partition of $B$. For every $\vvec{v}\in A^*_{\vec{n}}$, let $f_{\vvec{v}}$ be the flow in $G_d$ where $f_{\vvec{v}}(\vvec{u},\vvec{w})$  is equal to $1$ if $\vvec{u}\vvec{w}$ is an edge on the $\lex$-minimal shortest path from $\vvec{v}$ to $\vvec{v}+\sum_{i=1}^dn_i\vvec{x}_i$, equal to $-1$ if $\vvec{w}\vvec{u}$ is such an edge and equal to $0$ otherwise. Let $A':=A\setminus \left(\bigcup_{\|\vec{n}\|_\infty\leq 10r}A_{\vec{n}}^*\right)$ and $B':=B\setminus \left(\bigcup_{\|\vec{n}\|_\infty\leq 10r}B_{\vec{n}}^*\right)$. We define an integer-valued flow $f'$ in $G_d$ from $A'$ to $B'$ by
+\begin{equation}
+\label{eq:f'def}
+f':=f - \sum_{\|\vec{n}\|_\infty\leq 10r}\left(\sum_{\vvec{v}\in A^*_{\vec{n}}}f_{\vvec{v}}\right).\end{equation}
+By \eqref{eq:100rDisc} and \eqref{eq:100rPrev}, $\bigcup_{\|\vec{n}\|_\infty\leq 10r}A_{\vec{n}}^*$ is $(100r)$-discrete and, therefore, the supports of $f_{\vvec{v}}$ and $f_{\vvec{v}'}$ must be disjoint for any two distinct $\vvec{v},\vvec{v}'\in\bigcup_{\|\vec{n}\|_\infty\leq 10r}A_{\vec{n}}^*$. This implies that $\|f-f'\|_\infty\leq 1$. By \eqref{eq:100rDisc} and \eqref{eq:100rPrev} again, each of the Voronoi cells $V_r(\vvec{u})$ for $\vvec{u}\in X_r$ can contain at most one element of $\bigcup_{\|\vec{n}\|_\infty\leq 10r}A_{\vec{n}}^*$; likewise, it can contain at most one element of $\bigcup_{\|\vec{n}\|_\infty\leq 10r}B_{\vec{n}}^*$. Thus, by applying \eqref{eq:enoughAB} and the argument from Lemma~\ref{outline:lem:matching}, we can associate every vertex $\vvec{v}$ of $A'$ to one in $B'$ which is in the same Voronoi cell as $\vvec{v}$, or one of the neighbouring Voronoi cells. 
+
+Each Voronoi cell has diameter at most $2r$ in $G_d$ and, by construction, for every $\vec{n}\in\mathbb{Z}^d$ with $\|\vec{n}\|_\infty\leq 10r$ and $\left(A+\sum_{i=1}^dn_i\vvec{x}_i\right)\cap B\neq \emptyset$, the piece corresponding to points of $A$ that are translated by $\sum_{i=1}^dn_i\vvec{x}_i$ contains $A_{\vec{n}}^*$, which has positive measure. This completes the proof. 
+\end{proof}
+
+
+\section{Analysing the Pieces}
+\label{sec:pieces}
+
+Our final task is to analyse the pieces of the final equidecomposition. In particular, we will analyse the Borel complexity of the pieces and the upper Minkowski dimension of their boundaries.
+
+\subsection{Borel Complexity}
+
+The following definitions are useful for describing Borel complexity. 
+
+\begin{defn}
+Given a collection $\mathcal{A}$ of subsets of $\mathbb{T}^k$, let $\bSigma(\mathcal{A})$ be the collection of all countable unions of sets in $\mathcal{A}$. 
+\end{defn}
+
+\begin{defn}
+Given a collection $\mathcal{A}$ of subsets of $\mathbb{T}^k$, let $\bB(\mathcal{A})$ be the collection of all Boolean combinations of finitely many elements of $\mathcal{A}$.
+\end{defn}
+
+\begin{defn}
+Let $\mathcal{T}_{A,B}$ denote the set of all translations of $A$ and $B$ in $\mathbb{T}^k$. 
+\end{defn}
+
+We recall the standard (boldface) Borel hierarchy; see, e.g.~\cite[pp.~xvi--xv]{Kechris95}. 
+
+\begin{defn}
+\label{def:BorelH}
+Define $\bSigma_1^0$ to be the collection of open sets in $\mathbb{T}^k$ and $\bPi_1^0$ to be the collection of closed sets in $\mathbb{T}^k$. For each countable ordinal $\alpha\geq2$, define $\bSigma_\alpha^0:=\bSigma\left(\bigcup_{1\leq \beta<\alpha}\bPi_{\beta}^0\right)$ and $\bPi_\alpha^0:=\left\{\mathbb{T}^k\setminus S: S\in \bSigma_\alpha^0\right\}$. Also, for each countable ordinal $\alpha\geq1$, define $\bDelta^0_\alpha:=\bSigma_\alpha^0\cap \bPi_\alpha^0$. 
+\end{defn}
+
+Alternatively, $\bSigma_2^0$ is often written as $F_\sigma$ and $\bPi_2^0$ as $G_\delta$. The sets in $\bDelta_2^0=F_\sigma\cap G_\delta$ are often referred to as \emph{ambiguous sets}. Generally, if $1\leq \beta<\alpha$, then $\bSigma_\beta^0\cup \bPi_\beta^0\subseteq \bDelta_\alpha^0$; in particular, every set that is open or closed is ambiguous. Our aim in this section is to prove the following statement, which is valid whether or not $A$ and $B$ are Borel. 
+
+\begin{proposition}
+\label{prop:finalComplexity}
+The pieces of the equidecomposition in  Theorem~\ref{th:main} can be taken to be in
+\[\bB\left(\bSigma_2^0 \cup\bSigma\left(\bB\left(\bSigma_1^0\cup \mathcal{T}_{A,B}\right)\right)\right).\]
+\end{proposition}
+
+We are particularly interested in the following corollary.
+
+\begin{corollary}
+\label{cor:standardComplexity}
+If $\alpha>1$ is a countable ordinal such that $A,B\in\bDelta_\alpha^0$, then the pieces of the equidecomposition in Theorem~\ref{th:main} can be taken to be a Boolean combination of finitely many sets in $\bSigma_\alpha^0$. 
+\end{corollary}
+
+If $A$ and $B$ are ambiguous sets, then Corollary~\ref{cor:standardComplexity} implies that there is an equidecomposition with pieces that are Boolean combinations of finitely many sets in $F_\sigma\cup G_\delta$. We turn our attention to the proof of Theorem~\ref{th:finalComplexity}.  The following observation is easy. 
+
+\begin{obs}
+\label{obs:XiHierarchy}
+If $X$ is a union of finitely many disjoint strips, then $X\in \mathcal{B}\left(\bSigma_1^0\right)$.
+\end{obs}
+
+Next, let us consider the sets $T_{\vec{p}}$ from the proof of Lemma~\ref{lem:Licover}. 
+
+\begin{lemma}
+\label{lem:TpHierarchy}
+Each of the sets $T_{\vec{p}}$ constructed in the proof of Lemma~\ref{lem:Licover} can be written as a Boolean combination of finitely many sets in $\bPi_2^0$.
+\end{lemma}
+
+\begin{proof}
+Note that we can assume that, for all $i\geq j$, 
+\begin{equation}\label{eq:disjointBoundaries}N_{r'_i}[\partial Y_i]\cap N_{r'_j}[\partial Y_j]=\emptyset.\end{equation}
+Indeed, if each of $Y_1,Y_2,\dots$ is translated by uniformly random vectors in $\mathbb{T}^k$, then this will hold with probability one. If \eqref{eq:disjointBoundaries} holds, then, if the sets $R_i(\vvec{v})$ for $i\geq1$ are defined in terms of the interior of $Y_i$ instead of $Y_i$ itself, then, for each $\vvec{v}\in \mathbb{T}^k$, the sets $R_1(\vvec{v}),R_2(\vvec{v}),\dots$ remain unchanged, except for possibly one index $i\geq1$. In particular, the set $R^*(\vvec{v})$ is unchanged. So, assuming that $R_i(\vvec{v})$ is defined in terms of the interior of $Y_i$, then for any $t,b\geq1$ and $\vec{p}\in\{0,\dots,5\}^d$ the set
+\[\left\{\vvec{v}\in\mathbb{T}^k: R_t(\vvec{v})\cap \prod_{s=1}^d\left[\frac{p_s-3}{3}-\frac{1}{b},\frac{p_s-2}{3}+\frac{1}{b}\right]\neq\emptyset\right\}\]
+is open as well. So,  
+\[\bigcap_{b=1}^\infty\bigcap_{j=1}^\infty\bigcup_{t=j}^\infty\left\{\vvec{v}\in\mathbb{T}^k: R_t(\vvec{v})\cap \prod_{s=1}^d\left[\frac{p_s-3}{3}-\frac{1}{b},\frac{p_s-2}{3}+\frac{1}{b}\right]\neq\emptyset\right\}\]
+is in $\bPi_2^0$. The set $T_{\vec{p}}$ can be written as a Boolean combination of these sets, and so it is in $\bB(\bPi_2^0)$. 
+\end{proof}
+
+Without further ado, we prove Theorem~\ref{prop:finalComplexity}. 
+
+\begin{proof}[Proof of Proposition~\ref{prop:finalComplexity}]
+The final pieces of the equidecomposition (constructed in the proof of Lemma~\ref{outline:lem:matching} or Lemma~\ref{lem:nonNull}) are Boolean combinations of the set $X_r$, which is a union of finitely many disjoint strips, translates of sets $Z^{f}_{\vec{\gamma},\ell}$ for $\|\vec{\gamma}\|_\infty=1$ and $|\ell|\leq \|f\|_\infty$ (recall Definition~\ref{def:Zdef}) and, in the case of Lemma~\ref{lem:nonNull}, translates of $A$ and $B$ and strips $S_{\vec{n}}$ for $\|\vec{n}\|_\infty \leq 10r$. By construction, 
+\[Z_{\vec{\gamma},\ell}^f = \bigcup_{\vec{p}}\left(T_{\vec{p}}\cap Z^{g_{\vec{p}}}_{\vec{\gamma},\ell}\right).\]
+So, by Observation~\ref{obs:XiHierarchy} and Lemma~\ref{lem:TpHierarchy}, it suffices to show that 
+\[Z_{\vec{\gamma},\ell}^{g_{\vec{p}}}\in \bB\left(\bSigma\left(\bB\left(\bSigma_1^0\cup \mathcal{T}_{A,B}\right)\right)\right).\]
+This is what we shall prove.
+
+First, for each $\vec{\gamma}\in\{0,1\}^d$ and $|\ell|\leq \|f\|_\infty$ and every $i\geq1$, define
+\[W_{\vec{\gamma},\ell,i}:=\left\{\vvec{u}: \text{there exists }1\leq j\leq i\text{ such that }\vvec{u}\in J_j\text{ and }g_j\left(\vvec{u},\vec{\gamma}\cdot_a\vvec{u}\right)=\ell \right\},\]
+\[W_{\vec{\gamma},\ell,i}':=\left\{\vvec{u}: \text{there exists }1\leq j\leq i\text{ such that }\vvec{u}\in K_j^{\vec{p}}\text{ and }g_{\vec{p},j}'\left(\vvec{u},\vec{\gamma}\cdot_a\vvec{u}\right)=\ell \right\}\]
+and
+\[W_{\vec{\gamma},\ell,i}'':=\left\{\vvec{u}: \text{there exists }1\leq j\leq i\text{ such that }\vvec{u}\in L_j^{\vec{p}}\text{ and }g_{\vec{p},j}''\left(\vvec{u},\vec{\gamma}\cdot_a\vvec{u}\right)=\ell \right\}.\]
+It is clear, by construction of $g_i,g_i'$ and $g_i''$, that each of these sets is a Boolean combination of finitely many strips and translates of $A$ and $B$. Therefore, the sets
+\[W_{\vec{\gamma},\ell}:=\bigcup_{i=1}^\infty W_{\vec{\gamma},\ell,i},\]
+\[W_{\vec{\gamma},\ell}':=\bigcup_{i=1}^\infty W_{\vec{\gamma},\ell,i}'\]
+and
+\[W_{\vec{\gamma},\ell}'':=\bigcup_{i=1}^\infty W_{\vec{\gamma},\ell,i}''\]
+are contained in $\bSigma\left(\bB\left(\bSigma_1^0\cup \mathcal{T}_{A,B}\right)\right)$. Now, by construction of $g_i,g_i'$ and $g_i''$, if $\vvec{u}\in J_j$, then $g_{\vec{p}}(\vec{u},\vec{\gamma}\cdot_a\vvec{u})=g_j(\vec{u},\vec{\gamma}\cdot_a\vvec{u})$. Also, if $\vvec{u}\in K_j^{\vec{p}}$, then we have that $g_{\vec{p}}(\vvec{u},\vec{\gamma}\cdot_a\vvec{u})=g_{\vec{p},j}'(\vvec{u},\vec{\gamma}\cdot_a\vvec{u})$, unless there exists $i>j$ such that $\vvec{u}\in J_i$ and $g_i(\vvec{u},\vec{\gamma}\cdot_a\vvec{u})\neq  g_{\vec{p},j}'(\vvec{u},\vec{\gamma}\cdot_a\vvec{u})$. That is, the value under $g_{\vec{p},j}'$ stands forever, unless it is overwritten later due to $\vvec{u}$ being in one of the sets $J_i$. Similarly, if $\vvec{u}\in L_j^{\vec{p}}$, then the value of $g_{\vec{p},j}''$  stands unless it is overwritten later due to $\vvec{u}$ being in $J-i$ or $K_i^{\vec{p}}$. Therefore,
+\[Z_{\gamma,\ell}^{g_{\vec{p}}} = W_{\vec{\gamma},\ell}\cup \left(W_{\vec{\gamma},\ell}' \setminus \bigcup_{\ell'\neq \ell}W_{\vec{\gamma},\ell'}\right)\cup \left(W_{\vec{\gamma},\ell}'' \setminus \bigcup_{\ell'\neq \ell}\left(W_{\vec{\gamma},\ell'}\cup W_{\vec{\gamma},\ell'}'\right)\right).\]
+This completes the proof.
+\end{proof}
+
+
+\subsection{Boundary Dimension}
+
+In Section~\ref{sec:covering}, the sequence $r_0'<r_1<r_1'<\cdots$ was taken to be any sequence that satisfies the bounds in \eqref{eq:rr'}, \eqref{eq:r'q'} and \eqref{eq:r'q}. In order to optimise our estimate of the dimension of the boundary of the pieces, it is useful to make a more specific choice. For $i\geq0$, define
+\[r_{i}':=100^{2^{i+1} - 1}\]
+and, for $i\geq 1$, let
+\[r_i:=100^{2^{i+1} - 2}.\]
+It is tedious, but not hard, to verify that \eqref{eq:rr'}, \eqref{eq:r'q'} and \eqref{eq:r'q} do, indeed, hold for this choice of sequence. Note that, for all $i\geq1$, we have that $r_i=\left(r_{i-1}'\right)^2$ and $r_i'=100r_i$.  Recall the definitions of $\epsilon,d$ and $\varepsilon$ from \eqref{eq:epsilonGap}, \eqref{eq:dBound} and \eqref{eq:epsBound}. Define
+\begin{equation}
+\label{eq:zeta}
+\zeta:=\frac{\varepsilon\cdot \epsilon}{4d^2+\varepsilon}.
+\end{equation}
+
+Our goal in this section is to prove the following.
+
+\begin{proposition}
+\label{prop:bdyDim}
+The boundary of each piece of the equidecomposition has upper Minkowski dimension at most $k-\zeta$. 
+\end{proposition}
+
+Note that, if $\boxdim(\partial A)=\boxdim(\partial B)=k-1$, then $\epsilon$ and $\varepsilon$ can be taken arbitrarily close to $1$ and $d$ can be taken to be $2k$. So, in this special case, we can achieve pieces whose boundaries have upper Minkowski dimension at most $\alpha$ for any
+\[\alpha > k - \frac{1}{16k^2+1}.\]
+In particular, if $A$ is a disk and $B$ is a square, then this the right side of this expression evaluates to $129/65$. Thus, the bound in Proposition~\ref{prop:bdyDim} is sufficient for proving Theorem~\ref{th:circleSquare}. 
+
+The following lemma is a consequence of classical results in discrepancy theory and so we will omit the proof; see, e.g., the Erd\H{o}s--Tur\'{a}n Theorem, stated in Appendix~\ref{app:discrep}.
+
+
+\begin{lemma}
+\label{lem:stripLem}
+There exists positive constants $c_1,C_2$ and $C_3$ such that the following holds. If $r_1,r_2,\dots$ is an increasing sequence of positive integers and, for each $i$,  
+\[Q_i:=\left[0, c_1r_i^{-d}\log^{-C_2}(r_i)\right)\times [0,1)^{k-1},\]
+then, with positive probability, the set $Q_i$ is $r_i$-discrete in $G_d$ and satisfies $N_{r_i\log^{C_3}(r_i)}[Q_{i}]=\mathbb{T}^k$ for all $i\geq1$.
+\end{lemma}
+
+
+
+
+Thus, in the construction of the sets $J_i,K_i$ and $L_i$ in Section~\ref{sec:covering}, we can assume that $X_i$ is written as a Boolean combination of $r_i^d\log^{O(1)}(r_i)$  translates of a single strip $Q_i$ and that $Y_i$ is written as a Boolean combination of $(r_i')^d\log^{O(1)}(r_i')$ translates of a single strip $Q_i'$. We now prove Proposition~\ref{prop:bdyDim}.
+
+\begin{proof}[Proof of Proposition~\ref{prop:bdyDim}]
+Let $r$ be as in the proof of Lemma~\ref{outline:lem:matching} or~\ref{lem:nonNull}. As usual, each piece of the equidecomposition can be expressed as a Boolean combination of boundedly (as a function of $r$) many of the sets $Z_{\vec{\gamma},\ell}^f$ for $\vec{\gamma}\in\{0,1\}^d$ and $|\ell|\leq \|f\|_\infty$, strips and translates of $A$ and $B$. Since $\zeta<\epsilon<1$, we see that proving Proposition~\ref{prop:bdyDim} boils down to analysing the boundaries of the sets $Z_{\vec{\gamma},\ell}^f$. 
+
+By \eqref{eq:epsilonGap}, we can let $\delta_0>0$ be sufficiently small so that, for all $0 < \delta < \delta_0$, we have
+\[\max\left\{\lambda\left(\left\{\vvec{x}: \dist_\infty(\vvec{x},\partial A)\right\}\right),\lambda\left(\left\{\vvec{x}: \dist_\infty(\vvec{x},\partial B)\right\}\right)\right\}< \delta^{\epsilon}.\]
+Let $0<\delta<\delta_0$ be arbitrary and let $i$ be the unique index so that
+\begin{equation}\label{eq:riChoice}r_i^{d^2/\varepsilon}\leq \left(1/\delta\right)^{\epsilon-\zeta} < r_{i+1}^{d^2/\varepsilon}.\end{equation}
+
+An \emph{interval in} $\mathbb{T}^k$ is defined to be a set of the form $\prod_{i=1}^k[a_i,b_i)$ where $0\leq a_i<b_i\leq 1$ for all $1\leq i\leq k$. Let $\mathcal{P}$ be a partitioning of $\mathbb{T}^k$ into at most, say, $2(1/\delta)^k$ intervals of side-length between $\delta$ and $\delta/2$. Let $\mathcal{B}$ be the collection of sets in $\mathcal{P}$ which intersect the boundary of a set of the form
+\[Z_{\vec{\gamma},\ell}^f\cap I_i\]
+for $\vec{\gamma}\in\{0,1\}^d$ and $|\ell|\leq \|f\|_\infty$ where $I_i$ is defined as in Section~\ref{sec:covering}. Let $\mathcal{I}$ be the collection of sets in $\mathcal{P}$ which are not in $\mathcal{B}$ and intersect $\mathbb{T}^k\setminus I_i$. Note that every point which is in the boundary of one of the sets $Z_{\vec{\gamma},\ell}^f$ must be contained in one of the intervals in $\mathcal{B}\cup\mathcal{I}$. So, it suffices to show that $|\mathcal{B}\cup\mathcal{I}|=O\left((1/\delta)^{k-\zeta}\right)$.
+
+First, for $\mathcal{B}$, by \eqref{eq:fLocalJ}, that $Z_{\vec{\gamma},\ell}^f\cap I_i$ can be written as a Boolean combination of at most $\left(2^{m_i}+O(r_i)\right)^d$ translates of $A$ and $B$ and the sets $J_1,\dots,J_i$ and $I_i$. By \eqref{eq:miDefAgain}, we have that $2^{dm_i}=\Theta(r_i^{d^2/\varepsilon})$. The set $J_j$ for $j<i$ or the set $I_i$ can be written as a Boolean combination of $r_i^d\log^{O(1)}(r_i)$ translates of the sets $Q_1,\dots,Q_i$. Therefore,
+\[\delta^k|\mathcal{B}|\leq \lambda\left(\left\{\vvec{x}: \dist_\infty(\vvec{x},\partial Z_{\vec{\gamma},\ell}^f)\leq \delta\text{ for some }\vec{\gamma},\ell\right\}\right)\]
+\[=O\left(r_i^{d^2/\varepsilon}\delta^{\epsilon}\right) + O\left(r_i^d\log^{O(1)}(r_i)\delta\right)=O\left(\delta^{\zeta}\right).\]
+Therefore,
+\[|\mathcal{B}|=O\left( (1/\delta)^{k-\zeta}\right).\]
+Now, for $\mathcal{I}$, since none of the intervals in $\mathcal{I}$ are contained in $\mathcal{B}$, and the sets $Z_{\vec{\gamma},\ell}^f$ partition $\mathbb{T}^k$, all sets in $\mathcal{I}$ must all be in the interior of $\mathbb{T}^k\setminus I_i$. Thus, by Lemma~\ref{lem:Jmeas},
+\[\delta^k|\mathcal{I}| = O(r_{i-1}'/r_i)=O\left(r_{i+1}^{-1/4}\right) = O\left((1/\delta)^{-(\epsilon-\zeta)\frac{\varepsilon}{4d^2}}\right)=O\left((1/\delta)^{-\zeta}\right).\]
+This completes the proof of Proposition~\ref{prop:bdyDim} and of Theorems~\ref{th:circleSquare} and~\ref{th:main}.
+\end{proof}
+
+\DeclareRobustCommand{\VON}[3]{#3}
+\bibliography{circleSquare}
+
+\appendix
+
+\section{The Integral Flow Theorem}
+\label{app:IFT}
+
+There are many different variants of the Integral Flow Theorem. We begin this appendix by proving a weaker statement than Theorem~\ref{th:IFT} (Theorem~\ref{th:IFT2} below) and then show how the finite case of Theorem~\ref{th:IFT} follows easily from it. We then conclude the appendix with the compactness argument which extends it to general locally finite graphs. 
+
+Given a graph $G$, demand function $\chi:V(G)\to \mathbb{R}$ and a function $c:V(G)\times V(G)\to [0,\infty)$, which we call a \emph{capacity function}, a \emph{$\chi$-flow in $G$ subject to $c$} is a $\chi$-flow $f$ in $G$ such that $f(u,v)\leq c(u,v)$ for all $u,v\in V(G)$. Note that, by definition of a flow, we also have a lower bound $f(u,v)=-f(v,u)\geq -c(v,u)$ for all $u,v\in V(G)$.
+
+\begin{theorem}[Integral Flow Theorem, Weaker Version]
+\label{th:IFT2}
+Let $G$ be a finite graph, $\chi:V(G)\to \mathbb{Z}$ be a demand function and $c:V(G)\times V(G)\to \mathbb{N}\cup\{0\}$ be a capacity function. If there exists a $\chi$-flow in $G$ subject to $c$, then there exists an integer-valued $\chi$-flow in $G$ subject to $c$.
+\end{theorem}
+
+There are almost as many different ways to prove the Integral Flow Theorem as there are ways to state it. One approach is to replace each edge $uv$ with $c(u,v)$ parallel arcs (directed edges) from $u$ to $v$ and $c(v,u)$ from $v$ to $u$ and apply the arc-disjoint path version of Menger's Theorem~\cite{Menger27} (see~\cite[Corollary~9.1b]{Schrijver03}) and another is to argue that the problem of finding a $\chi$-flow subject to $c$ can be expressed as a linear program in which the matrix defining the constraints is totally unimodular; for the latter, see~\cite[Corollary~13.9a]{Schrijver03}. Here, we follow perhaps the most popular approach, which is to argue that the well-known Ford--Fulkerson Algorithm~\cite{FordFulkerson57} always produces an integer-valued flow when the demands and edge capacities are integral.
+
+For flow problems in finite graphs, a standard simplification that one can make is to reduce to the case that $\chi(u)=0$ for all but at most two vertices of $G$. In order to do so, we form a new graph $G'$ by adding two new vertices $s$ and $t$ to $G$ and making them adjacent to all vertices except for one another. Define $c':V(G')\times V(G')\to\mathbb{N}\cup\{0\}$ by $c'(u,v)=c(u,v)$ for $u,v\in V(G)$ and, for each $u\in V(G)$,
+\[c'(s,u):=\max\{0,\chi(u)\}\]
+\[c'(u,t):=\max\{0,-\chi(u)\}\]
+and $c'(u,s)=c'(t,u):=0$. Then set $\chi'(u)=0$ for all $u\in V(G)$ and $\chi'(s)=\sum_{u\in V(G)}c'(s,u)$ and $\chi'(t)=-\sum_{u\in V(G)}c'(u,t)$. It is not hard to see that there is a  $\chi$-flow in $G$ subject to $c$ if and only if there is a $\chi'$-flow in $G'$ subject to $c'$. Moreover, if one of these flows is integer-valued, then so is the other. 
+
+So, we assume that $G$ contains two distinguished vertices $s$ and $t$ such that $\chi(u)=0$ for all $u\in V(G)\setminus\{s,t\}$ and that $\chi(s)\geq 0$ and $\chi(t)\leq 0$. Note that there is clearly no $\chi$-flow in $G$ if $\chi(s)+\chi(t)\neq0$, and so we assume that $\chi(s)+\chi(t)=0$. Let us now describe the aforementioned Ford--Fulkerson Algorithm. We start by initialising $f$ to be the zero flow in $G$ and then repeat the following steps:
+\begin{itemize}
+\item[(1)] Form a directed graph $D_f$ with vertex set $V(G)$ where, for $u,v\in V(G)$, we have that $D_f$ contains a directed edge from $u$ to $v$ if $uv\in E(G)$ and $f(u,v)<c(u,v)$. Note that $D_f$ may contain a directed edge from $u$ to $v$ as well as one from $v$ to $u$.
+\item[(2)] Using, e.g., Breadth-First Search, find the set $S$ of vertices which can be reached from a directed path in $D_f$ starting at $s$, including $s$ itself.
+\item[(3)] If $t\in S$, then choose a particular directed path from $s$ to $t$ in $D_f$ and increase $f(u,v)$ by one for every pair such that this path contains the directed edge from $u$ to $v$. Also, decrease $f(v,u)$ by one for every such $u$ and $v$.
+\item[(4)] If $t\notin S$, then terminate the algorithm and output $f$. 
+\end{itemize}
+We analyse this algorithm to prove Theorem~\ref{th:IFT2}.
+
+\begin{proof}[Proof of Theorem~\ref{th:IFT2}]
+We prove the contrapositive. Clearly, by construction, the flow produced by the Ford--Fulkerson Algorithm is always integer-valued. Let $S$ be the set of vertices reachable from $D_f$ in the final iteration of the algorithm and define $T:=V(G)\setminus S$. Note that $t\in T$. Since $\chi(u)=0$ for all $u\notin \{s,t\}$, we have
+\[\fout{f}(s) = \fout{f}(S) = \sum_{u\in S\text{ and }v\in T}f(u,v).\]
+By definition of $D_f$ and $S$, we have $f(u,v)=c(u,v)$ for all such $u$ and $v$. As a consequence, we see that, either the algorithm produces a $\chi$-flow in $G$, or, when it terminates, the capacities on the edges from $S$ to $T$ sum to less than $\chi(s)$, which certifies that no (real-valued) $\chi$-flow in $G$ exists.
+\end{proof} 
+
+Note that the arguments given so far do not yet prove the full strength of Theorem~\ref{th:IFT}, since the integer-valued flow constructed may not be close to a given real-valued flow. However, as we will see next, there is a nice little trick to deal with this; cf.~\cite[Corollary~5.2]{MarksUnger17}. 
+
+\begin{proof}[Proof of Theorem~\ref{th:IFT}]
+First, let $G$ be a finite graph. Let $\chi:V(G)\to \mathbb{Z}$ be a demand function and let $g$ be a $\chi$-flow in $G$. Define $g':V(G)\times V(G)\to \mathbb{Z}$ by
+\[g'(u,v):=\begin{cases}\lfloor g(u,v)\rfloor&\text{if }g(u,v)\geq0,\\
+\lceil g(u,v)\rceil & \text{otherwise}\end{cases}\]
+for $u,v\in V(G)$. Note that $g'$ is a valid flow in $G$; however, of course, it is too good to be true to expect the flow out of each vertex $u\in V(G)$ under $g'$ to be $\chi(u)$. Define $g''(u,v):=g(u,v)-g'(u,v)$ for all $u,v\in V(G)$. Then $g''$ is a flow in $G$ in which the flow out of each vertex is an integer. Also, if we let 
+\[c(u,v)=\begin{cases}1 &g(u,v)>g'(u,v),\\
+0 &\text{otherwise},\end{cases}\]
+then $g''(u,v)\leq c(u,v)$ for all $u,v\in V(G)$. Thus, by Theorem~\ref{th:IFT2}, there is an integer-valued flow $f''$ in which the flow out of each vertex of $G$ is the same under $f''$ as it is under $g''$ and $f(u,v)\leq c(u,v)$ for all $u,v\in V(G)$. Setting $f:=g'+f''$ completes the proof of Theorem~\ref{th:IFT} in the finite case. 
+
+The extension to general locally finite graphs is a standard compactness argument. Briefly, let $G$ be a locally finite graph, $\chi:V(G)\to \mathbb{Z}$ a demand function and $g:V(G)\times V(G)\to\mathbb{R}$ a $\chi$-flow in $G$. Let $X$ be the set of all functions from $V(G)\times V(G)$ to $\mathbb{Z}$ such that every pair $(u,v)$ maps to either  $\lfloor g(u,v)\rfloor$ or $\lceil g(u,v)\rceil$. Then $X$ can be viewed as the product space 
+\[\prod_{(u,v)\in V(G)\times V(G)}\{\lfloor g(u,v)\rfloor, \lceil g(u,v)\rceil\}\]
+where we view finite sets as being equipped with the discrete topology. By Tychonoff's Theorem, $X$ is compact. For each finite set $F\subseteq V(G)$, let $X_F$ be the subset of $X$ consisting of all functions $f:V(G)\times V(G)\to \mathbb{Z}$ such that 
+\begin{itemize}
+\item if $u,v\in F$, then $f(v,u)=-f(u,v)$ and 
+\item if $N_G[u]\subseteq F$, then $\sum_{v\in F} f(u,v)=\chi(u)$. 
+\end{itemize}
+To see that $X_F$ is non-empty, let $H_F$ be the graph obtained from $G\induced F$ by adding a vertex $v^*$ adjacent to all vertices of $F$. Then let $g_F$ be the flow in $H_F$ defined by setting $g_F(u,v):=g(u,v)$ if $u,v\in F$ and, for $u\in F$, setting
+\[g_F(u,v^*):=\begin{cases}0&\text{if }N_G[u]\subseteq F,\\
+-\sum_{v\in F}g(u,v)&\text{otherwise}.\end{cases}\]
+The flow out of each vertex in $F$ under $g_F$ is easily seen to be an integer. With a bit more thinking, one can also see that $\fout{g_F}(v^*)$ is an integer, too. By applying the theorem in the finite case, one can replace $g_F$ with an integer-valued flow in $H_F$ in which the flow along any given edge is changed by less than one and the flow out of each vertex is unchanged. Taking the restriction of this flow to $F\times F$ yields an element of $X_F$.
+
+So, the sets $X_F$ are non-empty. Moreover, they are closed and have the finite intersection property; thus the intersection of $X_F$ over all finite sets $F$ is non-empty. We let $f$ be any element of this intersection; this completes the proof.
+\end{proof}
+
+\section{Laczkovich's Discrepancy Bound}
+\label{app:discrep}
+
+The purpose of this appendix is to sketch a proof of Lemma~\ref{lem:discrep}.  This can be seen as an expanded version of the sketch given in~\cite[pp.~677--678]{GrabowskiMathePikhurko17}. Let $X \subseteq\mathbb{T}^k$ be a measurable set such that $\boxdim(\partial X)<k$. The first step is to use the upper Minkowski dimension of the boundary to reduce the proof to bounding discrepancy of $N_r^+[\vvec{u}]$ relative to products of intervals in $\mathbb{T}^k$. This argument is due to Niederreiter and Wills~\cite[Kollorar~4]{NiederreiterWills75}. Let $d$ be an integer such that $d>\frac{k}{k-\boxdim(\partial X)}$ and let $0 <\varepsilon<\frac{d(k-\boxdim(\partial X))-k}{k}$. Define
+\[\alpha:=\frac{(1+\varepsilon)k}{d}.\]
+By the definition of upper Minkowski dimension and the fact that $\alpha<k-\boxdim(\partial X)$, there exists $\delta_0\in (0,1)$ such that
+\begin{equation}\label{eq:distDelta}\lambda\left(\left\{\vvec{x}: \dist_\infty(\vvec{x},\partial X)\leq \delta\right\}\right)\leq \delta^\alpha\end{equation}
+for all $0<\delta<\delta_0$. Now, for $r\in \mathbb{N}$, choose $\delta\in (0,\delta_0)$ small with respect to $r$, where the dependence is clarified below. For convenience, let us assume that $\delta^{-1}$ is an integer. 
+
+Let $\mathcal{P}$ be the partitioning of $\mathbb{T}^k$ into a grid of $\delta^{-k}$ intervals, each with side-length $\delta$. Let $\mathcal{B}$ be the elements of $\mathcal{P}$ which intersect $\partial X$. We have 
+\[\delta^k|\mathcal{B}|\leq\lambda\left(\left\{\vvec{x}: \dist_\infty(\vvec{x},\partial X)\leq \delta\right\}\right)\leq  \delta^\alpha\]
+by \eqref{eq:distDelta} and so $|\mathcal{B}|\leq \delta^{-k+\alpha}$. 
+
+Let $\mathcal{I}$ be the elements of $\mathcal{P}$ contained in the interior of $X$. We then let $\mathcal{I}^*$ be the collection of intervals obtained by starting with $\mathcal{I}$ and iteratively merging two intervals if they have the same projection onto the first $k-1$ coordinates and their closures share a $(k-1)$-dimensional face. For any two distinct intervals in $\mathcal{I}^*$ which have the same projection onto the first $k-1$ coordinates, there must be at least one element in $\mathcal{B}$ ``between'' them which prevents them from merging. Conversely, each element of $\mathcal{B}$ prevents at most one potential merging. Therefore,
+\[|\mathcal{I}^*|\leq \delta^{-k+1} + |\mathcal{B}|\leq \delta^{-k+1}+\delta^{-k+\alpha}< 2\delta^{-k+\alpha}\]
+since $\alpha<1$. Thus, $\mathcal{I}^*\cup\mathcal{B}$ is a covering of $X$ with at most $3\delta^{-k+\alpha}$ intervals such that each of the intervals in $\mathcal{B}$ has measure at most $\delta^{k}$. 
+
+Now, given any finite set $F\subseteq\mathbb{T}^k$, by the triangle inequality, the discrepancy of $F$ relative to $X$ can be bounded as follows:
+\begin{equation}\label{eq:Dsplit}D(F,X)\leq \sum_{I\in \mathcal{I}^*}D(F,I) + \sum_{I\in \mathcal{B}}D(F,I\cap X)\end{equation}
+To prove Lemma~\ref{lem:discrep}, we want to upper bound the right side of \eqref{eq:Dsplit} in the case that $F=N_r^+[\vvec{u}]$ for some $\vvec{u}\in\mathbb{T}^k$. The key to this is the following lemma which bounds the discrepancy of $N_r^+[\vvec{u}]$ relative to any interval $I$ in $\mathbb{T}^k$.
+
+\begin{lemma}[Laczkovich~{\cite[Lemma~2]{Laczkovich92b}}; see also Schmidt~{\cite[p.~517]{Schmidt64}}]
+\label{lem:intervalLog}
+For almost every choice of $\vvec{x}_1,\dots,\vvec{x}_d$ in $\mathbb{T}^k$ and for every $t>0$ there exists $C>0$ such that
+\[D\left(N_r^+[\vvec{u}], I\right)\leq C\left(\log(r)\right)^{k+d+t}\]
+for every $\vvec{u}\in\mathbb{T}^k$ and interval $I$ in $\mathbb{T}^k$. 
+\end{lemma}
+
+Let us first show how this lemma is used to complete the proof of Lemma~\ref{lem:discrep} before sketching the proof of the lemma itself.  Applying Lemma~\ref{lem:intervalLog} to the first summation on the right side of \eqref{eq:Dsplit}, we get 
+\[\sum_{I\in \mathcal{I}^*}D\left(N_r^+[\vvec{u}], I\right)\leq C\left(\log(r)\right)^{k+d+t}|\mathcal{I}^*| \leq 2C\left(\log(r)\right)^{k+d+t}\delta^{-k+\alpha}.\]
+The second summation is different because the set $I\cap X$ is not necessarily an interval when $I\in \mathcal{B}$. The key here is that $I\cap X$ has measure at most $\delta^k$ and contains at most as many points of $N_r[\vvec{u}]$ as $I$ does; therefore,
+\[\sum_{I\in\mathcal{B}} D\left(N_r^+[\vvec{u}], I\right)\leq \left((r+1)^d\delta^k + C\left(\log(r)\right)^{k+d+t}\right)|\mathcal{B}|\]
+\[\leq \left((r+1)^d\delta^k + C\left(\log(r)\right)^{k+d+t}\right)\delta^{-k+\alpha}.\]
+So, if we set $\delta\leq  (r+1)^{-d/k}$, then we get
+\[D\left(N_r^+[\vvec{u}],X\right)\leq (r+1)^{d-\alpha d/k+o(1)} = (r+1)^{d-1-\varepsilon+o(1)}.\]
+The extra $o(1)$ term in the exponent can clearly be taken care of by choosing $\varepsilon$ slightly closer to $\frac{d(k-\boxdim(\partial X))-k}{k}$ in the beginning. Thus, Lemma~\ref{lem:discrep} reduces to Lemma~\ref{lem:intervalLog}.
+
+So, all that remains is to estimate the discrepancy of $N_r^+[\vvec{u}]$ relative to an arbitrary interval $I$. Lemma~\ref{lem:intervalLog} can be viewed as saying that the set $N_r^+[\vvec{u}]$ is ``uniformly spread'' in the sense that it has low discrepancy on every interval. There is a long and fascinating history of results of this type. As a starting point, let us think about the case $k=1$. Say that a sequence $x_1,x_2,\dots$ in $[0,1)$ to be \emph{uniformly spread} in $[0,1)$ if, for any $0\leq a< b\leq 1$, we have 
+\[\lim_{n\to\infty}\frac{\left|\{k: 1\leq k\leq n\text{ and }x_n\in [a,b)\}\right|}{n} = b-a.\]
+If we view $\{x_1,\dots,x_n\}$ as a multiset and consider the natural extension of the discrepancy $D(F,X)$, defined in \eqref{eq:discrepDef}, to multisets $F$, the sequence $x_1,x_2,\dots$ is uniformly spread if and only if $D(\{x_1,\dots,x_n\},[a,b])=o(n)$ as $n\to\infty$. The study of uniformly spread sequences can be traced back to the well-known Kronecker Approximation Theorem~\cite{Kronecker84} which says that, for any irrational $\alpha>0$, the set $\{n\alpha-\lfloor n\alpha\rfloor: n\in \mathbb{N}\}$ is dense in $[0,1)$; we refer the interested reader to~\cite[Chapter~1]{DrmotaTicky97} for more history and background. The famous Weyl Criterion~\cite{Weyl16} characterises uniformly spread sequences in $[0,1)$ as those for which $\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^ne^{2\pi i h x_k} = 0$ for every $h\in \mathbb{N}$. The Erd\H{o}s--Tur\'an Inequality~\cite{ErdosTuran48I,ErdosTuran48II} provides a quantitative version of this statement (see Corollary~\ref{cor:ErdosTuran} below).
+
+\begin{theorem}[The Erd\H{o}s--Tur\'{a}n Inequality~\cite{ErdosTuran48I,ErdosTuran48II}]
+\label{th:ErdosTuran}
+There exists $C>0$ such that for every probability measure $\mu$ on $[0,1)$, natural number $n_0$ and $0\leq a\leq b<1$,
+\[\left|\mu([a,b)) - (b-a)\right|\leq C\left(\frac{1}{n_0} + \sum_{h=1}^{n_0}\frac{|\hat{\mu}(h)|}{h}\right)\]
+where
+\[\hat{\mu}(h):=\int_0^1e^{2\pi i h \theta}d\mu(\theta).\]
+\end{theorem}
+
+\begin{corollary}
+\label{cor:ErdosTuran}
+There exists $C>0$ such that for every finite multiset $F$ of points in $[0,1)$, natural number $n_0$ and $0\leq a\leq b<1$, 
+\[|D(F,[a,b))|\leq C\left(\frac{|F|}{n_0} + \sum_{h=1}^{n_0}\frac{1}{h}\left|\sum_{x\in F}e^{2\pi i hx}\right|\right).\]
+\end{corollary}
+
+\begin{proof}
+Let $\mu_F$ be the measure such that $\mu_F(S):=\frac{|F\cap S|}{|F|}$ for each $S\subseteq [0,1)$. Then $\mu_S$ is a probability measure and so, by the Erd\H{o}s--Tur\'{a}n Inequality,
+\[\frac{|D(F,[a,b))|}{|F|} = |\mu_F([a,b)) - (b-a)|\leq C\left(\frac{1}{n_0} + \sum_{h=1}^{n_0}\frac{|\hat{\mu_F}(h)|}{h}\right).\]
+Note that
+\[\hat{\mu_F}(h) = \int_0^1e^{2\pi i h\theta}d\mu_F(\theta) = \frac{1}{|F|}\sum_{x\in F}e^{2\pi i h x}\]
+and so the proof is complete.
+\end{proof}
+
+The notion of a uniformly spread sequence  naturally generalises to the multidimenional setting of $\mathbb{T}^k$. The extension of Corollary~\ref{cor:ErdosTuran} to higher dimensions was proved by Koksma~\cite{Koksma50} and is known as the Erd\H{o}s--Tur\'an--Koksma Inequality. The version below was proved by Grabner~\cite{Grabner91} using a method of Vaaler~\cite{Vaaler85}; see~\cite[Theorem 1.21]{DrmotaTicky97}.
+
+
+\begin{theorem}[The Erd\H{o}s--Tur\'{a}n--Koksma Inequality~\cite{ErdosTuran48I,ErdosTuran48II,Koksma50}]
+\label{th:ErdosTuranKoksma}
+For every finite multiset $F$ of points in $[0,1)^k$, natural number $n_0$ and interval $I\subseteq [0,1)^k$,
+\[|D(F,I)|\leq \left(\frac{3}{2}\right)^k\left(\frac{2|F|}{n_0+1} + \sum_{\substack{\vvec{h}\in \mathbb{Z}^k\\ 0<\|\vvec{h}\|_\infty\leq n_0}}\frac{1}{r(\vvec{h})}\left|\sum_{\vvec{x}\in F}e^{2\pi i \langle \vvec{h},\vvec{x}\rangle}\right|\right)\] 
+where $r(\vvec{h}):=\prod_{i=1}^k\max\{1,|h_i|\}$ for $\vvec{h}=(h_1,\dots,h_k)\in \mathbb{Z}^k$. 
+\end{theorem}
+
+It is not hard to see the potential utility of  Theorem~\ref{th:ErdosTuranKoksma} in proving Lemma~\ref{lem:intervalLog}. The full details get rather messy, and so we omit them, but let us provide a brief sketch covering some of the ideas. 
+
+\begin{proof}[Proof Sketch of Lemma~\ref{lem:intervalLog}.]
+By the Erd\H{o}s--Tur\'{a}n--Koksma Inequality, for every $n_0\in\mathbb{N}$, $\vvec{u}\in\mathbb{T}^k$ and $r\geq1$, 
+\[\left|D(N_r^+[\vvec{u}],I)\right|\leq \left(\frac{3}{2}\right)^k\left(\frac{2(r+1)^d}{n_0+1} + \sum_{\substack{\vvec{h}\in \mathbb{Z}^k\\ 0<\|\vvec{h}\|_\infty\leq n_0}}\frac{1}{r(\vvec{h})}\left|\sum_{\vvec{x}\in N_r^+[\vvec{u}]}e^{2\pi i \langle \vvec{h},\vvec{x}\rangle}\right|\right).\]
+If we let $n_0=(r+1)^d$, then the first term inside of the large parentheses is less than $1/2$. So, it suffices to prove that, for almost every choice of $\vvec{x}_1,\dots,\vvec{x}_d$ and every $\varepsilon>0$ there is a constant $C>0$ such that
+\begin{equation}\label{eq:hSum}\sum_{\substack{\vvec{h}\in \mathbb{Z}^k\\ 0<\|\vvec{h}\|_\infty\leq (r+1)^d}}\frac{1}{r(\vvec{h})}\left|\sum_{\vvec{x}\in N_r^+[\vvec{u}]}e^{2\pi i \langle \vvec{h},\vvec{x}\rangle}\right| \leq C\left(\log(r)\right)^{k+d+t}
+\end{equation}
+for every $\vvec{u}\in \mathbb{T}^k$. By writing $\langle \vvec{h},\vvec{x}\rangle = \langle \vvec{h},\vvec{u}\rangle+\langle \vvec{h},\vvec{x}-\vvec{u}\rangle$ and factoring out $e^{2\pi i \langle \vvec{h},\vvec{u}\rangle}$, we see that it suffices to prove \eqref{eq:hSum} in the case that $\vvec{u}=(0,0,\dots,0)$. We omit the remaining details but briefly remark that statements similar to the following identity are useful (cf.~\cite[p.~152]{TomkowiczWagon16}):
+\[\left|\sum_{n=0}^{N-1}e^{2\pi i n\beta}\right|=\left|\frac{\sin(\pi\beta N)}{\sin(\pi\beta)}\right| \leq \left|\frac{1}{\sin(\pi\beta)}\right|\leq\frac{1}{4\min\{|\beta-\lfloor \beta\rfloor|,|\beta-\lceil \beta\rceil|\}\}}\]
+for every $\beta\in\mathbb{R}\setminus \mathbb{Z}$. 
+\end{proof} 
+\end{document}
