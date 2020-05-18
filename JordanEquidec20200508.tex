@@ -1177,54 +1177,77 @@ Suppose that $\vvec{u},\vvec{v}\in N[K_i]$ for some $i\geq1$, but neither $\vvec
 \section{Achieving Non-Null Pieces}
 \label{sec:nonNull}
 
-As we mentioned in the introduction, for certain sets $A$ and $B$ satisfying the hypotheses of Theorem~\ref{th:main}, one cannot obtain an equidecomposition of $A$ to $B$ with pieces of positive measure. Our goal in this section is to show that, if $A$ and $B$ satisfy one additional condition, then the argument in Lemma~\ref{outline:lem:matching} can be modified to yield non-null pieces.  The property that we will use is as follows
-\[\lambda\left(\left\{\vvec{t}\in\mathbb{T}^k: (A+\vvec{t})\cap B\neq \emptyset \text{ and } \lambda\left((A+\vvec{t})\cap B\right)=0\right\}\right) = 0.\]
-We call this the \emph{simple intersection property}. Note that this is a property of the pair $(A,B)$ and not a property of either of the two sets individually. Clearly, a disk and a square in $\mathbb{T}^2$ have the simple intersection property. 
+In this section, we discuss how to obtain non-empty pieces under certain conditions on $A$ and $B$. In doing so, it is clear that, if $\vvec{t}\in \mathbb{T}^k$ such that $(A+\vvec{t})\cap B$ is a non-empty null set, then we need to avoid using $\vvec{t}$ as one of the translation vectors in the equidecomposition. As we observed in the introduction, under the hypotheses of Theorem~\ref{th:main}, it may be impossible to do so; e.g., $A$ may contain a point $\vvec{x}$ such that the distance from $\vvec{x}$ to $A\setminus\{\vvec{x}\}$ exceeds the diameter of $B$. This motivates the following definition.
 
-\begin{JN}
-Can this property be expressed using more standard mathematical terminology, so that I don't have to give it the name ``simple intersection property''?
-\end{JN}
+\begin{defn}
+Given $A,B\subseteq \mathbb{T}^k$, say that $B$ \emph{non-negligibly intersects essentially all translates of $A$} if it holds that
+\[\lambda\left(\left\{\vvec{t}\in\mathbb{T}^k: (A+\vvec{t})\cap B\neq \emptyset \text{ and } \lambda\left((A+\vvec{t})\cap B\right)=0\right\}\right) = 0.\]
+\end{defn}
+
+Of course, this definition is symmetric; i.e. if $B$ non-negligibly intersects essentially all translates of $A$, then $A$ non-negligibly intersects essentially all translates of $B$. 
+
+We will argue that, if $A$ and $B$ satisfy the hypotheses of Theorem~\ref{th:main} and, additionally, $B$ non-negligibly intersects essentially all translates of $A$, then there exists an equidecomposition of $A$ to $B$ with non-null pieces. We remark that the assumption that $B$ non-negligibly intersects essentially all translates of $A$ is a bit heavy-handed; it is likely that the same conclusions would hold with a weaker condition in its place. However, in order to avoid adding further complications to the proof, we will not aim for the most general condition. Clearly, if $A$ is a disk and $B$ is a square, then $B$ non-negligibly intersects essentially all translates of $A$, and so this condition is sufficient for the purposes of proving Theorem~\ref{th:circleSquare}.
+
+The argument in this section for constructing the equidecomposition is quite similar to that in the proof of Lemma~\ref{outline:lem:matching}. The main difference is that, for each $\vec{n}\in \mathbb{Z}^d$ with $\|\vec{n}\|_\infty$ bounded by a constant depending on $A$ and $B$ such that 
+\[\left(A + \sum_{i=1}^dn_i\vvec{x}_i\right)\cap B\neq \emptyset\]
+we will pre-arrange that the piece of the equidecomposition corresponding to $\vec{n}$ is non-null. The following lemma is useful for achieving this.
+
+\begin{lemma}
+\label{lem:preSelect}
+Let $T$ be a finite set of vectors in $\mathbb{T}^k$ such that, for all $\vvec{t}\in T$,
+\[\lambda\left((A+\vvec{t})\cap B\right)>0.\]
+Then, for any $r\geq1$, there exists a collection $\{A_{\vvec{t}}: \vvec{t}\in T\}$ of pairwise disjoint non-null subsets of $A$ such that $A_{\vvec{t}}+\vvec{t}\subseteq B$ for all $\vvec{t}\in T$ and the set $\bigcup_{\vvec{t}\in T}A_{\vvec{t}}$ is $r$-discrete in $G_d$.
+\end{lemma}
+
+\begin{proof}
+We present a simple greedy argument. By Observation~\ref{outline:obs:diamDiscrete}, we can choose $\gamma$ sufficiently small so that every strip of width at most $\gamma$ is $r$-discrete. Assume further that $\gamma$ is chosen small enough that
+\[\gamma(2r+1)^d|T| < \lambda\left((A+\vvec{t})\cap B\right)=\lambda\left(A\cap (B-\vvec{t})\right)\]
+for every $\vvec{t}\in T$. Label the elements of $T$ by $\vvec{t}_1,\dots,\vvec{t}_{|T|}$ in an arbitrary fashion.  
+
+Start by letting $S_{\vvec{t}_1}$ be a strip of width $\gamma$ such that the intersection of $S_{\vvec{t}_1}$ and $A\cap (B-\vvec{t}_1)$ is non-null and setting 
+\[A_{\vvec{t}_1}:=S_{\vvec{t}_1}\cap \left(A\cap (B-\vvec{t}_1)\right).\]
+Clearly, the measure of $A_{\vvec{t}_1}$ is at most the measure of $S_{\vvec{t}_1}$, which is $\gamma$.  
+
+Now, let $2\leq i\leq |T|$ and assume that each of the sets $A_{\vvec{t}_1},\dots,A_{\vvec{t}_{i-1}}$ has measure at most $\gamma$. Then, by our choice of $\gamma$, the set
+\[\left(A\cap (B-\vvec{t}_i)\right)\setminus \left(\bigcup_{j=1}^{i-1}N_r\left[A_{\vvec{t}_j}\right]\right)\]
+has positive measure. We can therefore let $S_{\vvec{t}_i}$ be a strip of width $\gamma$ such that
+\[A_{\vvec{t}_i}:= S_{\vvec{t}_i}\cap \left(\left(A\cap (B-\vvec{t}_i)\right)\setminus \left(\bigcup_{j=1}^{i-1}N_r\left[A_{\vvec{t}_j}\right]\right)\right)\]
+has positive measure. It is clear that $A_{\vvec{t}_i}$ has measure at most $\gamma$. The collection $\{A_{\vvec{t}_i}:1\leq i\leq |T|\}$ has all of the desired properties, simply by construction. 
+\end{proof}
+
+The next lemma is the key to obtaining non-null pieces in Theorem~\ref{th:circleSquare}. 
 
 \begin{lemma}
 \label{lem:nonNull}
-Suppose that $A$ and $B$ are subsets of $\mathbb{T}^k$ with the simple intersection property. If there exists a bounded integer-valued flow $f$ from $A$ to $B$ in $G_d$, then $A$ and $B$ are equidecomposable using non-null pieces. 
+Suppose that $A$ and $B$ are measurable subsets of $\mathbb{T}^k$ and that $B$ non-negligibly intersects essentially all translates of $A$. If there exists a bounded integer-valued flow $f$ from $A$ to $B$ in $G_d$, then $A$ and $B$ are equidecomposable using non-null pieces. 
 \end{lemma}
 
 \begin{proof}
 As in the proof of Lemma~\ref{outline:lem:matching}, for each $r\geq1$, we let $X_r$ be a maximally $r$-discrete set which is a disjoint union of finitely many strips and, for $\vvec{v}\in \mathbb{T}^k$, let $\eta_r(\vvec{v})$ be the vertex $\vvec{u}\in X_r$ at minimum distance from $\vvec{v}$ in $G_d$, where, if there is more than one such vertex, then $\vvec{u}$ is chosen to be minimal among them under $\lex$. For each $r\geq1$ and $\vvec{u}\in X_r$, let
 \[V_r(\vvec{u}):=\{\vvec{v}\in\mathbb{T}^k:\eta_r(\vvec{v})=\vvec{u}\}.\]
 Following along the same lines as the proof of Lemma~\ref{outline:lem:matching}, if $r$ is chosen to be a sufficiently large constant, then we can ensure that, for every $\vvec{u}\in X_r$, 
-\begin{equation}\label{eq:enoughAB}\min\left\{\left|V_r(\vvec{u})\cap A\right|,\left|V_r(\vvec{u})\cap B\right|\right\}\geq 10\cdot\sum_{\vvec{v}\vvec{w}\in \partial_EV_r(\vvec{u})}\left(|f(\vvec{v},\vvec{w})|+10\right).\end{equation}
+\begin{equation}\label{eq:enoughAB}\min\left\{\left|V_r(\vvec{u})\cap A\right|,\left|V_r(\vvec{u})\cap B\right|\right\} \geq \sum_{\vvec{v}\vvec{w}\in \partial_EV_r(\vvec{u})}\left(|f(\vvec{v},\vvec{w})|+1\right).\end{equation}
 
-For each $\vec{n}\in \mathbb{Z}^d$, define
-\[\widetilde{A}_{\vec{n}}:=\left\{\vvec{v}\in A: \vvec{v}+\sum_{i=1}^dn_i\vvec{x}_i\in B\right\}\]
-and
-\[\widetilde{B}_{\vec{n}}:=\left\{\vvec{v}\in B: \vvec{v}-\sum_{i=1}^dn_i\vvec{x}_i\in A\right\}.\] 
-Note that $\widetilde{B}_{\vec{n}}$ is a translation of $\widetilde{A}_{\vec{n}}$. Define
-\[\alpha:= \min_{\substack{\|\vec{n}\|_\infty\leq 10r\\ \widetilde{A}_{\vec{n}}\neq\emptyset}} \lambda(\widetilde{A}_{\vec{n}}).\]
-Since $A$ and $B$ have the simple intersection property, we have $\alpha>0$ with probability one. Fix $\gamma>0$ so that $\gamma\cdot8\cdot (20r+1)^{d}(200r+1)^{d}< \alpha$. 
+Now, let $T$ be the set of all vectors of the form $\sum_{i=1}^dn_i\vvec{x}_i$ for $\vec{n}\in \mathbb{Z}^d$ with $\|\vec{n}\|_\infty \leq 10r$ and
+\[\left(A + \sum_{i=1}^dn_i\vvec{x}_i\right)\cap B\neq \emptyset.\]
+Since $A$ and $B$ are measurable and $B$ non-negligibly intersects essentially all translates of $A$, we have that, with probability one,
+\[\lambda\left((A+\vvec{t})\cap B\right)>0\]
+for all $\vvec{t}\in T$.  So, we can apply Lemma~\ref{lem:preSelect} to obtain a collection $\{A_{\vvec{t}}: \vvec{t}\in T\}$ of pairwise disjoint non-null subsets of $A$ such that $A_{\vvec{t}}+\vvec{t}\subseteq B$ for all $\vvec{t}\in T$ and the set $\bigcup_{\vvec{t}\in T}A_{\vvec{t}}$ is $(100r)$-discrete in $G_d$. 
 
-Let $T$ be the set of vectors $\vec{n}\in\mathbb{Z}^d$ such that $\|\vec{n}\|_\infty\leq 10r$ and $\widetilde{A}_{\vec{n}}\neq \emptyset$ and let $\prec$ be an arbitrary total order on $T$. For each $\vec{n}\in T$, let $A^*_{\vec{n}}$ be the intersection of $\widetilde{A}_{\vec{n}}$ with a strip $S_{\vec{n}}$ in $\mathbb{T}^k$ and let $B^*_{\vec{n}} = A^*_{\vec{n}} + \sum_{i=1}^dn_i\vvec{x}_i$, where $S_{\vec{n}}$ is chosen so that the following properties hold
-\begin{enumerate}
-\stepcounter{equation}
-\item\label{eq:100rDisc} $A^*_{\vec{n}}$ is $(100r)$-discrete in $G_d$,
-\stepcounter{equation}
-\item\label{eq:lowMeasure} $0<\lambda(A^*_{\vec{n}})<\gamma$ and
-\stepcounter{equation}
-\item\label{eq:100rPrev} $\left(A^*_{\vec{n}}\cup B^*_{\vec{n}}\right)\cap \left(\bigcup_{\vec{n}'\prec \vec{n}} N_{100r}\left[A^*_{\vec{n}'}\cup B^*_{\vec{n}'}\right]\right)=\emptyset$.
-\end{enumerate}
-By Observation~\ref{outline:obs:diamDiscrete}, we may achieve \eqref{eq:100rDisc} by simply taking $S_{\vec{n}}$ to be a sufficiently narrow strip. Similarly, satisfying \eqref{eq:lowMeasure} can be achieved by making $S_{\vec{n}}$ sufficiently narrow, given that it still captures some of the measure of $\widetilde{A}_{\vec{n}}$.  Now, for $\vec{n}'\prec \vec{n}$, if we assume  inductively that \eqref{eq:lowMeasure} holds for $A_{\vec{n}'}^*$, then the measure of $\widetilde{A}_{\vec{n}}\cap  N_{100r}\left[A^*_{\vec{n}'}\cup B^*_{\vec{n}'}\right]$ is at most $2\cdot (200r+1)^d\cdot \gamma$. Thus, after deleting all of  $N_{100r}\left[A^*_{\vec{n}'}\cup B^*_{\vec{n}'}\right]$ from $\widetilde{A}_{\vec{n}}$ for all $\vec{n}'\prec \vec{n}$, we are left with a set of measure at least
-\[\lambda(\widetilde{A}_{\vec{n}}) - 2\cdot (20r+1)^d(200r+1)^d\cdot \gamma \geq (3/4)\lambda(\widetilde{A}_{\vec{n}}).\]
-The same is true with $\widetilde{B}_{\vec{n}}$ in the place of $\widetilde{A}_{\vec{n}}$. Thus, there is a choice of $S_{\vec{n}}$ so that \eqref{eq:100rPrev} is satisfied as well. 
+Next, we observe that, for any distinct $\vvec{t},\vvec{t}'\in T$, the sets $A_{\vvec{t}}+\vvec{t}$ and $A_{\vvec{t}'}+\vvec{t}'$ are disjoint; otherwise, by definition of $T$, the sets $A_{\vvec{t}}$ and $A_{\vvec{t}'}$ would be at distance at most $20r$ in $G_d$, contradicting the fact that $\bigcup_{\vvec{t}\in T}A_{\vvec{t}}$ is $(100r)$-discrete in $G_d$. Thus, the sets $A_{\vvec{t}}$ for $\vvec{t}\in T$ form an equidecomposition of the subset
+\[A^*:=\bigcup_{\vvec{t}\in T}A_{\vvec{t}}\]
+of $A$ to the subset 
+\[B^*:=\bigcup_{\vvec{t}\in T}\left(A_{\vvec{t}}+\vvec{t}\right)\]
+using translations in $T$.
 
-Now, in constructing the equidecomposition, we begin by letting each set $A^*_{\vec{n}}$ for $\vec{n}\in\mathbb{Z}^d$ and $\|\vec{n}\|_\infty\leq 10r$ which is non-empty be a piece of the equidecomposition and let $B^*_{\vec{n}}$ be the associated piece in the partition of $B$. For every $\vvec{v}\in A^*_{\vec{n}}$, let $f_{\vvec{v}}$ be the flow in $G_d$ where $f_{\vvec{v}}(\vvec{u},\vvec{w})$  is equal to $1$ if $\vvec{u}\vvec{w}$ is an edge on the $\lex$-minimal shortest path from $\vvec{v}$ to $\vvec{v}+\sum_{i=1}^dn_i\vvec{x}_i$, equal to $-1$ if $\vvec{w}\vvec{u}$ is such an edge and equal to $0$ otherwise. Let $A':=A\setminus \left(\bigcup_{\|\vec{n}\|_\infty\leq 10r}A_{\vec{n}}^*\right)$ and $B':=B\setminus \left(\bigcup_{\|\vec{n}\|_\infty\leq 10r}B_{\vec{n}}^*\right)$. We define an integer-valued flow $f'$ in $G_d$ from $A'$ to $B'$ by
-\begin{equation}
-\label{eq:f'def}
-f':=f - \sum_{\|\vec{n}\|_\infty\leq 10r}\left(\sum_{\vvec{v}\in A^*_{\vec{n}}}f_{\vvec{v}}\right).\end{equation}
-By \eqref{eq:100rDisc} and \eqref{eq:100rPrev}, $\bigcup_{\|\vec{n}\|_\infty\leq 10r}A_{\vec{n}}^*$ is $(100r)$-discrete and, therefore, the supports of $f_{\vvec{v}}$ and $f_{\vvec{v}'}$ must be disjoint for any two distinct $\vvec{v},\vvec{v}'\in\bigcup_{\|\vec{n}\|_\infty\leq 10r}A_{\vec{n}}^*$. This implies that $\|f-f'\|_\infty\leq 1$. By \eqref{eq:100rDisc} and \eqref{eq:100rPrev} again, each of the Voronoi cells $V_r(\vvec{u})$ for $\vvec{u}\in X_r$ can contain at most one element of $\bigcup_{\|\vec{n}\|_\infty\leq 10r}A_{\vec{n}}^*$; likewise, it can contain at most one element of $\bigcup_{\|\vec{n}\|_\infty\leq 10r}B_{\vec{n}}^*$. Thus, by applying \eqref{eq:enoughAB} and the argument from Lemma~\ref{outline:lem:matching}, we can associate every vertex $\vvec{v}$ of $A'$ to one in $B'$ which is in the same Voronoi cell as $\vvec{v}$, or one of the neighbouring Voronoi cells. 
-
-Each Voronoi cell has diameter at most $2r$ in $G_d$ and, by construction, for every $\vec{n}\in\mathbb{Z}^d$ with $\|\vec{n}\|_\infty\leq 10r$ and $\left(A+\sum_{i=1}^dn_i\vvec{x}_i\right)\cap B\neq \emptyset$, the piece corresponding to points of $A$ that are translated by $\sum_{i=1}^dn_i\vvec{x}_i$ contains $A_{\vec{n}}^*$, which has positive measure. This completes the proof. 
+Now, for each $\vvec{t}\in T$ and each vertex $\vvec{v}\in A_{\vvec{t}}$, take a shortest path from $\vvec{v}$ to $\vvec{v}+\vvec{t}$ in $G_d$, chosen to be $\lex$-minimal among all such paths, and let $f_{\vvec{v}}$ be the (unique) flow in $G_d$ from $\{\vvec{v}\}$ to $\{\vvec{v}+\vvec{t}\}$ supported on the pairs which form edges of this path. Since the set $\bigcup_{\vvec{t}\in T}A_{\vvec{t}}$ is $(100r)$-discrete, and by definition of $T$, any two such paths are edge disjoint and so the flow
+\[f^*:=\sum_{\vvec{v}\in T}f_{\vvec{v}}\]
+satisfies $\|f^*\|_\infty\leq 1$. So, letting $f':= f-f^*$, we see that \eqref{eq:enoughAB} implies that, for every $\vvec{u}\in X_r$,
+\[\min\left\{|V_r(\vvec{u})\cap A|,|V_r(\vvec{u})\cap B|\right\}\geq \sum_{\vvec{v}\vvec{w}\in \partial_EV_r(\vvec{u})}|f'(\vvec{v},\vvec{w})|.\]
+Clearly, $f'$ is a flow from $A\setminus A^*$ to $B\setminus B^*$ in $G_d$. Following the argument in the proof of Lemma~\ref{outline:lem:matching} with $f'$ in the place of $f$, we see that there is an equidecomposition from $A\setminus A^*$ to $B\setminus B^*$ in which each $\vvec{v}\in A\setminus A^*$ is associated to a point in $B\setminus B^*$ which is either in the same Voronoi cell as $\vvec{v}$ or one which neighbours it. In particular, all of the translation vectors used in the equidecomposition are contained in $T$. Taking, for each $\vvec{t}\in T$, the union of $A_{\vvec{t}}$ and the piece of the equidecomposition from $A\setminus A^*$ to $B\setminus B^*$ corresponding to $\vvec{t}$ (or just the set $A_{\vvec{t}}$ itself, in the case that there is no such piece) yields an equidecomposition of $A$ to $B$ using translation vectors in $T$ such that every piece is non-null.
 \end{proof}
+
+
 
 
 \section{Analysing the Pieces}
