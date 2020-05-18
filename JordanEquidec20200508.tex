@@ -1253,119 +1253,85 @@ Clearly, $f'$ is a flow from $A\setminus A^*$ to $B\setminus B^*$ in $G_d$. Foll
 \section{Analysing the Pieces}
 \label{sec:pieces}
 
-Our final task is to analyse the pieces of the final equidecomposition. In particular, we will analyse the Borel complexity of the pieces and the upper Minkowski dimension of their boundaries.
+Our final task is to analyse the pieces of the final equidecomposition. In particular, we will analyse the Borel complexity of the pieces and the upper Minkowski dimension of their boundaries. Given a point $\vvec{v}\in A$, the choice of the translation vector for $\vvec{v}$ (which determines the piece that $\vvec{v}$ belongs to; see Remark~\ref{rem:GdRole}) depends on the structure of the set $X_r$ and flow values of $f$ nearby $\vvec{v}$ in $G_d$ and, in the case that the equidecomposition is constructed using Lemma~\ref{lem:nonNull}, the structure of the sets $A_{\vvec{t}}$ and $A_{\vvec{t}}+\vvec{t}$ near $\vvec{v}$ in $G_d$ for each $\vvec{t}\in T$. The set $X_r$ is nothing more than a disjoint union of finitely many strips and each of the sets $A_{\vvec{t}}$ and $A_{\vvec{t}}+\vvec{t}$ is just an intersection of a translate of $A$, a translate of $B$ and a strip. From this, it is clear that the main ``bottleneck'' in analysing the structure of the pieces lies in analysing the sets of the form $Z_{\vec{\gamma},\ell}^f$ for $\vec{\gamma}\in\{0,1\}^d$ and $|\ell|\leq \|f\|_\infty$ from Definition~\ref{def:Zdef}. 
 
 \subsection{Borel Complexity}
 
-The following definitions are useful for describing Borel complexity. 
+Let us focus first on the Borel complexity of such sets. By construction of the flow $f$, it is clear that
+\begin{equation}\label{eq:Zunionp}Z_{\vec{\gamma},\ell}^f = \bigcup_{\vec{p}\in\{0,\dots,5\}^d}\left(T_{\vec{p}}\cap Z^{g_{\vec{p}}}_{\vec{\gamma},\ell}\right)\end{equation}
+where $T_{\vec{p}}$ is as in the proof of Lemma~\ref{lem:Licover} and $g_{\vec{p}}$ is defined in Section~\ref{sec:integerFlow}. So, it suffices to analyse the Borel complexity of $T_{\vec{p}}$ and $Z^{g_{\vec{p}}}_{\vec{\gamma},\ell}$ for $\vec{p}\in \{0,\dots,5\}^d$. We start with the former. 
 
-\begin{defn}
-Given a collection $\mathcal{A}$ of subsets of $\mathbb{T}^k$, let $\bSigma(\mathcal{A})$ be the collection of all countable unions of sets in $\mathcal{A}$. 
-\end{defn}
 
-\begin{defn}
-Given a collection $\mathcal{A}$ of subsets of $\mathbb{T}^k$, let $\bB(\mathcal{A})$ be the collection of all Boolean combinations of finitely many elements of $\mathcal{A}$.
-\end{defn}
-
-\begin{defn}
-Let $\mathcal{T}_{A,B}$ denote the set of all translations of $A$ and $B$ in $\mathbb{T}^k$. 
-\end{defn}
-
-We recall the standard (boldface) Borel hierarchy; see, e.g.~\cite[pp.~xvi--xv]{Kechris95}. 
-
-\begin{defn}
-\label{def:BorelH}
-Define $\bSigma_1^0$ to be the collection of open sets in $\mathbb{T}^k$ and $\bPi_1^0$ to be the collection of closed sets in $\mathbb{T}^k$. For each countable ordinal $\alpha\geq2$, define $\bSigma_\alpha^0:=\bSigma\left(\bigcup_{1\leq \beta<\alpha}\bPi_{\beta}^0\right)$ and $\bPi_\alpha^0:=\left\{\mathbb{T}^k\setminus S: S\in \bSigma_\alpha^0\right\}$. Also, for each countable ordinal $\alpha\geq1$, define $\bDelta^0_\alpha:=\bSigma_\alpha^0\cap \bPi_\alpha^0$. 
-\end{defn}
-
-Alternatively, $\bSigma_2^0$ is often written as $F_\sigma$ and $\bPi_2^0$ as $G_\delta$. The sets in $\bDelta_2^0=F_\sigma\cap G_\delta$ are often referred to as \emph{ambiguous sets}. Generally, if $1\leq \beta<\alpha$, then $\bSigma_\beta^0\cup \bPi_\beta^0\subseteq \bDelta_\alpha^0$; in particular, every set that is open or closed is ambiguous. Our aim in this section is to prove the following statement, which is valid whether or not $A$ and $B$ are Borel. 
-
-\begin{proposition}
-\label{prop:finalComplexity}
-The pieces of the equidecomposition in  Theorem~\ref{th:main} can be taken to be in
-\[\bB\left(\bSigma_2^0 \cup\bSigma\left(\bB\left(\bSigma_1^0\cup \mathcal{T}_{A,B}\right)\right)\right).\]
-\end{proposition}
-
-We are particularly interested in the following corollary.
-
-\begin{corollary}
-\label{cor:standardComplexity}
-If $\alpha>1$ is a countable ordinal such that $A,B\in\bDelta_\alpha^0$, then the pieces of the equidecomposition in Theorem~\ref{th:main} can be taken to be a Boolean combination of finitely many sets in $\bSigma_\alpha^0$. 
-\end{corollary}
-
-If $A$ and $B$ are ambiguous sets, then Corollary~\ref{cor:standardComplexity} implies that there is an equidecomposition with pieces that are Boolean combinations of finitely many sets in $F_\sigma\cup G_\delta$. We turn our attention to the proof of Theorem~\ref{th:finalComplexity}.  The following observation is easy. 
-
-\begin{obs}
-\label{obs:XiHierarchy}
-If $X$ is a union of finitely many disjoint strips, then $X\in \mathcal{B}\left(\bSigma_1^0\right)$.
-\end{obs}
-
-Next, let us consider the sets $T_{\vec{p}}$ from the proof of Lemma~\ref{lem:Licover}. 
 
 \begin{lemma}
 \label{lem:TpHierarchy}
-Each of the sets $T_{\vec{p}}$ constructed in the proof of Lemma~\ref{lem:Licover} can be written as a Boolean combination of finitely many sets in $\bPi_2^0$.
+Each of the sets $T_{\vec{p}}$ constructed in the proof of Lemma~\ref{lem:Licover} can be written as a Boolean combination of finitely many $G_\delta$ sets.
 \end{lemma}
 
 \begin{proof}
 Note that we can assume that, for all $i\geq j$, 
 \begin{equation}\label{eq:disjointBoundaries}N_{r'_i}[\partial Y_i]\cap N_{r'_j}[\partial Y_j]=\emptyset.\end{equation}
-Indeed, if each of $Y_1,Y_2,\dots$ is translated by uniformly random vectors in $\mathbb{T}^k$, then this will hold with probability one. If \eqref{eq:disjointBoundaries} holds, then, if the sets $R_i(\vvec{v})$ for $i\geq1$ are defined in terms of the interior of $Y_i$ instead of $Y_i$ itself, then, for each $\vvec{v}\in \mathbb{T}^k$, the sets $R_1(\vvec{v}),R_2(\vvec{v}),\dots$ remain unchanged, except for possibly one index $i\geq1$. In particular, the set $R^*(\vvec{v})$ is unchanged. So, assuming that $R_i(\vvec{v})$ is defined in terms of the interior of $Y_i$, then for any $t,b\geq1$ and $\vec{p}\in\{0,\dots,5\}^d$ the set
+Indeed, if each of $Y_1,Y_2,\dots$ is translated by uniformly random vectors in $\mathbb{T}^k$, then this will hold with probability one. Assuming \eqref{eq:disjointBoundaries} holds, if the sets $R_i(\vvec{v})$ for $i\geq1$ in the proof of Lemma~\ref{lem:Licover} are defined in terms of the interior of $Y_i$ instead of $Y_i$ itself, then, for each $\vvec{v}\in \mathbb{T}^k$, the sets $R_1(\vvec{v}),R_2(\vvec{v}),\dots$ remain unchanged, except for possibly one index $i\geq1$. In particular, the set $R^*(\vvec{v})$ is unchanged. So, assuming that $R_i(\vvec{v})$ is defined in terms of the interior of $Y_i$, then for any $t,b\geq1$ and $\vec{p}\in\{0,\dots,5\}^d$ the set
 \[\left\{\vvec{v}\in\mathbb{T}^k: R_t(\vvec{v})\cap \prod_{s=1}^d\left[\frac{p_s-3}{3}-\frac{1}{b},\frac{p_s-2}{3}+\frac{1}{b}\right]\neq\emptyset\right\}\]
 is open as well. So,  
 \[\bigcap_{b=1}^\infty\bigcap_{j=1}^\infty\bigcup_{t=j}^\infty\left\{\vvec{v}\in\mathbb{T}^k: R_t(\vvec{v})\cap \prod_{s=1}^d\left[\frac{p_s-3}{3}-\frac{1}{b},\frac{p_s-2}{3}+\frac{1}{b}\right]\neq\emptyset\right\}\]
-is in $\bPi_2^0$. The set $T_{\vec{p}}$ can be written as a Boolean combination of these sets, and so it is in $\bB(\bPi_2^0)$. 
+is a $G_\delta$ set. Clearly, $T_{\vec{p}}$ can be written as a Boolean combination of sets of this form.
 \end{proof}
 
-Without further ado, we prove Theorem~\ref{prop:finalComplexity}. 
+Next, let us consider the sets of the form $Z_{\vec{\gamma},\ell}^{g_{\vec{p}}}$.
 
-\begin{proof}[Proof of Proposition~\ref{prop:finalComplexity}]
-The final pieces of the equidecomposition (constructed in the proof of Lemma~\ref{outline:lem:matching} or Lemma~\ref{lem:nonNull}) are Boolean combinations of the set $X_r$, which is a union of finitely many disjoint strips, translates of sets $Z^{f}_{\vec{\gamma},\ell}$ for $\|\vec{\gamma}\|_\infty=1$ and $|\ell|\leq \|f\|_\infty$ (recall Definition~\ref{def:Zdef}) and, in the case of Lemma~\ref{lem:nonNull}, translates of $A$ and $B$ and strips $S_{\vec{n}}$ for $\|\vec{n}\|_\infty \leq 10r$. By construction, 
-\[Z_{\vec{\gamma},\ell}^f = \bigcup_{\vec{p}}\left(T_{\vec{p}}\cap Z^{g_{\vec{p}}}_{\vec{\gamma},\ell}\right).\]
-So, by Observation~\ref{obs:XiHierarchy} and Lemma~\ref{lem:TpHierarchy}, it suffices to show that 
-\[Z_{\vec{\gamma},\ell}^{g_{\vec{p}}}\in \bB\left(\bSigma\left(\bB\left(\bSigma_1^0\cup \mathcal{T}_{A,B}\right)\right)\right).\]
-This is what we shall prove.
 
-First, for each $\vec{\gamma}\in\{0,1\}^d$ and $|\ell|\leq \|f\|_\infty$ and every $i\geq1$, define
-\[W_{\vec{\gamma},\ell,i}:=\left\{\vvec{u}: \text{there exists }1\leq j\leq i\text{ such that }\vvec{u}\in J_j\text{ and }g_j\left(\vvec{u},\vec{\gamma}\cdot_a\vvec{u}\right)=\ell \right\},\]
-\[W_{\vec{\gamma},\ell,i}':=\left\{\vvec{u}: \text{there exists }1\leq j\leq i\text{ such that }\vvec{u}\in K_j^{\vec{p}}\text{ and }g_{\vec{p},j}'\left(\vvec{u},\vec{\gamma}\cdot_a\vvec{u}\right)=\ell \right\}\]
+\begin{lemma}
+\label{lem:Zpcomplexity}
+There exists a finite collection $\mathcal{W}$ of subsets of $\mathbb{T}^k$ such that
+\begin{enumerate}
+\stepcounter{equation}
+\item\label{eq:Wgood} every set in $\mathcal{W}$ is a countable union of Boolean combinations of finitely many strips and translates of $A$ and $B$ and
+\stepcounter{equation}
+\item\label{eq:ZW} for any $\vec{\gamma}\in\{0,1\}^d$, $|\ell|\leq \|f\|_\infty$ and $\vec{p}\in\{0,\dots,5\}^d$, the set $Z_{\vec{\gamma},\ell}^{g_{\vec{p}}}$ can be written as a finite Boolean combination of sets in $\mathcal{W}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+For every $\vec{\gamma}\in\{0,1\}^d$, $|\ell|\leq \|f\|_\infty$, $\vec{p}\in\{0,\dots,5\}^d$ and $i\geq1$, define
+\[W^{\vec{p}}_{\vec{\gamma},\ell,i}:=\left\{\vvec{u}: \text{there exists }1\leq j\leq i\text{ such that }\vvec{u}\in J_j\text{ and }g_j\left(\vvec{u},\vec{\gamma}\cdot_a\vvec{u}\right)=\ell \right\},\]
+\[W^{\vec{p},\prime}_{\vec{\gamma},\ell,i}:=\left\{\vvec{u}: \text{there exists }1\leq j\leq i\text{ such that }\vvec{u}\in K_j^{\vec{p}}\text{ and }g_{\vec{p},j}'\left(\vvec{u},\vec{\gamma}\cdot_a\vvec{u}\right)=\ell \right\}\]
 and
-\[W_{\vec{\gamma},\ell,i}'':=\left\{\vvec{u}: \text{there exists }1\leq j\leq i\text{ such that }\vvec{u}\in L_j^{\vec{p}}\text{ and }g_{\vec{p},j}''\left(\vvec{u},\vec{\gamma}\cdot_a\vvec{u}\right)=\ell \right\}.\]
-It is clear, by construction of $g_i,g_i'$ and $g_i''$, that each of these sets is a Boolean combination of finitely many strips and translates of $A$ and $B$. Therefore, the sets
-\[W_{\vec{\gamma},\ell}:=\bigcup_{i=1}^\infty W_{\vec{\gamma},\ell,i},\]
-\[W_{\vec{\gamma},\ell}':=\bigcup_{i=1}^\infty W_{\vec{\gamma},\ell,i}'\]
+\[W^{\vec{p},\prime\prime}_{\vec{\gamma},\ell,i}:=\left\{\vvec{u}: \text{there exists }1\leq j\leq i\text{ such that }\vvec{u}\in L_j^{\vec{p}}\text{ and }g_{\vec{p},j}''\left(\vvec{u},\vec{\gamma}\cdot_a\vvec{u}\right)=\ell \right\}.\]
+It is clear, by construction of $g_i,g_{\vec{p},i}'$ and $g_{\vec{p},i}''$, that each of these sets is a Boolean combination of finitely many strips and translates of $A$ and $B$. Now, define
+\[W^{\vec{p}}_{\vec{\gamma},\ell}:=\bigcup_{i=1}^\infty W_{\vec{\gamma},\ell,i},\]
+\[W^{\vec{p},\prime}_{\vec{\gamma},\ell}:=\bigcup_{i=1}^\infty W^{\vec{p},\prime}_{\vec{\gamma},\ell,i}\]
 and
-\[W_{\vec{\gamma},\ell}'':=\bigcup_{i=1}^\infty W_{\vec{\gamma},\ell,i}''\]
-are contained in $\bSigma\left(\bB\left(\bSigma_1^0\cup \mathcal{T}_{A,B}\right)\right)$. Now, by construction of $g_i,g_i'$ and $g_i''$, if $\vvec{u}\in J_j$, then $g_{\vec{p}}(\vec{u},\vec{\gamma}\cdot_a\vvec{u})=g_j(\vec{u},\vec{\gamma}\cdot_a\vvec{u})$. Also, if $\vvec{u}\in K_j^{\vec{p}}$, then we have that $g_{\vec{p}}(\vvec{u},\vec{\gamma}\cdot_a\vvec{u})=g_{\vec{p},j}'(\vvec{u},\vec{\gamma}\cdot_a\vvec{u})$, unless there exists $i>j$ such that $\vvec{u}\in J_i$ and $g_i(\vvec{u},\vec{\gamma}\cdot_a\vvec{u})\neq  g_{\vec{p},j}'(\vvec{u},\vec{\gamma}\cdot_a\vvec{u})$. That is, the value under $g_{\vec{p},j}'$ stands forever, unless it is overwritten later due to $\vvec{u}$ being in one of the sets $J_i$. Similarly, if $\vvec{u}\in L_j^{\vec{p}}$, then the value of $g_{\vec{p},j}''$  stands unless it is overwritten later due to $\vvec{u}$ being in $J-i$ or $K_i^{\vec{p}}$. Therefore,
-\[Z_{\gamma,\ell}^{g_{\vec{p}}} = W_{\vec{\gamma},\ell}\cup \left(W_{\vec{\gamma},\ell}' \setminus \bigcup_{\ell'\neq \ell}W_{\vec{\gamma},\ell'}\right)\cup \left(W_{\vec{\gamma},\ell}'' \setminus \bigcup_{\ell'\neq \ell}\left(W_{\vec{\gamma},\ell'}\cup W_{\vec{\gamma},\ell'}'\right)\right).\]
+\[W^{\vec{p},\prime\prime}_{\vec{\gamma},\ell}:=\bigcup_{i=1}^\infty W^{\vec{p},\prime\prime}_{\vec{\gamma},\ell,i}.\]
+We define $\mathcal{W}$ to be the collection of all sets of the form $W^{\vec{p}}_{\vec{\gamma},\ell},W^{\vec{p},\prime}_{\vec{\gamma},\ell}$ or $W^{\vec{p},\prime\prime}_{\vec{\gamma},\ell}$ for any $\vec{\gamma},\ell$ or $\vec{p}$. It is clear that $\mathcal{W}$ is finite and that it satisfies \eqref{eq:Wgood}.
+
+Now, by construction of $g_i,g_{\vec{p},i}'$ and $g_{\vec{p},i}''$, if $\vvec{u}\in J_j$, then $g_{\vec{p}}(\vec{u},\vec{\gamma}\cdot_a\vvec{u})=g_j(\vec{u},\vec{\gamma}\cdot_a\vvec{u})$. Also, if $\vvec{u}\in K_j^{\vec{p}}$, then we have that $g_{\vec{p}}(\vvec{u},\vec{\gamma}\cdot_a\vvec{u})=g_{\vec{p},j}'(\vvec{u},\vec{\gamma}\cdot_a\vvec{u})$, unless there exists $i>j$ such that $\vvec{u}\in J_i$ and $g_i(\vvec{u},\vec{\gamma}\cdot_a\vvec{u})\neq  g_{\vec{p},j}'(\vvec{u},\vec{\gamma}\cdot_a\vvec{u})$. That is, the value under $g_{\vec{p},j}'$ is maintained forever, unless it is overwritten later due to $\vvec{u}$ being in one of the sets $J_i$. Similarly, if $\vvec{u}\in L_j^{\vec{p}}$, then the value of $g_{\vec{p},j}''$  is maintained forever unless it is overwritten later due to $\vvec{u}$ being in $J_i$ or $K_i^{\vec{p}}$. Therefore,
+\[Z_{\gamma,\ell}^{g_{\vec{p}}} = W^{\vec{p}}_{\vec{\gamma},\ell}\cup \left(W^{\vec{p},\prime}_{\vec{\gamma},\ell} \setminus \bigcup_{s\neq \ell}W^{\vec{p}}_{\vec{\gamma},s}\right)\cup \left(W^{\vec{p},\prime\prime}_{\vec{\gamma},\ell} \setminus \bigcup_{s\neq \ell}\left(W_{\vec{\gamma},s}^{\vec{p}}\cup W_{\vec{\gamma},s}^{\vec{p},\prime}\right)\right).\]
 This completes the proof.
 \end{proof}
 
+If $A$ and $B$ are Borel, then one can obtain a bound on the Borel complexity of the pieces of the equidecomposition by combining \eqref{eq:Zunionp} with Lemmas~\ref{lem:TpHierarchy} and~\ref{lem:Zpcomplexity}. As a special case, if $A,B\in F_\sigma\cap G_\delta$, then each of the sets in the collection $\mathcal{W}$ from Lemma~\ref{lem:Zpcomplexity} is a $F_\sigma$ set. Therefore, in this special case, the pieces of the final equidecomposition can be written as a finite Boolean combination of $F_\sigma$ (or, equivalently, $G_\delta$) sets. 
 
 \subsection{Boundary Dimension}
 
-In Section~\ref{sec:covering}, the sequence $r_0'<r_1<r_1'<\cdots$ was taken to be any sequence that satisfies the bounds in \eqref{eq:rr'}, \eqref{eq:r'q'} and \eqref{eq:r'q}. In order to optimise our estimate of the dimension of the boundary of the pieces, it is useful to make a more specific choice. For $i\geq0$, define
-\[r_{i}':=100^{2^{i+1} - 1}\]
-and, for $i\geq 1$, let
-\[r_i:=100^{2^{i+1} - 2}.\]
-It is tedious, but not hard, to verify that \eqref{eq:rr'}, \eqref{eq:r'q'} and \eqref{eq:r'q} do, indeed, hold for this choice of sequence. Note that, for all $i\geq1$, we have that $r_i=\left(r_{i-1}'\right)^2$ and $r_i'=100r_i$.  Recall the definitions of $\epsilon,d$ and $\varepsilon$ from \eqref{eq:epsilonGap}, \eqref{eq:dBound} and \eqref{eq:epsBound}. Define
+ Recall the definitions of $\epsilon,d$ and $\varepsilon$ from \eqref{eq:epsilonGap}, \eqref{eq:dBound} and \eqref{eq:epsBound}. Define
 \begin{equation}
 \label{eq:zeta}
 \zeta:=\frac{\varepsilon\cdot \epsilon}{4d^2+\varepsilon}.
 \end{equation}
+Our goal in this section is to show that, if the sequence $r_0'<r_1<r_1'<\cdots$ from Section~\ref{sec:covering} is chosen carefully, then it is possible to show that, for every $\vec{\gamma}\in\{0,1\}^d$ and $|\ell|\leq \|f\|_\infty$, the upper Minkowski dimension of the boundary of $Z_{\vec{\gamma},\ell}^f$ is at most $k-\zeta$.
 
-Our goal in this section is to prove the following.
-
-\begin{proposition}
-\label{prop:bdyDim}
-The boundary of each piece of the equidecomposition has upper Minkowski dimension at most $k-\zeta$. 
-\end{proposition}
-
-Note that, if $\boxdim(\partial A)=\boxdim(\partial B)=k-1$, then $\epsilon$ and $\varepsilon$ can be taken arbitrarily close to $1$ and $d$ can be taken to be $2k$. So, in this special case, we can achieve pieces whose boundaries have upper Minkowski dimension at most $\alpha$ for any
+Let us pause for a moment to discuss the quantitative bound on the boundary dimension that we get when $\boxdim(\partial A)=\boxdim(\partial B)=k-1$. In this special case, each of $\epsilon$ and $\varepsilon$ can be taken arbitrarily close to $1$ and $d$ can be taken to be $2k$. So, we can obtain pieces whose boundaries have upper Minkowski dimension at most $\alpha$ for any
 \[\alpha > k - \frac{1}{16k^2+1}.\]
-In particular, if $A$ is a disk and $B$ is a square, then this the right side of this expression evaluates to $129/65$. Thus, the bound in Proposition~\ref{prop:bdyDim} is sufficient for proving Theorem~\ref{th:circleSquare}. 
+In particular, if $k=2$, as in the case that $A$ is a disk and $B$ is a square, then the right side of this inequality evaluates to $129/65$. Thus, a bound of $k-\zeta$ is sufficient for proving Theorem~\ref{th:circleSquare}.
 
-The following lemma is a consequence of classical results in discrepancy theory and so we will omit the proof; see, e.g., the Erd\H{o}s--Tur\'{a}n Theorem, stated in Appendix~\ref{app:discrep}.
+As we have alluded to above, in order to optimise our estimate of the dimension of the boundary of the pieces, it is useful to make a more specific choice for the sequence $r_0'<r_1<r_1'<\cdots$. For $i\geq0$, define
+\begin{equation}\label{eq:ri'specific}r_{i}':=100^{2^{i+1} - 1}\end{equation}
+and, for $i\geq 1$, let
+\begin{equation}\label{eq:rispecific}r_i:=100^{2^{i+1} - 2}.\end{equation}
+It is tedious, but not hard, to verify that \eqref{eq:rr'}, \eqref{eq:r'q'} and \eqref{eq:r'q} are satisfied for this choice of sequence. Note that, for every $i\geq1$, we have that $r_i=\left(r_{i-1}'\right)^2$ and $r_i'=100r_i$.  
+
+The following lemma is a consequence of classical results in discrepancy theory; we sketch a proof in Appendix~\ref{app:discrep}.
 
 
 \begin{lemma}
@@ -1375,29 +1341,43 @@ There exists positive constants $c_1,C_2$ and $C_3$ such that the following hold
 then, with positive probability, the set $Q_i$ is $r_i$-discrete in $G_d$ and satisfies $N_{r_i\log^{C_3}(r_i)}[Q_{i}]=\mathbb{T}^k$ for all $i\geq1$.
 \end{lemma}
 
+Thus, in Section~\ref{sec:covering}, we can assume that there is a single strip $Q_i$ for each $i\geq1$ such that, for any $\vvec{u}\in \mathbb{T}^k$, whether or not $\vvec{u}$ is contained in $X_i$ is determined by the intersection of the set of vertices at distance at most $r_i\log^{O(1)}(r_i)$ from $\vvec{u}$. By construction, this also implies that whether or not some $\vvec{u}\in\mathbb{T}^k$ is contained in either of $I_i$ or $J_i$ can be determined by the intersection of $Q_1,\dots,Q_i$ with vertices at distance at most $r_i\log^{O(1)}(r_i)$ from $\vvec{u}$. Combining this with \eqref{eq:fLocalJ}, we get the following:
 
+\begin{obs}
+\label{obs:booleanABQ}
+For any $\vec{\gamma}\in \{0,1\}^d$ and $|\ell|\leq \|f\|_\infty$, the set $Z_{\vec{\gamma},\ell}^f\cap I_i$ can be written as a Boolean combination of at most
+\[\left(2^{m_i+1} + r_i\log^{O(1)}(r_i)\right)^d\] 
+translates of the sets $A,B$ and $Q_1,\dots,Q_i$. 
+\end{obs} 
 
+An \emph{interval in} $\mathbb{T}^k$ is a set of the form $\prod_{i=1}^k[a_i,b_i)$ where $0\leq a_i<b_i\leq 1$ for all $1\leq i\leq k$.  We are now in position to prove the following.
 
-Thus, in the construction of the sets $J_i,K_i$ and $L_i$ in Section~\ref{sec:covering}, we can assume that $X_i$ is written as a Boolean combination of $r_i^d\log^{O(1)}(r_i)$  translates of a single strip $Q_i$ and that $Y_i$ is written as a Boolean combination of $(r_i')^d\log^{O(1)}(r_i')$ translates of a single strip $Q_i'$. We now prove Proposition~\ref{prop:bdyDim}.
+\begin{proposition}
+\label{prop:bdyDim}
+If the sequence $r_0'<r_1<r_1'<\cdots$ is as in \eqref{eq:ri'specific} and \eqref{eq:rispecific}, then, for every $\vec{\gamma}\in\{0,1\}^d$ and $|\ell|\leq \|f\|_\infty$, the boundary of $Z_{\vec{\gamma},\ell}^f$ has upper Minkowski dimension at most $k-\zeta$.
+\end{proposition}
 
-\begin{proof}[Proof of Proposition~\ref{prop:bdyDim}]
-Let $r$ be as in the proof of Lemma~\ref{outline:lem:matching} or~\ref{lem:nonNull}. As usual, each piece of the equidecomposition can be expressed as a Boolean combination of boundedly (as a function of $r$) many of the sets $Z_{\vec{\gamma},\ell}^f$ for $\vec{\gamma}\in\{0,1\}^d$ and $|\ell|\leq \|f\|_\infty$, strips and translates of $A$ and $B$. Since $\zeta<\epsilon<1$, we see that proving Proposition~\ref{prop:bdyDim} boils down to analysing the boundaries of the sets $Z_{\vec{\gamma},\ell}^f$. 
-
-By \eqref{eq:epsilonGap}, we can let $\delta_0>0$ be sufficiently small so that, for all $0 < \delta < \delta_0$, we have
-\[\max\left\{\lambda\left(\left\{\vvec{x}: \dist_\infty(\vvec{x},\partial A)\right\}\right),\lambda\left(\left\{\vvec{x}: \dist_\infty(\vvec{x},\partial B)\right\}\right)\right\}< \delta^{\epsilon}.\]
+\begin{proof}
+By \eqref{eq:epsilonGap}, we can choose $\delta_0>0$ to be sufficiently small so that 
+\begin{equation}
+\label{eq:delta0small}
+\delta_0^{\epsilon-\zeta}<r_1^{-d^2/\varepsilon}
+\end{equation} 
+and, for all $0 < \delta < \delta_0$,
+\begin{equation}\label{eq:ABboundary}\max\left\{\lambda\left(\left\{\vvec{x}: \dist_\infty(\vvec{x},\partial A)<\delta\right\}\right),\lambda\left(\left\{\vvec{x}: \dist_\infty(\vvec{x},\partial B)<\delta\right\}\right)\right\}< \delta^{\epsilon}.\end{equation}
 Let $0<\delta<\delta_0$ be arbitrary and let $i$ be the unique index so that
 \begin{equation}\label{eq:riChoice}r_i^{d^2/\varepsilon}\leq \left(1/\delta\right)^{\epsilon-\zeta} < r_{i+1}^{d^2/\varepsilon}.\end{equation}
+Note that such an index $i$ is guaranteed to exist by \eqref{eq:delta0small}.
 
-An \emph{interval in} $\mathbb{T}^k$ is defined to be a set of the form $\prod_{i=1}^k[a_i,b_i)$ where $0\leq a_i<b_i\leq 1$ for all $1\leq i\leq k$. Let $\mathcal{P}$ be a partitioning of $\mathbb{T}^k$ into at most, say, $2(1/\delta)^k$ intervals of side-length between $\delta$ and $\delta/2$. Let $\mathcal{B}$ be the collection of sets in $\mathcal{P}$ which intersect the boundary of a set of the form
-\[Z_{\vec{\gamma},\ell}^f\cap I_i\]
-for $\vec{\gamma}\in\{0,1\}^d$ and $|\ell|\leq \|f\|_\infty$ where $I_i$ is defined as in Section~\ref{sec:covering}. Let $\mathcal{I}$ be the collection of sets in $\mathcal{P}$ which are not in $\mathcal{B}$ and intersect $\mathbb{T}^k\setminus I_i$. Note that every point which is in the boundary of one of the sets $Z_{\vec{\gamma},\ell}^f$ must be contained in one of the intervals in $\mathcal{B}\cup\mathcal{I}$. So, it suffices to show that $|\mathcal{B}\cup\mathcal{I}|=O\left((1/\delta)^{k-\zeta}\right)$.
+Let $\mathcal{P}$ be a collection of intervals in $\mathbb{T}^k$ of side-length $\delta$ such that each point of $\mathbb{T}^k$ is contained in at least one and at most two sets in $\mathcal{P}$. Define
+\[\mathcal{Z}:=\left\{Z_{\vec{\gamma},\ell}^f: \vec{\gamma}\in\{0,1\}^d\text{ and }|\ell|\leq \|f\|_\infty\right\}.\]
+Our goal is to show that the number of intervals in $\mathcal{P}$ which intersect $\bigcup_{Z\in\mathcal{Z}}\partial Z$ is $O\left(\left(1/\delta\right)^{k-\zeta}\right)$. Let $\mathcal{B}$ be the collection of sets in $\mathcal{P}$ which intersect the boundary of $Z\cap I_i$ for some $Z\in \mathcal{Z}$, where we recall that the index $i$ was specified above and that $I_i$ was defined in Section~\ref{sec:covering}. Let $\mathcal{I}$ be the collection of sets in $\mathcal{P}$ which are not in $\mathcal{B}$ and intersect $\mathbb{T}^k\setminus I_i$. By construction, $\mathcal{B}\cup \mathcal{I}$ contains every set in $\mathcal{P}$ which intersects the boundary of a set in $\mathcal{Z}$. So, it suffices to bound $|\mathcal{B}|$ and $|\mathcal{I}|$. 
 
-First, for $\mathcal{B}$, by \eqref{eq:fLocalJ}, that $Z_{\vec{\gamma},\ell}^f\cap I_i$ can be written as a Boolean combination of at most $\left(2^{m_i}+O(r_i)\right)^d$ translates of $A$ and $B$ and the sets $J_1,\dots,J_i$ and $I_i$. By \eqref{eq:miDefAgain}, we have that $2^{dm_i}=\Theta(r_i^{d^2/\varepsilon})$. The set $J_j$ for $j<i$ or the set $I_i$ can be written as a Boolean combination of $r_i^d\log^{O(1)}(r_i)$ translates of the sets $Q_1,\dots,Q_i$. Therefore,
-\[\delta^k|\mathcal{B}|\leq \lambda\left(\left\{\vvec{x}: \dist_\infty(\vvec{x},\partial Z_{\vec{\gamma},\ell}^f)\leq \delta\text{ for some }\vec{\gamma},\ell\right\}\right)\]
-\[=O\left(r_i^{d^2/\varepsilon}\delta^{\epsilon}\right) + O\left(r_i^d\log^{O(1)}(r_i)\delta\right)=O\left(\delta^{\zeta}\right).\]
-Therefore,
-\[|\mathcal{B}|=O\left( (1/\delta)^{k-\zeta}\right).\]
-Now, for $\mathcal{I}$, since none of the intervals in $\mathcal{I}$ are contained in $\mathcal{B}$, and the sets $Z_{\vec{\gamma},\ell}^f$ partition $\mathbb{T}^k$, all sets in $\mathcal{I}$ must all be in the interior of $\mathbb{T}^k\setminus I_i$. Thus, by Lemma~\ref{lem:Jmeas},
+By Observation~\ref{obs:booleanABQ}, any set of the form $Z\cap I_i$ for $Z\in\mathcal{Z}$ can be written at most $\left(2^{m_i+1} + r_i\log^{O(1)}(r_i)\right)^d$ translates of $A,B$ and $Q_1,\dots,Q_i$.  By \eqref{eq:miDefAgain}, we have that $2^{m_i}=\Theta(r_i^{d/\varepsilon})$. Therefore, by \eqref{eq:ABboundary},
+\[\delta^k|\mathcal{B}|\leq \lambda\left(\bigcup_{Z\in\mathcal{Z}}\left\{\vvec{x}: \dist_\infty(\vvec{x},\partial Z)\leq \delta\right\}\right)=O\left(r_i^{d^2/\varepsilon}\delta^{\epsilon}\right)=O\left(\delta^{\zeta}\right)\]
+by definition of $i$. So, $|\mathcal{B}|=O\left( (1/\delta)^{k-\zeta}\right)$. 
+
+Since none of the intervals in $\mathcal{I}$ are contained in $\mathcal{B}$, and $\bigcup_{Z\in\mathcal{Z}}Z = \mathbb{T}^k$, all sets in $\mathcal{I}$ must all be contained in the interior of $\mathbb{T}^k\setminus I_i$. Thus, by Lemma~\ref{lem:Jmeas} combined with \eqref{eq:ri'specific} and \eqref{eq:rispecific},
 \[\delta^k|\mathcal{I}| = O(r_{i-1}'/r_i)=O\left(r_{i+1}^{-1/4}\right) = O\left((1/\delta)^{-(\epsilon-\zeta)\frac{\varepsilon}{4d^2}}\right)=O\left((1/\delta)^{-\zeta}\right).\]
 This completes the proof of Proposition~\ref{prop:bdyDim} and of Theorems~\ref{th:circleSquare} and~\ref{th:main}.
 \end{proof}
