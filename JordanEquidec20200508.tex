@@ -1329,17 +1329,29 @@ As we have alluded to above, in order to optimise our estimate of the dimension 
 \begin{equation}\label{eq:ri'specific}r_{i}':=100^{2^{i+1} - 1}\end{equation}
 and, for $i\geq 1$, let
 \begin{equation}\label{eq:rispecific}r_i:=100^{2^{i+1} - 2}.\end{equation}
-It is tedious, but not hard, to verify that \eqref{eq:rr'}, \eqref{eq:r'q'} and \eqref{eq:r'q} are satisfied for this choice of sequence. Note that, for every $i\geq1$, we have that $r_i=\left(r_{i-1}'\right)^2$ and $r_i'=100r_i$.  
-
-The following lemma is a consequence of classical results in discrepancy theory; we sketch a proof in Appendix~\ref{app:discrep}.
+It is tedious, but not hard, to verify that \eqref{eq:rr'}, \eqref{eq:r'q'} and \eqref{eq:r'q} are satisfied for this choice of sequence. Note that, for every $i\geq1$, we have that $r_i=\left(r_{i-1}'\right)^2$ and $r_i'=100r_i$. The following lemma will be useful. The proof relies on standard results in discrepancy theory stated in Appendix~\ref{app:discrep}; we only sketch the proof.
 
 
 \begin{lemma}
 \label{lem:stripLem}
-There exists positive constants $c_1,C_2$ and $C_3$ such that the following holds. If $r_1,r_2,\dots$ is an increasing sequence of positive integers and, for each $i$,  
-\[Q_i:=\left[0, c_1r_i^{-d}\log^{-C_2}(r_i)\right)\times [0,1)^{k-1},\]
-then, with positive probability, the set $Q_i$ is $r_i$-discrete in $G_d$ and satisfies $N_{r_i\log^{C_3}(r_i)}[Q_{i}]=\mathbb{T}^k$ for all $i\geq1$.
+There exists positive constants $c_1$ and $C_2$ such that the following holds. If $r_1,r_2,\dots$ is an increasing sequence of positive integers and, for each $i$,  
+\[Q_i:=\left[0, c_1r_i^{-d}\log^{-2}(r_i)\right)\times [0,1)^{k-1},\]
+then, with positive probability, $Q_i$ is $r_i$-discrete in $G_d$ and $N_{C_2r_i\log^{(k+d+3)/d}(r_i)}[Q_{i}]=\mathbb{T}^k$ for all $i\geq1$.
 \end{lemma}
+
+\begin{proof}[Proof Sketch]
+Let $r_1,r_2,\dots$ be any increasing sequence of positive integers and $\gamma_1,\gamma_2,\dots$ be a decreasing sequence of real numbers between $0$ and $1$. Let $Q_i:=[0,\gamma_i)\times [0,1)^{k-1}$. 
+
+We start by applying a simple union bound argument to estimate the probability that $Q_i$ fails to be $r_i$-discrete for some $i\geq1$. For $1\leq j\leq d$, let $x_i$ be the first coordinate of $\vvec{x}_j$. Clearly, $Q_i$ fails to be $r_i$-discrete if and only if there exists a non-zero $\vec{n}\in\{-r_i,\dots,0,\dots,r_i\}^d$ such that the sum $\sum_{j=1}^dn_j x_j$ viewed in $\mathbb{R}$ (i.e. not modulo $1$) is within $\gamma_i$ of an integer. Fix $\vec{n}$. Suppose that $x_1,\dots,x_{d-1}$ have already been sampled and let $t=\sum_{j=1}^{d-1}n_jx_j$. Then, since $0\leq n_dx_j<n_d$, there are $n_d+1$ different possible integers that the sum $\sum_{j=1}^dn_j x_j$ can be within $\gamma_i$ of and, for each of them, the probability of this event is at most $2\gamma_i/n_d$. Therefore, the probability that $Q_i$ is not $r_i$-discrete is at most
+\[\sum_{\vec{n}\in\{-r_i,\dots,0,\dots,r_i\}^d}2\gamma_i\left(\frac{n_d+1}{n_d}\right) \leq 4\left[(2r_i+1)^d-1\right]\gamma_i.\]
+Now, one more key observation is that, since the sequence $\gamma_i$ is decreasing, for any $i\geq2$ and $\vec{n}\in \mathbb{Z}^d$, the event that $\sum_{j=1}^dn_j x_j$ is within $\gamma_i$ of an integer is contained in the event that it is within $\gamma_{i-1}$ of an integer. Therefore, when computing the probability that $Q_i$ fails to be $r_i$-discrete, the event that $\sum_{j=1}^dn_jx_j$ is within $\gamma_i$ of an integer for $\vec{n}\in\{-r_{i-1},\dots,0,\dots,r_{i-1}\}^d$ was already counted when computing the probability that $Q_{i-1}$ is not $r_{i-1}$-discrete. Therefore, letting $r_0:=0$, we see that the probability that $Q_i$ is not $r_i$-discrete for some $i\geq1$ is at most
+\[\sum_{i=1}^\infty 4\left[(2r_i+1)^d - (2r_{i-1}+1)^d\right]\gamma_i.\]
+This can be rewritten as $\sum_{j=1}^\infty f(j)$ where  $f(j):=\left(\frac{4\left[(2r_i+1)^d - (2r_{i-1}+1)^d\right]}{r_i-r_{i-1}}\right)\gamma_i$ whenever $r_{i-1}+1\leq j\leq r_i$. If $\gamma_i$ is of order $r_i^{-d}\log^{-2}(r_i)$, then $f(j)=O(1/(j\log^2(j))$. Since $\sum_{j=1}^\infty \frac{1}{j\log^2(j)}$ is convergent, by choosing $c_1>0$ sufficiently small, we get that the probability that $Q_i$ is not $r_i$-discrete for some $i\geq1$ is less than, say, $1/3$. 
+
+Now, for the other assertion, let $\vvec{u}\in \mathbb{T}^k$ such that the first coordinate of $\vvec{u}$ is $\gamma_i/2$. By Lemma~\ref{lem:intervalLog}, with probability one, for any integer $R_i$, the discrepancy of $N_{R_i}[\vvec{u}]$ with respect to any strip of width $\gamma_i/2$ is $o\left(\log(R_i)^{k+d+1}\right)$. Therefore, for any such strip $I$, we have
+\[|N_{R_i}[\vvec{u}]\cap I| \geq \left[(2R_i+1)^d-1\right](\gamma_i/2) - o\left(\log(R_i)^{k+d+1}\right).\]
+Given that $\gamma_i=c_1r_i^{-d}\log^{-2}(r_i)$, if $R_i=C_2 r_i\log^{(k+d+3)/d}(r_i)$ for large $C_2$, then this expression is greater than $1$ for all $i\geq1$. 
+\end{proof}
 
 Thus, in Section~\ref{sec:covering}, we can assume that there is a single strip $Q_i$ for each $i\geq1$ such that, for any $\vvec{u}\in \mathbb{T}^k$, whether or not $\vvec{u}$ is contained in $X_i$ is determined by the intersection of the set of vertices at distance at most $r_i\log^{O(1)}(r_i)$ from $\vvec{u}$. By construction, this also implies that whether or not some $\vvec{u}\in\mathbb{T}^k$ is contained in either of $I_i$ or $J_i$ can be determined by the intersection of $Q_1,\dots,Q_i$ with vertices at distance at most $r_i\log^{O(1)}(r_i)$ from $\vvec{u}$. Combining this with \eqref{eq:fLocalJ}, we get the following:
 
